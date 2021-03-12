@@ -6,13 +6,13 @@
 /*   By: llim <llim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:38:22 by llim              #+#    #+#             */
-/*   Updated: 2021/03/12 23:41:00 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/13 00:02:22 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void parse_env(char **envp, t_state *state)
+void	parse_env(char **envp, t_state *state)
 {
 	int		i;
 	int		j;
@@ -33,12 +33,12 @@ void parse_env(char **envp, t_state *state)
 			}
 			j++;
 		}
-		add_back_env(&(state->env_head);
+		add_env_back(&(state->env_head), key, value);
 		i++;
 	}
 }
 
-void add_env_back(t_env **head, char *key, char *value)
+void	add_env_back(t_env **head, char *key, char *value)
 {
 	t_env *temp;
 
@@ -53,7 +53,7 @@ void add_env_back(t_env **head, char *key, char *value)
 	}
 }
 
-t_env *create_env(char *key, char *value)
+t_env	*create_env(char *key, char *value)
 {
 	t_env *env;
 
@@ -61,6 +61,6 @@ t_env *create_env(char *key, char *value)
 		return (0);
 	env->key = ft_strdup(key);
 	if (value)
-		env->value = ft_strdup(value;
-	return (env)
+		env->value = ft_strdup(value);
+	return (env);
 }
