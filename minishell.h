@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/11 17:36:01 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/12 23:40:14 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,12 @@ typedef struct s_state
 	char		*input;
 }				t_state;
 
+/*
+ *	parse_env
+ */
+
+void	parse_evn(char **envp, t_state *state);
+void	add_env_back(t_env **head, char *key, char *value);
+t_evn	*create_env(char *key, char *value);
 
 #endif
