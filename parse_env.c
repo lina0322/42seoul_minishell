@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:38:22 by llim              #+#    #+#             */
-/*   Updated: 2021/03/12 23:35:51 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/12 23:36:44 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,21 @@ void parse_env(char **envp, t_state *state)
 		}
 		add_back_env(&(state->env_head);
 		i++;
+	}
+}
+
+void add_back_env(t_env **head, char *key, char *value)
+{
+	t_env *temp;
+
+	if (*head == NULL)
+		*head = create_env(key, value);
+	else
+	{
+		temp = *head;
+		while (temp->next)
+			temp = temp->next;
+		temp->next = create_env(key, value);
 	}
 }
 
