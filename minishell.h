@@ -6,13 +6,15 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/13 00:11:04 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/13 01:52:19 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "get_next_line.h"
+# include "libft/libft.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -47,6 +49,12 @@ void	init_state(t_state *state);
 void	parse_env(char **envp, t_state *state);
 void	add_env_back(t_env **head, char *key, char *value);
 t_env	*create_env(char *key, char *value);
+
+/*
+ *	parse_env
+ */
+
+void	prompt(t_state *state);
 
 /*
  * util <- for test
