@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llim <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/13 16:35:56 by llim              #+#    #+#             */
+/*   Updated: 2021/03/13 16:36:03 by llim             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 void	print_export_sorted_list(t_env *env)
 {
 	char	**env_list;
@@ -77,7 +89,6 @@ void	sorted_list(char **list, int size)
 		{
 			if (ft_strncmp(list[j], list[j+1], ft_strlen(list[j])) > 0)
 			{
-			//	printf("%s, %s\n", list[j], list[j+1]);
 				temp = list[j];
 				list[j] = list[j + 1];
 				list[j + 1] = temp;
