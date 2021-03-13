@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/13 02:36:42 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/13 14:18:59 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ void	handle_eof(char *input, int *flag)
 	if (ft_strlen(input) == 0) // 입력값없이 컨트롤D 누른경우
 	{
 		printf("exit\n");
+		free(input); // 모든 malloc 해제하는 함수 필요할듯
 		exit(1);
 	}
 	else // 이전입력값이있고 eof로 컨트롤D한경우
 	{
-		printf(" \b\b\n");
+		printf(" \b\b");
+		*flag = 1;
 	}
 }
 
@@ -51,9 +53,8 @@ void	prompt(t_state *state)
 		state->input = ft_strjoin2(state->input, input);
 		if (is_backslash(state->input))
 		{
-			// > 출력 후 추가입력 받기
+			state->input[ft_strlen(state->input) - 1] = '\0';
 			flag = 0;
-			continue ;
 		}
 		else if (gnl == 0) // 컨트롤 + D 입력경우 eof
 			handle_eof(state->input, &flag); //후에 bash나오게 수정
@@ -61,7 +62,7 @@ void	prompt(t_state *state)
 		{
 			printf("%s\n", input); //test용
 			free(input); //test용
+			break ;
 		}
-		break ;
 	}
 }
