@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/13 14:12:22 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/13 16:18:22 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_state
 void	init_state(t_state *state);
 
 /*
- *	parse_env
+ *	env
  */
 
 void	parse_env(char **envp, t_state *state);
@@ -57,4 +57,12 @@ void	print_env_all(t_env *head);
 
 void	prompt(t_state *state);
 
+/*
+ *	export
+ */
+
+void	print_export_sorted_list(t_env *env);
+char	*make_export_env(char *key, char *value);
+int		check_env_length(t_env *env);
+void	sorted_list(char **list, int size);
 #endif
