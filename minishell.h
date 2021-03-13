@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/13 01:52:19 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/13 13:46:01 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,9 @@ void	add_env_back(t_env **head, char *key, char *value);
 t_env	*create_env(char *key, char *value);
 
 /*
- *	parse_env
+ *	prompt
  */
 
 void	prompt(t_state *state);
-
-/*
- * util <- for test
- */
-
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strdup(const char *s1);
-void	*ft_calloc(size_t count, size_t size);
-int		ft_strlen(const char *s);
-void	*ft_memset(void *b, int c, size_t len);
-void	*ft_memcpy(void *dst, const void *src, size_t n);
 
 #endif
