@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:26:45 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/13 00:11:54 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/13 14:13:24 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		main(int argc, char **argv, char *envp[])
 
 	init_state(&state);
 	parse_env(envp, &state);
+	print_env_all(state.env_head);
 	// signal
 	// prompt(&state);
 	// tokenizer(&state);

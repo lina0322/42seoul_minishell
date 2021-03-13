@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/13 13:46:01 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/13 14:12:22 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	init_state(t_state *state);
 void	parse_env(char **envp, t_state *state);
 void	add_env_back(t_env **head, char *key, char *value);
 t_env	*create_env(char *key, char *value);
+void	print_env_all(t_env *head);
 
 /*
  *	prompt

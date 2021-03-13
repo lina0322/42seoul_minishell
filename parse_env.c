@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:38:22 by llim              #+#    #+#             */
-/*   Updated: 2021/03/13 00:02:22 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/13 14:15:58 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,23 @@ t_env	*create_env(char *key, char *value)
 {
 	t_env *env;
 
-	if (!(env = (t_env *)ft_calloc(1, sizeof(t_env))))
+	env = (t_env *)malloc(sizeof(t_env));
+	if (env == NULL)
 		return (0);
 	env->key = ft_strdup(key);
 	if (value)
 		env->value = ft_strdup(value);
 	return (env);
+}
+
+void	print_env_all(t_env *head)
+{
+	t_env *env;
+
+	env = head;
+	while (env->next)
+	{
+		printf("%s=%s\n", env->key, env->value);
+		env = env->next;
+	}
 }
