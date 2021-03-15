@@ -6,9 +6,11 @@
 /*   By: llim <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 16:35:56 by llim              #+#    #+#             */
-/*   Updated: 2021/03/13 16:36:03 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/15 20:20:18 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "minishell.h"
 
 void	print_export_sorted_list(t_env *env)
 {
@@ -29,7 +31,7 @@ void	print_export_sorted_list(t_env *env)
 	}
 	sorted_list(env_list, len);
 	i = 0;
-	while (env_list[i])
+	while (i < len)
 	{
 		printf("declare -x %s\n", env_list[i]);
 		i++;
@@ -78,7 +80,6 @@ void	sorted_list(char **list, int size)
 {
 	int		i;
 	int		j;
-	int		n;
 	char	*temp;
 
 	i = 0;

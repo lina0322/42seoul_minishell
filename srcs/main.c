@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:26:45 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/15 17:30:53 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/15 20:31:29 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int		main(int argc, char **argv, char *envp[])
 
 	if (argc > 10)
 		return 0;
-	if (argv[0][1] == '1')
-		return 0;
+//	if (argv[0][1] == '1')
+//		return 0;
 	init_state(&state);
 	parse_env(envp, &state);
 	// signal
@@ -28,8 +28,8 @@ int		main(int argc, char **argv, char *envp[])
 
 	//test
 //	print_env_all(state.env_head);
-//	print_export_all(state.env_head);
-//	 print_export_sorted_list(state.env_head);
+//	print_export_sorted_list(state.env_head);
+	find_env(state.env_head, argv[1]);
 }
 
 void	init_state(t_state *state)

@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:38:22 by llim              #+#    #+#             */
-/*   Updated: 2021/03/13 16:35:06 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/15 20:33:34 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,20 @@ t_env	*create_env(char *key, char *value)
 	if (value)
 		env->value = ft_strdup(value);
 	return (env);
+}
+
+t_env	*find_env(t_env *head, char *key)
+{
+	t_env *env;
+
+	env = head;
+	while (env)
+	{
+		if (!ft_strncmp(env->key, key, ft_strlen(key)))
+			return (env);
+		env = env->next;
+	}
+	return (NULL);
 }
 
 void	print_env_all(t_env *env)
