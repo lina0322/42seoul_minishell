@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 01:52:08 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/16 02:24:51 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/16 02:39:25 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@ int	change_dir(t_state *s, char *path)
 
 	if (!ft_strncmp(path, "~", 1))
 		buf = ft_strdup(find_env_val(s->env_head, "HOME")); //나중에 말록프로텍트해주자
+	else if (!ft_strncmp(path, "-", 1))
+		buf = ft_strdup(find_env_val(s->env_head, "OLDPWD"));
 	else
 		buf = ft_strdup(path);
 	ret = chdir(buf);
+	free(buf);
 	return (ret);
 }
 
