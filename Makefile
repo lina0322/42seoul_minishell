@@ -6,7 +6,7 @@
 #    By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/15 17:02:38 by llim              #+#    #+#              #
-#    Updated: 2021/03/15 22:16:17 by dhyeon           ###   ########.fr        #
+#    Updated: 2021/03/16 00:27:55 by dhyeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS	=	srcs/main.c\
 			srcs/export_sort.c \
 			srcs/prompt.c \
 			srcs/get_next_line.c \
+			srcs/ft_pwd.c
 
 INCS	=	-I includes -I libft
 OBJS	=	$(SRCS:.c=.o)
