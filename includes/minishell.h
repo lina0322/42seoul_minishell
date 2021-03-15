@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/15 21:31:01 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/15 22:17:03 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <signal.h>
+# include <fcntl.h>
+# include <limits.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
+# define GNL_SUCCESS 1
+# define GNL_EOF 0
+# define GNL_ERROR -1
 
 typedef struct s_env
 {
@@ -73,5 +83,8 @@ void	sorted_list(char **list, int size);
 void	print_export(t_env *env);
 void	print_one_export(t_env *head, char *key);
 void	update_env(t_env *head, char *key, char *value);
+
+char	*ft_strjoin2(char *s1, char *s2);
+int	get_next_line(int fd, char **line);
 
 #endif

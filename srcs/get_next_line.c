@@ -6,11 +6,10 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 04:34:29 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/13 02:27:00 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/15 22:17:15 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
 #include "minishell.h"
 
 char	*ft_strjoin2(char *s1, char *s2)

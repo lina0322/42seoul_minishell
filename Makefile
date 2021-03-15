@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: llim <marvin@42.fr>                        +#+  +:+       +#+         #
+#    By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/15 17:02:38 by llim              #+#    #+#              #
-#    Updated: 2021/03/15 21:31:44 by llim             ###   ########.fr        #
+#    Updated: 2021/03/15 22:16:17 by dhyeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ CFLAGS	=	-Wall -Wextra -Werror
 SRCS	=	srcs/main.c\
 			srcs/env.c\
 			srcs/export.c\
-			srcs/export_sort.c
+			srcs/export_sort.c \
+			srcs/prompt.c \
+			srcs/get_next_line.c \
 
 INCS	=	-I includes -I libft
 OBJS	=	$(SRCS:.c=.o)
