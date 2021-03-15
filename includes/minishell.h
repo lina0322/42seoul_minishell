@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/15 20:49:32 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/15 21:13:12 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	parse_env(char **envp, t_state *state);
 void	add_env_back(t_env **head, char *key, char *value);
 t_env	*create_env(char *key, char *value);
 t_env	*find_env(t_env *head, char *key);
+void	update_env(t_env *head, char *key, char *value);
 void	print_env_all(t_env *head);
 
 /*

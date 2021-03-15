@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:26:45 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/15 20:48:57 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/15 21:14:48 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int		main(int argc, char **argv, char *envp[])
 	//test
 //	print_env_all(state.env_head);
 //	print_export_sorted_list(state.env_head);
+	print_one_export(state.env_head, argv[1]);
+	update_env(state.env_head, argv[1], argv[2]);
 	print_one_export(state.env_head, argv[1]);
 }
 

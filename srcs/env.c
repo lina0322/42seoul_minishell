@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:38:22 by llim              #+#    #+#             */
-/*   Updated: 2021/03/15 20:33:34 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/15 21:15:57 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@ void	parse_env(char **envp, t_state *state)
 
 void	add_env_back(t_env **head, char *key, char *value)
 {
-	t_env *temp;
+	t_env *env;
 
 	if (*head == NULL)
 		*head = create_env(key, value);
 	else
 	{
-		temp = *head;
-		while (temp->next)
-			temp = temp->next;
-		temp->next = create_env(key, value);
+		env = *head;
+		while (env->next)
+			env = env->next;
+		env->next = create_env(key, value);
 	}
 }
 
@@ -80,11 +80,30 @@ t_env	*find_env(t_env *head, char *key)
 	return (NULL);
 }
 
+void	update_env(t_env *head, char *key, char *value)
+{
+	t_env *env;
+
+	env = find_env(head, key);
+	if (env == NULL)
+		add_env_back(&head, key, value);
+	else
+	{
+//		if (env->value)
+//			free(value);
+		if (value)
+			env->value = ft_strdup(value);
+	}
+}
+
 void	print_env_all(t_env *env)
 {
 	while (env)
 	{
-		printf("%s=%s\n", env->key, env->value);
+		if (env->value)
+			printf("%s=%s\n", env->key, env->value);
+		else
+			printf("%s=\n", env->key);
 		env = env->next;
 	}
 }
