@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/16 00:28:48 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/16 02:22:22 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	add_env_back(t_env **head, char *key, char *value);
 t_env	*create_env(char *key, char *value);
 t_env	*find_env(t_env *head, char *key);
 void	print_env_all(t_env *head);
+char	*find_env_val(t_env *head, char *key);
 
 /*
  *	sorted_export
@@ -97,5 +98,7 @@ int		get_next_line(int fd, char **line);
 
 int		builtin(t_state *state, t_cmd *cmd);
 int		ft_pwd(t_state *state, t_cmd *cmd);
+int		ft_exit(t_state *state, t_cmd *cmd);
+int		ft_cd(t_state *s, t_cmd *cmd);
 
 #endif
