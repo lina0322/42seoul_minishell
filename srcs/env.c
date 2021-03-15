@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:38:22 by llim              #+#    #+#             */
-/*   Updated: 2021/03/15 21:30:01 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/16 02:16:07 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,20 @@ t_env	*find_env(t_env *head, char *key)
 	{
 		if (!ft_strncmp(env->key, key, ft_strlen(key)))
 			return (env);
+		env = env->next;
+	}
+	return (NULL);
+}
+
+char	*find_env_val(t_env *head, char *key)
+{
+	t_env	*env;
+
+	env = head;
+	while (env)
+	{
+		if (!ft_strncmp(env->key, key, ft_strlen(key)))
+			return (env->value);
 		env = env->next;
 	}
 	return (NULL);
