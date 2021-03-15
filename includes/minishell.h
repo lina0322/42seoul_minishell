@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/15 22:17:03 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/15 23:56:17 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,18 @@ typedef struct s_token
 	struct s_token	*next;
 }				t_token;
 
+typedef struct s_cmd
+{
+	char			**av;
+	int				ac;
+	struct s_cmd	next;
+}				t_cmd;
+
 typedef struct s_state
 {
 	t_token		*token_head;
 	t_env		*env_head;
+	t_cmd		*cmd;
 	char		*input;
 }				t_state;
 
@@ -85,6 +93,6 @@ void	print_one_export(t_env *head, char *key);
 void	update_env(t_env *head, char *key, char *value);
 
 char	*ft_strjoin2(char *s1, char *s2);
-int	get_next_line(int fd, char **line);
+int		get_next_line(int fd, char **line);
 
 #endif
