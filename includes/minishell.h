@@ -6,15 +6,15 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/13 16:18:22 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/15 17:18:59 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "get_next_line.h"
-# include "libft/libft.h"
+//# include "get_next_line.h"
+# include "libft.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>

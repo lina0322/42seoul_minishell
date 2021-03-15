@@ -6,14 +6,14 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 06:56:45 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/13 02:22:41 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/15 16:39:22 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include "libft/libft.h"
+# include "libft.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
