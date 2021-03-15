@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/15 23:56:17 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/16 00:28:48 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_cmd
 {
 	char			**av;
 	int				ac;
-	struct s_cmd	next;
+	struct s_cmd	*next;
 }				t_cmd;
 
 typedef struct s_state
@@ -94,5 +94,8 @@ void	update_env(t_env *head, char *key, char *value);
 
 char	*ft_strjoin2(char *s1, char *s2);
 int		get_next_line(int fd, char **line);
+
+int		builtin(t_state *state, t_cmd *cmd);
+int		ft_pwd(t_state *state, t_cmd *cmd);
 
 #endif
