@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:38:22 by llim              #+#    #+#             */
-/*   Updated: 2021/03/15 21:15:57 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/15 21:30:01 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,22 +78,6 @@ t_env	*find_env(t_env *head, char *key)
 		env = env->next;
 	}
 	return (NULL);
-}
-
-void	update_env(t_env *head, char *key, char *value)
-{
-	t_env *env;
-
-	env = find_env(head, key);
-	if (env == NULL)
-		add_env_back(&head, key, value);
-	else
-	{
-//		if (env->value)
-//			free(value);
-		if (value)
-			env->value = ft_strdup(value);
-	}
 }
 
 void	print_env_all(t_env *env)
