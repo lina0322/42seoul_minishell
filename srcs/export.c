@@ -6,7 +6,7 @@
 /*   By: llim <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 16:35:56 by llim              #+#    #+#             */
-/*   Updated: 2021/03/15 20:20:18 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/15 20:50:41 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,13 @@ void	sorted_list(char **list, int size)
 		}
 		i++;
 	}
+}
+
+void	print_one_export(t_env *head, char *key)
+{
+	t_env *env;
+
+	env = find_env(head, key);
+	if (env) 
+		printf("%s\n", env->value);
 }

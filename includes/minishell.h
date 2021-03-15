@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/15 20:32:55 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/15 20:49:32 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,6 @@ void	print_export_sorted_list(t_env *env);
 char	*make_export_env(char *key, char *value);
 int		check_env_length(t_env *env);
 void	sorted_list(char **list, int size);
+void	print_one_export(t_env *head, char *key);
+
 #endif
