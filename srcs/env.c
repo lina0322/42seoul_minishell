@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:38:22 by llim              #+#    #+#             */
-/*   Updated: 2021/03/16 02:16:07 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/18 20:12:49 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ t_env	*create_env(char *key, char *value)
 	if (env == NULL)
 		return (0);
 	env->key = ft_strdup(key);
+	env->next = 0;
 	if (value)
 		env->value = ft_strdup(value);
 	return (env);
