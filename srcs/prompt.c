@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/15 22:44:45 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/18 20:24:23 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ void	prompt(t_state *state)
 			handle_eof(state->input, &flag); //후에 bash나오게 수정
 		else
 		{
-			// printf("%s\n", input); //test용
-			// free(input); //test용
+			state->input = input;
 			break ;
 		}
 	}
