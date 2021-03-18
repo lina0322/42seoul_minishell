@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/16 02:22:22 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/18 19:53:16 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,17 @@ typedef struct s_state
 	char		*input;
 }				t_state;
 
+/*
+ * main
+ */
+
 void	init_state(t_state *state);
+
+/*
+ * signal
+ */
+
+void	handle_signal(int signo);
 
 /*
  *	prompt
@@ -100,5 +110,7 @@ int		builtin(t_state *state, t_cmd *cmd);
 int		ft_pwd(t_state *state, t_cmd *cmd);
 int		ft_exit(t_state *state, t_cmd *cmd);
 int		ft_cd(t_state *s, t_cmd *cmd);
+
+
 
 #endif
