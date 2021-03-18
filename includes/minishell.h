@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/18 19:53:16 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/18 19:57:17 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,12 @@ void	handle_signal(int signo);
  */
 
 void	prompt(t_state *state);
+
+/*
+ * tokenizer
+ */
+
+void	tokenizer(t_state *state);
 
 /*
  *	env

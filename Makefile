@@ -6,7 +6,7 @@
 #    By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/15 17:02:38 by llim              #+#    #+#              #
-#    Updated: 2021/03/18 19:52:29 by llim             ###   ########.fr        #
+#    Updated: 2021/03/18 19:56:24 by llim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,15 +14,16 @@ NAME	=	minishell
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
 SRCS	=	srcs/main.c\
+			srcs/signal.c \
+			srcs/prompt.c \
+			srcs/tokenizer.c \
 			srcs/env.c\
 			srcs/export.c\
 			srcs/export_sort.c \
-			srcs/prompt.c \
 			srcs/get_next_line.c \
 			srcs/ft_pwd.c \
 			srcs/ft_exit.c \
 			srcs/ft_cd.c \
-			srcs/signal.c
 
 INCS	=	-I includes -I libft
 OBJS	=	$(SRCS:.c=.o)
