@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/18 19:57:17 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/22 15:04:58 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int		builtin(t_state *state, t_cmd *cmd);
 int		ft_pwd(t_state *state, t_cmd *cmd);
 int		ft_exit(t_state *state, t_cmd *cmd);
 int		ft_cd(t_state *s, t_cmd *cmd);
+void    ft_echo(t_state *t, t_cmd *cmd);
 
 
 
