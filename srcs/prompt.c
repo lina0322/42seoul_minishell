@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/18 20:24:23 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/22 18:46:48 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	prompt(t_state *state)
 	{
 		if (!flag)
 			write(1, "> ", 2);
-		gnl = get_next_line(1, &input);
+		gnl = get_next_line(0, &input);
 		state->input = ft_strjoin2(state->input, input);
 		if (is_backslash(state->input))
 		{
