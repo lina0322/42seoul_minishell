@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:51:53 by llim              #+#    #+#             */
-/*   Updated: 2021/03/18 19:52:12 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/22 21:02:30 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	handle_signal(int signo)
 {
 	if (signo == SIGINT)
 	{
-		printf("\b\b \nbash> ");
+		write(1, "\b\b  ", 4);
+		write(1, "\nbash> ", 7);
 	}
 	else if (signo == SIGQUIT)
 	{
