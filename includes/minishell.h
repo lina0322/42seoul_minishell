@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/23 17:03:05 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/23 17:09:36 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	sorted_list(char **list, int size);
 
 void	print_export(t_env *env);
 void	print_one_export(t_env *head, char *key);
-void	update_env(t_env *head, char *key, char *value);
+void	update_env(t_env *head, char *key, char *value, int has_equal);
 
 char	*ft_strjoin2(char *s1, char *s2);
 int		get_next_line(int fd, char **line);

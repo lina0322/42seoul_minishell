@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 21:28:42 by llim              #+#    #+#             */
-/*   Updated: 2021/03/15 21:30:17 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/23 17:09:10 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ void	print_one_export(t_env *head, char *key)
 	t_env *env;
 
 	env = find_env(head, key);
-	if (env) 
+	if (env)
 		printf("%s\n", env->value);
 }
 
-void	update_env(t_env *head, char *key, char *value)
+void	update_env(t_env *head, char *key, char *value, int has_equal)
 {
 	t_env *env;
 
 	env = find_env(head, key);
 	if (env == NULL)
-		add_env_back(&head, key, value);
+		add_env_back(&head, key, value, has_equal);
 	else if (env->value)
 	{
 		free(env->value);
