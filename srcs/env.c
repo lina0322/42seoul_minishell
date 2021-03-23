@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:38:22 by llim              #+#    #+#             */
-/*   Updated: 2021/03/18 20:12:49 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/23 17:05:05 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,27 @@ void	parse_env(char **envp, t_state *state)
 			}
 			j++;
 		}
-		add_env_back(&(state->env_head), key, value);
+		add_env_back(&(state->env_head), key, value, 1);
 		i++;
 	}
 }
 
-void	add_env_back(t_env **head, char *key, char *value)
+void	add_env_back(t_env **head, char *key, char *value, int has_equal)
 {
 	t_env *env;
 
 	if (*head == NULL)
-		*head = create_env(key, value);
+		*head = create_env(key, value, has_equal);
 	else
 	{
 		env = *head;
 		while (env->next)
 			env = env->next;
-		env->next = create_env(key, value);
+		env->next = create_env(key, value, has_equal);
 	}
 }
 
-t_env	*create_env(char *key, char *value)
+t_env	*create_env(char *key, char *value, int has_equal)
 {
 	t_env *env;
 
@@ -61,6 +61,7 @@ t_env	*create_env(char *key, char *value)
 	if (env == NULL)
 		return (0);
 	env->key = ft_strdup(key);
+	env->has_equal = has_equal;
 	env->next = 0;
 	if (value)
 		env->value = ft_strdup(value);
@@ -99,10 +100,13 @@ void	print_env_all(t_env *env)
 {
 	while (env)
 	{
-		if (env->value)
-			printf("%s=%s\n", env->key, env->value);
-		else
-			printf("%s=\n", env->key);
+		if (env->has_equal == 1)
+		{
+			if (env->value)
+				printf("%s=%s\n", env->key, env->value);
+			else
+				printf("%s=\n", env->key);
+		}
 		env = env->next;
 	}
 }

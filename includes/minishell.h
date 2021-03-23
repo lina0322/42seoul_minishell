@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/23 15:15:10 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/23 17:03:05 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_env
 {
 	char			*key;
 	char			*value;
+	int				has_equal;
 	struct s_env	*next;
 }				t_env;
 
@@ -87,8 +88,8 @@ void	tokenizer(t_state *state);
  */
 
 void	parse_env(char **envp, t_state *state);
-void	add_env_back(t_env **head, char *key, char *value);
-t_env	*create_env(char *key, char *value);
+void	add_env_back(t_env **head, char *key, char *value, int has_equal);
+t_env	*create_env(char *key, char *value, int has_equal);
 t_env	*find_env(t_env *head, char *key);
 void	print_env_all(t_env *head);
 char	*find_env_val(t_env *head, char *key);

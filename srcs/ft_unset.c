@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 15:12:15 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/23 16:16:01 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/23 17:05:27 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ void	ft_unset(t_state *s, t_cmd *cmd)
 
 	(void)s;
 	(void)cmd;
-	add_env_back(&s->env_head, "TEST", "123");
-	add_env_back(&s->env_head, "TEST2", "456");
-	add_env_back(&s->env_head, "TEST3", "456");
+	add_env_back(&s->env_head, "TEST", "123", 1);
+	add_env_back(&s->env_head, "TEST2", "456", 1);
+	add_env_back(&s->env_head, "TEST3", "456", 1);
 	print_env_all(s->env_head);
 	printf("=============================\n"); //
 
