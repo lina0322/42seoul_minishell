@@ -6,13 +6,13 @@
 #    By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/15 17:02:38 by llim              #+#    #+#              #
-#    Updated: 2021/03/18 19:56:24 by llim             ###   ########.fr        #
+#    Updated: 2021/03/23 16:12:14 by dhyeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	minishell
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -g
 SRCS	=	srcs/main.c\
 			srcs/signal.c \
 			srcs/prompt.c \
@@ -24,6 +24,8 @@ SRCS	=	srcs/main.c\
 			srcs/ft_pwd.c \
 			srcs/ft_exit.c \
 			srcs/ft_cd.c \
+			srcs/ft_echo.c \
+			srcs/ft_unset.c
 
 INCS	=	-I includes -I libft
 OBJS	=	$(SRCS:.c=.o)

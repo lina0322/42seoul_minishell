@@ -6,7 +6,8 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/24 15:46:57 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/24 15:51:12 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/23 17:09:36 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +48,7 @@ typedef struct s_env
 {
 	char			*key;
 	char			*value;
+	int				has_equal;
 	struct s_env	*next;
 }				t_env;
 
@@ -105,8 +107,8 @@ t_token *create_token(char *str, int type);
  */
 
 void	parse_env(char **envp, t_state *state);
-void	add_env_back(t_env **head, char *key, char *value);
-t_env	*create_env(char *key, char *value);
+void	add_env_back(t_env **head, char *key, char *value, int has_equal);
+t_env	*create_env(char *key, char *value, int has_equal);
 t_env	*find_env(t_env *head, char *key);
 void	print_env_all(t_env *head);
 char	*find_env_val(t_env *head, char *key);
@@ -125,7 +127,7 @@ void	sorted_list(char **list, int size);
 
 void	print_export(t_env *env);
 void	print_one_export(t_env *head, char *key);
-void	update_env(t_env *head, char *key, char *value);
+void	update_env(t_env *head, char *key, char *value, int has_equal);
 
 char	*ft_strjoin2(char *s1, char *s2);
 int		get_next_line(int fd, char **line);
@@ -134,5 +136,7 @@ int		builtin(t_state *state, t_cmd *cmd);
 int		ft_pwd(t_state *state, t_cmd *cmd);
 int		ft_exit(t_state *state, t_cmd *cmd);
 int		ft_cd(t_state *s, t_cmd *cmd);
+void	ft_echo(t_state *t, t_cmd *cmd);
+void	ft_unset(t_state *s, t_cmd *cmd);
 
 #endif
