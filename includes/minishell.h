@@ -6,10 +6,10 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/24 15:51:12 by llim             ###   ########.fr       */
-/*   Updated: 2021/03/23 17:09:36 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/24 15:54:03 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -138,5 +138,6 @@ int		ft_exit(t_state *state, t_cmd *cmd);
 int		ft_cd(t_state *s, t_cmd *cmd);
 void	ft_echo(t_state *t, t_cmd *cmd);
 void	ft_unset(t_state *s, t_cmd *cmd);
+void	ft_export(t_state *state, t_cmd *cmd);
 
 #endif
