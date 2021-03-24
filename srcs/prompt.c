@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/18 20:24:23 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/18 20:43:05 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	prompt(t_state *state)
 		else
 		{
 			state->input = input;
+			printf("%s\n", input);
 			break ;
 		}
 	}

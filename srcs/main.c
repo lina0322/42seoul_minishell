@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:26:45 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/18 19:50:41 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/18 20:43:55 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int	main(int argc, char **argv, char *envp[])
 	{
 		prompt(&state);
 		builtin(&state, state.cmd); // 임시파일
-		free(state.input);
-		// tokenizer(&state);
+		tokenizer(&state);
 	}
 }
 
