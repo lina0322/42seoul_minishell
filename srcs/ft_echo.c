@@ -44,13 +44,13 @@ void    ft_echo(t_state *t, t_cmd *cmd)
 	(void)cmd;
 	(void)t;
 	//test
-	// char	*av[] = {"echo", "-n", "-n", "-n", "Hello", "World", 0};
+	// char	*av[] = {"echo", "-nnnnnnnnn", "-n", "-n", "Hello", "World", 0};
 	// int		ac = 6;
 	// //test
 	// char	*av[] = {"echo", "Hello", "World", 0};
 	// int		ac = 3;
 	// test
-	char	*av[] = {"echo", "-nnnnnn", "Hello", "World", 0};
+	char	*av[] = {"echo", "-nnnnnna", "Hello", "World", 0};
 	int		ac = 4;
 
 	flag = 0;

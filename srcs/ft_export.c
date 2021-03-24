@@ -60,16 +60,16 @@ void	ft_export(t_state *state, t_cmd *cmd)
 		{
 			// tmp.key = 0;
 			// tmp.value = 0;
-			parse_export(&tmp, av[1]);
+			parse_export(&tmp, av[1]); // = 없는것 체크해야함
 			add_env_back(&state->env_head, tmp.key, tmp.value, 1); // cmd->av
 		}
 		// else if (ac == 3)
 		// {
 		// 	//나중에 추가 -> has_equal = 0
 		// }
-		else
-		{
-			add_env_back(&state->env_head, av[1], av[3]); // cmd->av
-		}
+		// else
+		// {
+		// 	add_env_back(&state->env_head, av[1], av[3], 1); // cmd->av
+		// }
 	}
 }

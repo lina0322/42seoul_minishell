@@ -12,6 +12,7 @@
 
 #include "minishell.h"
 
+// todo: oldpwd 변수는 지우기~~~~(value만 없애기) - has_equal =false
 void	parse_env(char **envp, t_state *state)
 {
 	int		i;

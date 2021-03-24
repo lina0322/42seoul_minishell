@@ -8,7 +8,7 @@
             "name": "gcc - 활성 파일 빌드 및 디버그",
             "type": "cppdbg",
             "request": "launch",
-            "program": "minishell",
+            "program": "${workspaceFolder}/minishell",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
