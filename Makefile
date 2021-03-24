@@ -6,7 +6,7 @@
 #    By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/15 17:02:38 by llim              #+#    #+#              #
-#    Updated: 2021/03/23 16:12:14 by dhyeon           ###   ########.fr        #
+#    Updated: 2021/03/24 15:54:17 by dhyeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS	=	srcs/main.c\
 			srcs/ft_exit.c \
 			srcs/ft_cd.c \
 			srcs/ft_echo.c \
-			srcs/ft_unset.c
+			srcs/ft_unset.c \
+			srcs/ft_export.c
 
 INCS	=	-I includes -I libft
 OBJS	=	$(SRCS:.c=.o)
