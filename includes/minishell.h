@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/18 19:57:17 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/24 15:46:57 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,20 @@
 # define GNL_SUCCESS 1
 # define GNL_EOF 0
 # define GNL_ERROR -1
+
+# define BOOL int
+# define TRUE 1
+# define FALSE 0
+
+# define COMMON 1
+# define SINGLE 2
+# define DOUBLE 3
+# define LEFT 4
+# define RIGHT 5
+# define DOUBLERIGHT 6
+# define SEMICOLON 7
+# define PIPE 8
+# define SPACE 9
 
 typedef struct s_env
 {
@@ -59,13 +73,13 @@ typedef struct s_state
 }				t_state;
 
 /*
- * main
+ *	main
  */
 
 void	init_state(t_state *state);
 
 /*
- * signal
+ *	signal
  */
 
 void	handle_signal(int signo);
@@ -77,10 +91,14 @@ void	handle_signal(int signo);
 void	prompt(t_state *state);
 
 /*
- * tokenizer
+ *	tokenizer
  */
 
 void	tokenizer(t_state *state);
+int		is_operator(char c);
+int		add_operator_token(t_state *state, char *c);
+void	add_token_back(t_token **head, char *str, int type);
+t_token *create_token(char *str, int type);
 
 /*
  *	env
@@ -102,7 +120,7 @@ int		check_env_length(t_env *env);
 void	sorted_list(char **list, int size);
 
 /*
- * export
+ *	export
  */
 
 void	print_export(t_env *env);
@@ -116,7 +134,5 @@ int		builtin(t_state *state, t_cmd *cmd);
 int		ft_pwd(t_state *state, t_cmd *cmd);
 int		ft_exit(t_state *state, t_cmd *cmd);
 int		ft_cd(t_state *s, t_cmd *cmd);
-
-
 
 #endif

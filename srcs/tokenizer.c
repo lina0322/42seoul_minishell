@@ -6,70 +6,85 @@
 /*   By: llim <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/03/18 22:24:09 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/24 15:47:08 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int		is_operator(char c)
+{
+	if (c == '\'')
+		return (SINGLE);
+	else if (c == '\"')
+		return (DOUBLE);
+	else if (c == '<')
+		return (LEFT);
+	else if (c == '>')
+		return (RIGHT);
+	else if (c == ';')
+		return (SEMICOLON);
+	else if (c == '|')
+		return (PIPE);
+	else if (c == ' ')
+		return (SPACE);
+	return 0;
+}
+
+int		get_len(t_state *state, char *input, int i)
+{
+	int		len;
+	int		type;
+	char	token[2];
+
+	len = 0;
+	while (input[i])
+	{
+		type = is_operator(input[i]);
+		if (type)
+		{
+			token[0] = input[i];
+			token[1] = '\0';
+			add_token_back(&state->token_head, token, type);
+			break;
+		}
+		i++;
+		len++;
+	}
+	return (len);
+}
+
 void	tokenizer(t_state *state)
 {
 	char	*input;
 	int		i;
-	int		type;
+	char	*token_str;
+	int		j;
+	int		count;
 
 	input = ft_strdup(state->input);
 	i = 0;
 	while (input[i])
 	{
-		if (input[i] == '\'')
-			type = 2;
-		else if (input[i] == '\"')
-			type = 3;
-		else if (is_operator(input[i]))
-			add_operator_token(state, &input[i]);
+		if (!is_operator(input[i]))
+		{
+			count = get_len(state, input, i);
+			token_str = malloc(sizeof(char *) * count + 1);
+			j = 0;
+			while (j < count)
+				token_str[j++] = input[i++];
+			token_str[j] = '\0';
+			add_token_back(&state->token_head, token_str, COMMON);
+			free(token_str);
+		}
 		i++;
 	}
-
-	t_token	*token = state->token_head;
+	t_token *token = state->token_head;
 	while (token)
 	{
 		printf("%s, %i\n", token->str, token->type);
 		token = token->next;
 	}
-}
-
-int		is_operator(char c)
-{
-	if (c == '<' || c == ';' || c == '|' || c == '>' || c == '>')
-		return (TRUE);
-	else
-		return (FALSE);
-}
-
-int		add_operator_token(t_state *state, char *c)
-{
-	int type;
-
-	if (*c == '<')
-		type = 4;
-	else if (*c == ';')
-		type = 7;
-	else if (*c == '|')
-		type = 8;
-	else if (*c == '>')
-	{
-		if (*c == '>')
-		{
-			add_token_back(&state->token_head, c, 6);
-			return (TRUE);
-		}
-		type = 5;
-	}
-	else
-		return (FALSE);
-	add_token_back(&state->token_head, c, type);
-	return (TRUE);
 }
 
 void	add_token_back(t_token **head, char *str, int type)
