@@ -12,6 +12,7 @@
 
 #include "minishell.h"
 
+// todo: 스페이스 무시하기, 따옴표 관리하기
 int		is_operator(char c)
 {
 	if (c == '\'')
@@ -27,27 +28,19 @@ int		is_operator(char c)
 	else if (c == '|')
 		return (PIPE);
 	else if (c == ' ')
-		return (SPACE);
+		return (SPACE); 
 	return 0;
 }
 
-int		get_len(t_state *state, char *input, int i)
+int		get_len(char *input, int i)
 {
 	int		len;
-	int		type;
-	char	token[2];
 
 	len = 0;
 	while (input[i])
 	{
-		type = is_operator(input[i]);
-		if (type)
-		{
-			token[0] = input[i];
-			token[1] = '\0';
-			add_token_back(&state->token_head, token, type);
+		if (is_operator(input[i]))
 			break;
-		}
 		i++;
 		len++;
 	}
@@ -61,24 +54,30 @@ void	tokenizer(t_state *state)
 	char	*token_str;
 	int		j;
 	int		count;
+	int		type;
 
 	input = ft_strdup(state->input);
 	i = 0;
 	while (input[i])
 	{
-		if (!is_operator(input[i]))
+		j = 0;
+		type = is_operator(input[i]);
+		if (!type)
 		{
-			count = get_len(state, input, i);
+			type = COMMON;
+			count = get_len(input, i);
 			token_str = malloc(sizeof(char *) * count + 1);
-			j = 0;
 			while (j < count)
 				token_str[j++] = input[i++];
-			token_str[j] = '\0';
-			add_token_back(&state->token_head, token_str, COMMON);
-			free(token_str);
+		} else {
+			token_str = malloc(sizeof(char *) * 2);
+			token_str[j++] = input[i++];
 		}
-		i++;
+			token_str[j] = '\0';
+			add_token_back(&state->token_head, token_str, type);
+			free(token_str);
 	}
+	// token 확인용 출력구문
 	t_token *token = state->token_head;
 	while (token)
 	{
