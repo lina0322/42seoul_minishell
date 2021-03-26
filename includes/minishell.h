@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/24 15:54:03 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/26 21:39:49 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_state
 	t_env		*env_head;
 	t_cmd		*cmd;
 	char		*input;
+	int			ret;
 }				t_state;
 
 /*
