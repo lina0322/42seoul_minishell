@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/26 21:39:49 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/26 21:55:50 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +140,7 @@ int		ft_cd(t_state *s, t_cmd *cmd);
 void	ft_echo(t_state *t, t_cmd *cmd);
 void	ft_unset(t_state *s, t_cmd *cmd);
 void	ft_export(t_state *state, t_cmd *cmd);
+
+int		check_key(char *key);
 
 #endif
