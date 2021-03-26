@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 13:55:05 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/26 22:11:32 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/26 22:19:49 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	ft_export(t_state *s, t_cmd *cmd)
 	int	i;
 	//test 2
 	int ac = 2;
+	add_env_back(&s->env_head, "TEST2", "123", 1);
+	print_env_all(s->env_head);
 	char *av[] = {"export", "TEST2=456", "0"};
 	t_env tmp;
 
@@ -74,12 +76,12 @@ void	ft_export(t_state *s, t_cmd *cmd)
 			if ((av[i][0] != '_' && !ft_isalpha(av[i][0])) || !check_key2(av[i]))
 				printf("bash: export: `%s': not a valid identifier\n", av[i]);
 			else if (ft_strrchr(av[i], '=') == 0) // = 이 없는경우 (1. key값만 있는경우)
-				add_env_back(&s->env_head, av[i], 0, 0);
+				update_env(s->env_head, av[i], 0, 0);
 			else // = 가 있는 경우
 			{
 				if (parse_export(&tmp, av[i]) == 0) // value 값이 없는 경우 value = 0 으로
 					tmp.value = 0;
-				add_env_back(&s->env_head, tmp.key, tmp.value, 1);
+				update_env(s->env_head, tmp.key, tmp.value, 1);
 			}
 			i++;
 		}
