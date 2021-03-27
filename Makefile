@@ -17,9 +17,10 @@ SRCS	=	srcs/main.c\
 			srcs/signal.c \
 			srcs/prompt.c \
 			srcs/tokenizer.c \
+			srcs/token_util.c \
 			srcs/env.c\
 			srcs/export.c\
-			srcs/export_sort.c \
+			srcs/export_util.c \
 			srcs/get_next_line.c \
 			srcs/ft_pwd.c \
 			srcs/ft_exit.c \

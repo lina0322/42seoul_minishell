@@ -14,7 +14,6 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-//# include "get_next_line.h"
 # include "libft.h"
 # include <unistd.h>
 # include <stdio.h>
@@ -30,7 +29,8 @@
 # define GNL_EOF 0
 # define GNL_ERROR -1
 
-# define COMMON 1
+# define COMMON 0
+# define SPACE 1
 # define SINGLE 2
 # define DOUBLE 3
 # define LEFT 4
@@ -38,9 +38,15 @@
 # define DOUBLERIGHT 6
 # define SEMICOLON 7
 # define PIPE 8
-# define SPACE 9
 
-# define ERROR -1
+# define ERROR 0
+
+typedef struct s_cmd
+{
+	char			**av;
+	int				ac;
+	struct s_cmd	*next;
+}				t_cmd;
 
 typedef struct s_env
 {
@@ -56,13 +62,6 @@ typedef struct s_token
 	int				type;
 	struct s_token	*next;
 }				t_token;
-
-typedef struct s_cmd
-{
-	char			**av;
-	int				ac;
-	struct s_cmd	*next;
-}				t_cmd;
 
 typedef struct s_state
 {
@@ -96,10 +95,12 @@ void	prompt(t_state *state);
  */
 
 void	tokenizer(t_state *state);
-int		is_operator(char c);
-int		add_operator_token(t_state *state, char *c);
 void	add_token_back(t_token **head, char *str, int type);
 t_token *create_token(char *str, int type);
+/*	token_util */
+int		is_operator(char c);
+int		get_len(char *input, int i);
+int		find_end(char *input, int type, int i);
 
 /*
  *	env
@@ -113,20 +114,16 @@ void	print_env_all(t_env *head);
 char	*find_env_val(t_env *head, char *key);
 
 /*
- *	sorted_export
- */
-
-char	*make_env_string(char *key, char *value);
-int		check_env_length(t_env *env);
-void	sorted_list(char **list, int size);
-
-/*
  *	export
  */
 
 void	print_export(t_env *env);
 void	print_one_export(t_env *head, char *key);
 void	update_env(t_env *head, char *key, char *value, int has_equal);
+/*	export_util */
+char	*make_env_string(char *key, char *value);
+int		check_env_length(t_env *env);
+void	sorted_list(char **list, int size);
 
 char	*ft_strjoin2(char *s1, char *s2);
 int		get_next_line(int fd, char **line);

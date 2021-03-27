@@ -13,63 +13,16 @@
 #include "minishell.h"
 
 /// token 확인용 출력구문, 차후 삭제예정
-void	print_token(t_state *state) {
-	t_token *token = state->token_head;
+void	print_token(t_state *state) 
+{
+	t_token *token;
 
+	token = state->token_head;
 	while (token)
 	{
 		printf("%s, %i\n", token->str, token->type);
 		token = token->next;
 	}
-}
-
-int		is_operator(char c)
-{
-	if (c == '\'')
-		return (SINGLE);
-	else if (c == '\"')
-		return (DOUBLE);
-	else if (c == '<')
-		return (LEFT);
-	else if (c == '>')
-		return (RIGHT);
-	else if (c == ';')
-		return (SEMICOLON);
-	else if (c == '|')
-		return (PIPE);
-	else if (c == ' ')
-		return (SPACE); 
-	return 0;
-}
-
-int		get_len(char *input, int i)
-{
-	int	len;
-
-	len = 0;
-	while (input[i])
-	{
-		if (is_operator(input[i]))
-			break;
-		i++;
-		len++;
-	}
-	return (len);
-}
-
-int		find_end(char *input, int type, int i)
-{
-	int	len;
-
-	len = 1;
-	while (input[i])
-	{
-		if ((type == SINGLE && input[i] == '\'') || (type == DOUBLE && input[i] == '\"'))
-			return (len);
-		len++;
-		i++;
-	}
-	return (ERROR);
 }
 
 void	tokenizer(t_state *state)
@@ -85,20 +38,16 @@ void	tokenizer(t_state *state)
 	{
 		j = 0;
 		if (!(type = is_operator(state->input[i])))
-		{
-			type = COMMON;
 			count = get_len(state->input, i);
-		} 
 		else if (type == SINGLE || type == DOUBLE)
 		{
-			count = find_end(state->input, type, ++i);
-			if (count == ERROR)
+			if (!(count = find_end(state->input, type, ++i)))
 			{
 				printf("따옴표 에러\n");
-				return;
+				return ;
 			}
-		} 
-		else 
+		}
+		else
 			count = 1;
 		token_str = malloc(sizeof(char) * count + 1);
 		while (j < count)
@@ -116,7 +65,7 @@ void	add_token_back(t_token **head, char *str, int type)
 	int		len;
 
 	if (type == SPACE)
-		return;
+		return ;
 	else if (type == SINGLE || type == DOUBLE)
 	{
 		len = ft_strlen(str);
