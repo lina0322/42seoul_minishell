@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int		ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 
@@ -45,7 +45,7 @@ void	parse_env(char **envp, t_state *state)
 			{
 				key = ft_substr(envp[i], 0, j);
 				value = ft_substr(envp[i], j + 1, ft_strlen(envp[i]) - j - 1);
-				break;
+				break ;
 			}
 			j++;
 		}

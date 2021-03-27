@@ -37,12 +37,10 @@ void	check_echo_flag(char **av, int *i, int *flag)
 	}
 }
 
-void    ft_echo(t_state *t, t_cmd *cmd)
+void	ft_echo(t_state *t, t_cmd *cmd)
 {
 	int	i;
 	int	flag;
-	(void)cmd;
-	(void)t;
 	//test
 	// char	*av[] = {"echo", "-nnnnnnnnn", "-n", "-n", "Hello", "World", 0};
 	// int		ac = 6;
@@ -53,6 +51,8 @@ void    ft_echo(t_state *t, t_cmd *cmd)
 	char	*av[] = {"echo", "-nnnnnna", "Hello", "World", 0};
 	int		ac = 4;
 
+	(void)cmd;
+	(void)t;
 	flag = 0;
 	i = 0;
 	check_echo_flag(av, &i, &flag);

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   sorted_export.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: llim <llim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 16:35:56 by llim              #+#    #+#             */
 /*   Updated: 2021/03/15 21:29:35 by llim             ###   ########.fr       */
@@ -25,7 +25,7 @@ int		check_env_length(t_env *env)
 	return (len);
 }
 
-char 	*make_env_string(char *key, char *value, int has_equal)
+char	*make_env_string(char *key, char *value, int has_equal)
 {
 	char	*result;
 	int		len;
@@ -65,7 +65,7 @@ void	sorted_list(char **list, int size)
 		j = 0;
 		while (j < size - 1 - i)
 		{
-			if (ft_strncmp(list[j], list[j+1], ft_strlen(list[j])) > 0)
+			if (ft_strncmp(list[j], list[j + 1], ft_strlen(list[j])) > 0)
 			{
 				temp = list[j];
 				list[j] = list[j + 1];
@@ -76,4 +76,3 @@ void	sorted_list(char **list, int size)
 		i++;
 	}
 }
-

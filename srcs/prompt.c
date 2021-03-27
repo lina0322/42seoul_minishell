@@ -61,7 +61,6 @@ void	prompt(t_state *state)
 		else
 		{
 			state->input = input;
-			printf("%s\n", input);
 			break ;
 		}
 	}
