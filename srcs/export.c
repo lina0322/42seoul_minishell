@@ -65,4 +65,3 @@ void	update_env(t_env *head, char *key, char *value, int has_equal)
 	}
 	env->has_equal = has_equal;
 }
-
