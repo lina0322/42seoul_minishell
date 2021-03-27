@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -41,70 +40,70 @@
 
 # define ERROR 0
 
-typedef struct s_cmd
+typedef struct		s_cmd
 {
 	char			**av;
 	int				ac;
 	struct s_cmd	*next;
-}				t_cmd;
+}					t_cmd;
 
-typedef struct s_env
+typedef struct		s_env
 {
 	char			*key;
 	char			*value;
 	int				has_equal;
 	struct s_env	*next;
-}				t_env;
+}					t_env;
 
-typedef struct s_token
+typedef struct		s_token
 {
 	char			*str;
 	int				type;
 	struct s_token	*next;
-}				t_token;
+}					t_token;
 
-typedef struct s_state
+typedef struct		s_state
 {
-	t_token		*token_head;
-	t_env		*env_head;
-	t_cmd		*cmd;
-	char		*input;
-	int			ret;
-}				t_state;
+	t_token			*token_head;
+	t_env			*env_head;
+	t_cmd			*cmd;
+	char			*input;
+	int				ret;
+}					t_state;
 
 /*
- *	main
- */
-
+**	main
+*/
 void	init_state(t_state *state);
 
 /*
- *	signal
- */
-
+**	signal
+*/
 void	handle_signal(int signo);
 
 /*
- *	prompt
- */
+**	prompt
+*/
 
 void	prompt(t_state *state);
 
 /*
- *	tokenizer
- */
+**	tokenizer
+*/
 
 void	tokenizer(t_state *state);
 void	add_token_back(t_token **head, char *str, int type);
-t_token *create_token(char *str, int type);
-/*	token_util */
+t_token	*create_token(char *str, int type);
+/*
+**	token_util
+*/
 int		is_operator(char c);
 int		get_len(char *input, int i);
 int		find_end(char *input, int type, int i);
 
 /*
- *	env
- */
+**	env
+*/
 
 void	parse_env(char **envp, t_state *state);
 void	add_env_back(t_env **head, char *key, char *value, int has_equal);
@@ -114,13 +113,15 @@ void	print_env_all(t_env *head);
 char	*find_env_val(t_env *head, char *key);
 
 /*
- *	export
- */
+**	export
+*/
 
 void	print_export(t_env *env);
 void	print_one_export(t_env *head, char *key);
 void	update_env(t_env *head, char *key, char *value, int has_equal);
-/*	export_util */
+/*
+**	export_util
+*/
 char	*make_env_string(char *key, char *value);
 int		check_env_length(t_env *env);
 void	sorted_list(char **list, int size);
