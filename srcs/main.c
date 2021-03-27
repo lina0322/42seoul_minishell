@@ -26,8 +26,8 @@ int	main(int argc, char **argv, char *envp[])
 	{
 		prompt(&state);
 		builtin(&state, state.cmd); // 임시파일
-		// tokenizer(&state);
-		// state.token_head = 0; // 토큰 전체 프리해줘야함.
+		tokenizer(&state);
+		state.token_head = 0; // 토큰 전체 프리해줘야함.
 	}
 }
 

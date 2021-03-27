@@ -66,11 +66,11 @@ void	tokenizer(t_state *state)
 		{
 			type = COMMON;
 			count = get_len(input, i);
-			token_str = malloc(sizeof(char *) * count + 1);
+			token_str = malloc(sizeof(char) * count + 1);
 			while (j < count)
 				token_str[j++] = input[i++];
 		} else {
-			token_str = malloc(sizeof(char *) * 2);
+			token_str = malloc(sizeof(char) * 2);
 			token_str[j++] = input[i++];
 		}
 			token_str[j] = '\0';
@@ -90,6 +90,8 @@ void	add_token_back(t_token **head, char *str, int type)
 {
 	t_token *token;
 
+	if (type == SPACE)
+		return;
 	if (*head == NULL)
 		*head = create_token(str, type);
 	else
