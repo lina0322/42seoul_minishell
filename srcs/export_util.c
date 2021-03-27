@@ -25,7 +25,7 @@ int		check_env_length(t_env *env)
 	return (len);
 }
 
-char 	*make_env_string(char *key, char *value)
+char 	*make_env_string(char *key, char *value, int has_equal)
 {
 	char	*result;
 	int		len;
@@ -40,12 +40,15 @@ char 	*make_env_string(char *key, char *value)
 	j = 0;
 	while (key[i])
 		result[j++] = key[i++];
-	result[j++] = '=';
-	result[j++] = '\"';
-	i = 0;
-	while (value[i])
-		result[j++] = value[i++];
-	result[j++] = '\"';
+	if (has_equal == TRUE)
+	{
+		result[j++] = '=';
+		i = 0;
+		result[j++] = '\"';
+		while (value[i])
+			result[j++] = value[i++];
+		result[j++] = '\"';
+	}
 	result[j] = '\0';
 	return (result);
 }

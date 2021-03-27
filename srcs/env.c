@@ -12,7 +12,22 @@
 
 #include "minishell.h"
 
-// todo: oldpwd 변수는 지우기~~~~(value만 없애기) - has_equal =false
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] || s2[i])
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
+	}
+	if (s1[i] == '\0' && s2[i] == '\0')
+		return (0);
+	return (s1[i] - s2[i]);
+}
+
 void	parse_env(char **envp, t_state *state)
 {
 	int		i;
@@ -34,7 +49,7 @@ void	parse_env(char **envp, t_state *state)
 			}
 			j++;
 		}
-		add_env_back(&(state->env_head), key, value, 1);
+		add_env_back(&(state->env_head), key, value, TRUE);
 		i++;
 	}
 }
@@ -76,7 +91,7 @@ t_env	*find_env(t_env *head, char *key)
 	env = head;
 	while (env)
 	{
-		if (!ft_strncmp(env->key, key, ft_strlen(key)))
+		if (!ft_strcmp(env->key, key))
 			return (env);
 		env = env->next;
 	}
@@ -90,7 +105,7 @@ char	*find_env_val(t_env *head, char *key)
 	env = head;
 	while (env)
 	{
-		if (!ft_strncmp(env->key, key, ft_strlen(key)))
+		if (!ft_strcmp(env->key, key))
 			return (env->value);
 		env = env->next;
 	}
@@ -101,7 +116,7 @@ void	print_env_all(t_env *env)
 {
 	while (env)
 	{
-		if (env->has_equal == 1)
+		if (env->has_equal == TRUE)
 		{
 			if (env->value)
 				printf("%s=%s\n", env->key, env->value);
@@ -111,4 +126,3 @@ void	print_env_all(t_env *env)
 		env = env->next;
 	}
 }
-

@@ -25,7 +25,7 @@ void	print_export(t_env *env)
 	i = 0;
 	while (env)
 	{
-		env_list[i] = make_env_string(env->key, env->value);
+		env_list[i] = make_env_string(env->key, env->value, env->has_equal);
 		env = env->next;
 		i++;
 	}
@@ -63,5 +63,6 @@ void	update_env(t_env *head, char *key, char *value, int has_equal)
 	{
 		env->value = ft_strdup(value);
 	}
+	env->has_equal = has_equal;
 }
 

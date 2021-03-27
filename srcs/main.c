@@ -22,6 +22,7 @@ int	main(int argc, char **argv, char *envp[])
 	signal(SIGINT, (void *)handle_signal);
 	signal(SIGQUIT, (void *)handle_signal);
 	parse_env(envp, &state);
+	update_env(state.env_head, "OLDPWD", "", FALSE);
 	while (1)
 	{
 		prompt(&state);

@@ -39,6 +39,8 @@
 # define PIPE 8
 
 # define ERROR 0
+# define FALSE 0
+# define TRUE 1
 
 typedef struct		s_cmd
 {
@@ -84,13 +86,11 @@ void	handle_signal(int signo);
 /*
 **	prompt
 */
-
 void	prompt(t_state *state);
 
 /*
 **	tokenizer
 */
-
 void	tokenizer(t_state *state);
 void	add_token_back(t_token **head, char *str, int type);
 t_token	*create_token(char *str, int type);
@@ -104,7 +104,6 @@ int		find_end(char *input, int type, int i);
 /*
 **	env
 */
-
 void	parse_env(char **envp, t_state *state);
 void	add_env_back(t_env **head, char *key, char *value, int has_equal);
 t_env	*create_env(char *key, char *value, int has_equal);
@@ -115,14 +114,13 @@ char	*find_env_val(t_env *head, char *key);
 /*
 **	export
 */
-
 void	print_export(t_env *env);
 void	print_one_export(t_env *head, char *key);
 void	update_env(t_env *head, char *key, char *value, int has_equal);
 /*
 **	export_util
 */
-char	*make_env_string(char *key, char *value);
+char 	*make_env_string(char *key, char *value, int has_equal);
 int		check_env_length(t_env *env);
 void	sorted_list(char **list, int size);
 
