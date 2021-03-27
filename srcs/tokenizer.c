@@ -12,7 +12,17 @@
 
 #include "minishell.h"
 
-// todo: 스페이스 무시하기, 따옴표 관리하기
+/// token 확인용 출력구문, 차후 삭제예정
+void	print_token(t_state *state) {
+	t_token *token = state->token_head;
+
+	while (token)
+	{
+		printf("%s, %i\n", token->str, token->type);
+		token = token->next;
+	}
+}
+
 int		is_operator(char c)
 {
 	if (c == '\'')
@@ -34,7 +44,7 @@ int		is_operator(char c)
 
 int		get_len(char *input, int i)
 {
-	int		len;
+	int	len;
 
 	len = 0;
 	while (input[i])
@@ -47,51 +57,71 @@ int		get_len(char *input, int i)
 	return (len);
 }
 
-void	tokenizer(t_state *state)
+int		find_end(char *input, int type, int i)
 {
-	char	*input;
-	int		i;
-	char	*token_str;
-	int		j;
-	int		count;
-	int		type;
+	int	len;
 
-	input = ft_strdup(state->input);
-	i = 0;
+	len = 1;
 	while (input[i])
 	{
+		if ((type == SINGLE && input[i] == '\'') || (type == DOUBLE && input[i] == '\"'))
+			return (len);
+		len++;
+		i++;
+	}
+	return (ERROR);
+}
+
+void	tokenizer(t_state *state)
+{
+	char	*token_str;
+	int		type;
+	int		count;
+	int		i;
+	int		j;
+
+	i = 0;
+	while (state->input[i])
+	{
 		j = 0;
-		type = is_operator(input[i]);
-		if (!type)
+		if (!(type = is_operator(state->input[i])))
 		{
 			type = COMMON;
-			count = get_len(input, i);
-			token_str = malloc(sizeof(char) * count + 1);
-			while (j < count)
-				token_str[j++] = input[i++];
-		} else {
-			token_str = malloc(sizeof(char) * 2);
-			token_str[j++] = input[i++];
-		}
-			token_str[j] = '\0';
-			add_token_back(&state->token_head, token_str, type);
-			free(token_str);
+			count = get_len(state->input, i);
+		} 
+		else if (type == SINGLE || type == DOUBLE)
+		{
+			count = find_end(state->input, type, ++i);
+			if (count == ERROR)
+			{
+				printf("따옴표 에러\n");
+				return;
+			}
+		} 
+		else 
+			count = 1;
+		token_str = malloc(sizeof(char) * count + 1);
+		while (j < count)
+			token_str[j++] = state->input[i++];
+		token_str[j] = '\0';
+		add_token_back(&state->token_head, token_str, type);
+		free(token_str);
 	}
-	// token 확인용 출력구문
-	t_token *token = state->token_head;
-	while (token)
-	{
-		printf("%s, %i\n", token->str, token->type);
-		token = token->next;
-	}
+	print_token(state);
 }
 
 void	add_token_back(t_token **head, char *str, int type)
 {
 	t_token *token;
+	int		len;
 
 	if (type == SPACE)
 		return;
+	else if (type == SINGLE || type == DOUBLE)
+	{
+		len = ft_strlen(str);
+		str[len - 1] = '\0';
+	}
 	if (*head == NULL)
 		*head = create_token(str, type);
 	else

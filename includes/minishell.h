@@ -30,10 +30,6 @@
 # define GNL_EOF 0
 # define GNL_ERROR -1
 
-# define BOOL int
-# define TRUE 1
-# define FALSE 0
-
 # define COMMON 1
 # define SINGLE 2
 # define DOUBLE 3
@@ -43,6 +39,8 @@
 # define SEMICOLON 7
 # define PIPE 8
 # define SPACE 9
+
+# define ERROR -1
 
 typedef struct s_env
 {
