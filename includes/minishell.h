@@ -92,6 +92,7 @@ void	prompt(t_state *state);
 **	tokenizer
 */
 void	tokenizer(t_state *state);
+int		make_token(t_state *state, int count, int i, int type);
 void	add_token_back(t_token **head, char *str, int type);
 t_token	*create_token(char *str, int type);
 /*

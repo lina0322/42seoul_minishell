@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: llim <llim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
 /*   Updated: 2021/03/24 15:47:08 by llim             ###   ########.fr       */
@@ -13,7 +13,7 @@
 #include "minishell.h"
 
 /// token 확인용 출력구문, 차후 삭제예정
-void	print_token(t_state *state) 
+void	print_token(t_state *state)
 {
 	t_token *token;
 
@@ -27,16 +27,13 @@ void	print_token(t_state *state)
 
 void	tokenizer(t_state *state)
 {
-	char	*token_str;
 	int		type;
 	int		count;
 	int		i;
-	int		j;
 
 	i = 0;
 	while (state->input[i])
 	{
-		j = 0;
 		if (!(type = is_operator(state->input[i])))
 			count = get_len(state->input, i);
 		else if (type == SINGLE || type == DOUBLE)
@@ -49,14 +46,23 @@ void	tokenizer(t_state *state)
 		}
 		else
 			count = 1;
-		token_str = malloc(sizeof(char) * count + 1);
-		while (j < count)
-			token_str[j++] = state->input[i++];
-		token_str[j] = '\0';
-		add_token_back(&state->token_head, token_str, type);
-		free(token_str);
+		i = make_token(state, count, i, type);
 	}
-	print_token(state);
+}
+
+int		make_token(t_state *state, int count, int i, int type)
+{
+	char	*token_str;
+	int		j;
+
+	token_str = malloc(sizeof(char) * count + 1);
+	j = 0;
+	while (j < count)
+		token_str[j++] = state->input[i++];
+	token_str[j] = '\0';
+	add_token_back(&state->token_head, token_str, type);
+	free(token_str);
+	return (i);
 }
 
 void	add_token_back(t_token **head, char *str, int type)
