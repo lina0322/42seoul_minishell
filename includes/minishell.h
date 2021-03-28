@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/26 21:55:50 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/28 18:02:27 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define FALSE 0
 # define TRUE 1
 
-typedef struct		s_cmd
+typedef struct s_cmd
 {
 	char			**av;
 	int				ac;
@@ -52,7 +52,7 @@ typedef struct		s_cmd
 	struct s_cmd	*next;
 }					t_cmd;
 
-typedef struct		s_env
+typedef struct s_env
 {
 	char			*key;
 	char			*value;
@@ -60,14 +60,14 @@ typedef struct		s_env
 	struct s_env	*next;
 }					t_env;
 
-typedef struct		s_token
+typedef struct s_token
 {
 	char			*str;
 	int				type;
 	struct s_token	*next;
 }					t_token;
 
-typedef struct		s_state
+typedef struct s_state
 {
 	t_token			*token_head;
 	t_env			*env_head;
@@ -121,10 +121,12 @@ char	*find_env_val(t_env *head, char *key);
 void	print_export(t_env *env);
 void	print_one_export(t_env *head, char *key);
 void	update_env(t_env *head, char *key, char *value, int has_equal);
+
 /*
 **	export_util
 */
-char 	*make_env_string(char *key, char *value, int has_equal);
+
+char	*make_env_string(char *key, char *value, int has_equal);
 int		check_env_length(t_env *env);
 void	sorted_list(char **list, int size);
 
