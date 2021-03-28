@@ -32,6 +32,8 @@ int		is_operator(char *c, int i)
 		return (PIPE);
 	else if (c[i] == ' ')
 		return (SPACE);
+	else if (c[i] == '\\')
+		return (BACKSLASH);
 	return (COMMON);
 }
 

@@ -36,6 +36,8 @@ void	tokenizer(t_state *state)
 	{
 		if (!(type = is_operator(state->input, i)))
 			count = get_len(state->input, i);
+		else if (type == DOUBLERIGHT || type == BACKSLASH)
+			count = 2;
 		else if (type == SINGLE || type == DOUBLE)
 		{
 			if (!(count = find_end(state->input, type, ++i)))
@@ -44,8 +46,6 @@ void	tokenizer(t_state *state)
 				return ;
 			}
 		}
-		else if (type == DOUBLERIGHT)
-			count = 2;
 		else
 			count = 1;
 		i = make_token(state, count, i, type);
@@ -71,14 +71,17 @@ int		make_token(t_state *state, int count, int i, int type)
 void	add_token_back(t_token **head, char *str, int type)
 {
 	t_token *token;
-	int		len;
+	int		i;
 
 	if (type == SPACE)
 		return ;
 	else if (type == SINGLE || type == DOUBLE)
+		str[ft_strlen(str) - 1] = '\0';
+	else if (type == BACKSLASH)
 	{
-		len = ft_strlen(str);
-		str[len - 1] = '\0';
+		i = 0;
+		str[i] = str[i + 1];
+		str[i + 1] = '\0';
 	}
 	if (*head == NULL)
 		*head = create_token(str, type);
