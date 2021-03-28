@@ -37,6 +37,7 @@
 # define DOUBLERIGHT 6
 # define SEMICOLON 7
 # define PIPE 8
+# define BACKSLASH 9
 
 # define ERROR 0
 # define FALSE 0
@@ -46,6 +47,8 @@ typedef struct		s_cmd
 {
 	char			**av;
 	int				ac;
+	int				type;
+	int				pip[2];
 	struct s_cmd	*next;
 }					t_cmd;
 
