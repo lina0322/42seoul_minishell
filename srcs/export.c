@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 21:28:42 by llim              #+#    #+#             */
-/*   Updated: 2021/03/23 17:09:10 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/29 05:06:18 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,20 @@ void	update_env(t_env *head, char *key, char *value, int has_equal)
 	env = find_env(head, key);
 	if (env == NULL)
 		add_env_back(&head, key, value, has_equal);
-	else if (env->value)
-	{
-		free(env->value);
-		env->value = ft_strdup(value);
-	}
 	else
 	{
-		env->value = ft_strdup(value);
+		if (env->value)
+		{
+			free(env->value);
+			if (value)
+				env->value = ft_strdup(value);
+			else
+				env->value = 0;
+		}
+		else
+		{
+			env->value = ft_strdup(value);
+		}
+		env->has_equal = has_equal;
 	}
-	env->has_equal = has_equal;
 }
