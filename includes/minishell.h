@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/28 18:02:27 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/29 02:24:32 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,18 @@ typedef struct s_token
 	struct s_token	*next;
 }					t_token;
 
+typedef struct s_path
+{
+		char			*path;
+		struct s_path	*next;
+}					t_path;
+
 typedef struct s_state
 {
 	t_token			*token_head;
 	t_env			*env_head;
 	t_cmd			*cmd;
+	t_path			*path_head;
 	char			*input;
 	int				ret;
 }					t_state;
