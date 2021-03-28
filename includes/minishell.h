@@ -98,7 +98,7 @@ t_token	*create_token(char *str, int type);
 /*
 **	token_util
 */
-int		is_operator(char c);
+int		is_operator(char *c, int i);
 int		get_len(char *input, int i);
 int		find_end(char *input, int type, int i);
 

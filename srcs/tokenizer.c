@@ -34,7 +34,7 @@ void	tokenizer(t_state *state)
 	i = 0;
 	while (state->input[i])
 	{
-		if (!(type = is_operator(state->input[i])))
+		if (!(type = is_operator(state->input, i)))
 			count = get_len(state->input, i);
 		else if (type == SINGLE || type == DOUBLE)
 		{
@@ -44,10 +44,13 @@ void	tokenizer(t_state *state)
 				return ;
 			}
 		}
+		else if (type == DOUBLERIGHT)
+			count = 2;
 		else
 			count = 1;
 		i = make_token(state, count, i, type);
 	}
+	print_token(state);
 }
 
 int		make_token(t_state *state, int count, int i, int type)

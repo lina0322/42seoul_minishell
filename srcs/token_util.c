@@ -12,21 +12,25 @@
 
 #include "minishell.h"
 
-int		is_operator(char c)
+int		is_operator(char *c, int i)
 {
-	if (c == '\'')
+	if (c[i] == '\'')
 		return (SINGLE);
-	else if (c == '\"')
+	else if (c[i] == '\"')
 		return (DOUBLE);
-	else if (c == '<')
+	else if (c[i] == '<')
 		return (LEFT);
-	else if (c == '>')
+	else if (c[i] == '>')
+	{
+		if (c[i + 1] == '>')
+			return (DOUBLERIGHT);
 		return (RIGHT);
-	else if (c == ';')
+	}
+	else if (c[i] == ';')
 		return (SEMICOLON);
-	else if (c == '|')
+	else if (c[i] == '|')
 		return (PIPE);
-	else if (c == ' ')
+	else if (c[i] == ' ')
 		return (SPACE);
 	return (COMMON);
 }
@@ -38,7 +42,7 @@ int		get_len(char *input, int i)
 	len = 0;
 	while (input[i])
 	{
-		if (is_operator(input[i]))
+		if (is_operator(input, i))
 			break ;
 		i++;
 		len++;
