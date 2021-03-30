@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/24 15:50:29 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/30 21:15:39 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,43 @@ void	prompt(t_state *state)
 			state->input = input;
 			break ;
 		}
+	}
+}
+
+void	init_term()
+{
+	struct termios term;
+
+	tcgetattr(STDIN_FILENO, &term);
+	term.c_lflag &= ~ICANON;
+	term.c_lflag &= ~ECHO;
+	term.c_cc[VMIN] = 1;
+	term.c_cc[VTIME] = 0;
+	tcsetattr(STDIN_FILENO, TCSANOW, &term);
+}
+
+int	ft_putchar(int c)
+{
+	return (write(1, &c, 1));
+}
+
+void	prompt2(t_state *s)
+{
+	int c;
+	int	flag;
+	(void)s;
+
+	init_term();
+	// write(1, "bash", 4);
+	tputs("bash", 0, ft_putchar);
+	c = 0;
+	flag = 0;
+	while (1)
+	{
+		if (!flag)
+			tputs("> ", 0, ft_putchar);
+		read(0, &c, sizeof(c));
+		printf("keycode : %d\n", c);//test
+		c = 0; // flush buffer
 	}
 }
