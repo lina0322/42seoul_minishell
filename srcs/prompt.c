@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/30 21:15:39 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/30 22:14:47 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,14 @@ void	prompt2(t_state *s)
 			tputs("> ", 0, ft_putchar);
 		read(0, &c, sizeof(c));
 		printf("keycode : %d\n", c);//test
+		if (c == '\n')
+		{
+			// 커맨드 입력 처리
+		}
+		else
+		{
+			
+		}
 		c = 0; // flush buffer
 	}
 }
