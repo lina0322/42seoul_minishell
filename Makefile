@@ -6,13 +6,13 @@
 #    By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/15 17:02:38 by llim              #+#    #+#              #
-#    Updated: 2021/03/29 04:59:41 by dhyeon           ###   ########.fr        #
+#    Updated: 2021/03/30 19:19:42 by dhyeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	minishell
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address -lasan
+CFLAGS	=	-Wall -Wextra -Werror -g# -fsanitize=address
 SRCS	=	srcs/main.c\
 			srcs/signal.c \
 			srcs/prompt.c \
