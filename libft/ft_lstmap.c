@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 01:34:16 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/15 16:57:49 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/30 19:17:21 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	lstnew_protect(void *content, t_list **tmp)
 {
-	tmp = ft_lstnew(content);
+	*tmp = ft_lstnew(content);
 	if (!tmp)
 		return (0);
 	return (1);
