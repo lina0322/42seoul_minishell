@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/30 19:38:00 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/31 17:52:21 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	make_path(t_cmd *cmd, char *str)
 	// free(tmp2);
 }
 
-int	find_command(t_state *s, t_cmd *cmd) // 찾으면 1 못찾으면 0
+int		find_command(t_state *s, t_cmd *cmd) // 찾으면 1 못찾으면 0
 {
 	(void)s;
 	(void)cmd;
@@ -65,7 +65,7 @@ int	find_command(t_state *s, t_cmd *cmd) // 찾으면 1 못찾으면 0
 	return (0);
 }
 
-int	builtin(t_state *s, t_cmd *cmd)
+int		builtin(t_state *s, t_cmd *cmd)
 {
 	//test용
 	(void)cmd;
@@ -87,4 +87,45 @@ int	builtin(t_state *s, t_cmd *cmd)
 	else if (!ft_strcmp(s->input, "test"))
 		find_command(s, cmd);
 	return (0);
+}
+
+void	parse_cmd(t_cmd **head)
+{
+	t_cmd	*cmd;
+	
+	while (cmd)
+	{
+
+		cmd = cmd->next;
+	}
+}
+
+void	add_cmd_back(t_cmd **head, char **av, int ac, int type)
+{
+	t_cmd	*cmd;
+
+	if (*head == NULL)
+		*head = create_cmd(av, ac, type);
+	else
+	{
+		cmd = *head;
+		while (cmd->next)
+			cmd = cmd->next;
+		cmd->next = create_cmd(av, ac, type);
+	}
+}
+
+t_cmd	*create_cmd(char **av, int ac, int type)
+{
+	t_cmd *cmd;
+
+	cmd = (t_cmd *)malloc(sizeof(t_cmd));
+	if (cmd == NULL)
+		return (0);
+	cmd->av = av;
+	cmd->ac = ac;
+	cmd->type = type;
+	// cmd->pip
+	cmd->next = 0;
+	return (cmd);
 }

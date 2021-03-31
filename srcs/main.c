@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:26:45 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/31 17:13:23 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/31 18:02:46 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		main(int argc, char **argv, char *envp[])
 		prompt(&state);
 		builtin(&state, state.cmd); // 임시파일
 		tokenizer(&state);
-		state.token_head = 0; // 토큰 전체 프리해줘야함.
+		parse_cmd(&state);
 	}
 }
 
