@@ -6,13 +6,13 @@
 #    By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/15 17:02:38 by llim              #+#    #+#              #
-#    Updated: 2021/03/24 15:54:17 by dhyeon           ###   ########.fr        #
+#    Updated: 2021/03/30 19:19:42 by dhyeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	minishell
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -g
+CFLAGS	=	-Wall -Wextra -Werror -g# -fsanitize=address
 SRCS	=	srcs/main.c\
 			srcs/signal.c \
 			srcs/prompt.c \
@@ -27,7 +27,8 @@ SRCS	=	srcs/main.c\
 			srcs/ft_cd.c \
 			srcs/ft_echo.c \
 			srcs/ft_unset.c \
-			srcs/ft_export.c
+			srcs/ft_export.c \
+			srcs/cmd.c
 
 INCS	=	-I includes -I libft
 OBJS	=	$(SRCS:.c=.o)

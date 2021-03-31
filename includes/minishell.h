@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/28 18:02:27 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/30 19:38:20 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <signal.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <sys/types.h>
+# include <dirent.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
@@ -67,11 +69,18 @@ typedef struct s_token
 	struct s_token	*next;
 }					t_token;
 
+typedef struct s_path
+{
+		char			*path;
+		struct s_path	*next;
+}					t_path;
+
 typedef struct s_state
 {
 	t_token			*token_head;
 	t_env			*env_head;
 	t_cmd			*cmd;
+	t_path			*path_head;
 	char			*input;
 	int				ret;
 }					t_state;
@@ -114,6 +123,7 @@ t_env	*create_env(char *key, char *value, int has_equal);
 t_env	*find_env(t_env *head, char *key);
 void	print_env_all(t_env *head);
 char	*find_env_val(t_env *head, char *key);
+int		ft_strcmp(char *s1, char *s2);
 
 /*
 **	export
@@ -133,7 +143,12 @@ void	sorted_list(char **list, int size);
 char	*ft_strjoin2(char *s1, char *s2);
 int		get_next_line(int fd, char **line);
 
+/*
+**	builtin
+*/
+
 int		builtin(t_state *state, t_cmd *cmd);
+int		ft_pwd(t_state *s, t_cmd *cmd);
 int		ft_pwd(t_state *state, t_cmd *cmd);
 int		ft_exit(t_state *state, t_cmd *cmd);
 int		ft_cd(t_state *s, t_cmd *cmd);
@@ -142,5 +157,7 @@ void	ft_unset(t_state *s, t_cmd *cmd);
 void	ft_export(t_state *state, t_cmd *cmd);
 
 int		check_key(char *key);
+int		find_command(t_state *s, t_cmd *cmd);
+
 
 #endif
