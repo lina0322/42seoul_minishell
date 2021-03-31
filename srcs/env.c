@@ -52,6 +52,7 @@ void	parse_env(char **envp, t_state *state)
 		add_env_back(&(state->env_head), key, value, TRUE);
 		i++;
 	}
+	update_env(state->env_head, "OLDPWD", "", FALSE);
 }
 
 void	add_env_back(t_env **head, char *key, char *value, int has_equal)

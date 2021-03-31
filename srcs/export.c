@@ -12,21 +12,21 @@
 
 #include "minishell.h"
 
-void	print_export(t_env *env)
+void	print_export(t_env *env_head)
 {
 	char	**env_list;
 	int		len;
 	int		i;
 
-	len = check_env_length(env);
+	len = check_env_length(env_head);
 	env_list = (char **)malloc(sizeof(char *) * len);
 	if (env_list == NULL)
 		return ;
 	i = 0;
-	while (env)
+	while (env_head)
 	{
-		env_list[i] = make_env_string(env->key, env->value, env->has_equal);
-		env = env->next;
+		env_list[i] = make_env_string(env_head->key, env_head->value, env_head->has_equal);
+		env_head = env_head->next;
 		i++;
 	}
 	sorted_list(env_list, len);
