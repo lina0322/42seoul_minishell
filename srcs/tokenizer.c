@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/03/24 15:47:08 by llim             ###   ########.fr       */
+/*   Updated: 2021/03/31 17:15:10 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/// token 확인용 출력구문, 차후 삭제예정
-void	print_token(t_state *state)
-{
-	t_token *token;
-
-	token = state->token_head;
-	while (token)
-	{
-		printf("%s, %i\n", token->str, token->type);
-		token = token->next;
-	}
-}
 
 void	tokenizer(t_state *state)
 {

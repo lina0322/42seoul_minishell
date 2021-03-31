@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/30 19:38:20 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/03/31 17:13:27 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@
 # define FALSE 0
 # define TRUE 1
 
+typedef struct s_path
+{
+		char			*path;
+		struct s_path	*next;
+}					t_path;
+
 typedef struct s_cmd
 {
 	char			**av;
@@ -68,12 +74,6 @@ typedef struct s_token
 	int				type;
 	struct s_token	*next;
 }					t_token;
-
-typedef struct s_path
-{
-		char			*path;
-		struct s_path	*next;
-}					t_path;
 
 typedef struct s_state
 {
@@ -131,7 +131,6 @@ int		ft_strcmp(char *s1, char *s2);
 void	print_export(t_env *env);
 void	print_one_export(t_env *head, char *key);
 void	update_env(t_env *head, char *key, char *value, int has_equal);
-
 /*
 **	export_util
 */
@@ -159,5 +158,12 @@ void	ft_export(t_state *state, t_cmd *cmd);
 int		check_key(char *key);
 int		find_command(t_state *s, t_cmd *cmd);
 
+/*
+**	path
+*/
+
+void	parse_path(t_state *state);
+void	add_path_back(t_path **head, char *path_str);
+t_path	*create_path(char *path_str);
 
 #endif
