@@ -173,7 +173,7 @@ t_path	*create_path(char *path_str);
 void	make_path(t_cmd *cmd, char *str);
 int		find_command(t_state *s, t_cmd *cmd);
 int		builtin(t_state *s, t_cmd *cmd);
-void	parse_cmd(t_cmd **head);
+void	parse_cmd(t_state *state);
 void	add_cmd_back(t_cmd **head, char **av, int ac, int type);
 t_cmd	*create_cmd(char **av, int ac, int type);
 

@@ -89,14 +89,23 @@ int		builtin(t_state *s, t_cmd *cmd)
 	return (0);
 }
 
-void	parse_cmd(t_cmd **head)
+void	parse_cmd(t_state *state)
 {
 	t_cmd	*cmd;
-	
-	while (cmd)
+	t_token	*token;
+	char	**ac;
+	int		av;
+	int		type;	
+	while (token)
 	{
-
-		cmd = cmd->next;
+		if (token->type == PIPE || token->type == SEMICOLON)
+		{
+			// 이 전 리스트들 개수랑, 내용들 넣어야함. ac에 넣고 free해주기! - token 따로 free 필요 없어짐
+			// ac =
+			// av =
+			// type = 타입은 뒷 문장에 적용!
+		}
+		token = token->next;
 	}
 }
 
