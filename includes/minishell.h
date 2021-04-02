@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/03 00:19:54 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/03 00:22:58 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@
 
 typedef struct s_path
 {
-		char			*path;
-		struct s_path	*next;
+	char			*path;
+	struct s_path	*next;
 }					t_path;
 
 typedef struct s_cmd
