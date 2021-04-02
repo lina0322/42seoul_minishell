@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: llim <llim@student.42.fr>                  +#+  +:+       +#+         #
+#    By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/15 17:02:38 by llim              #+#    #+#              #
-#    Updated: 2021/03/31 17:13:30 by llim             ###   ########.fr        #
+#    Updated: 2021/04/03 00:09:06 by dhyeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRCS	=	srcs/main.c\
 INCS	=	-I includes -I libft
 OBJS	=	$(SRCS:.c=.o)
 LIBFT	=	libft/libft.a
-LFT		=	-L libft -lft
+LFT		=	-L libft -lft -lcurses
 
 all : $(NAME)
 

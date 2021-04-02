@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/02 20:48:15 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/03 00:19:54 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <limits.h>
 # include <sys/types.h>
 # include <dirent.h>
+# include <termcap.h>
+# include <curses.h>
+# include <termios.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
@@ -104,6 +107,8 @@ void	handle_signal(int signo);
 **	prompt
 */
 void	prompt(t_state *state);
+void	prompt2(t_state *state);
+int		ft_putchar(int c);
 
 /*
 **	tokenizer

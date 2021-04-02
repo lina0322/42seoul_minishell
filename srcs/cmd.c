@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/02 21:03:27 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/03 00:19:45 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	make_path(t_cmd *cmd, char *str)
 	char	*tmp2;
 
 	(void)cmd;
+	(void)tmp;
 	tmp = av[0];
 	tmp2 = ft_strjoin(str, "/");
 	if (!tmp2)
@@ -104,8 +105,8 @@ int		builtin(t_state *s, t_cmd *cmd)
 		ft_unset(s, cmd);
 	else if (!ft_strcmp(s->input, "exit"))
 		ft_exit(s, cmd);
-	else if (!ft_strcmp(s->input, "test"))
-		find_command(s, cmd);
+	// else if (!ft_strcmp(s->input, "test"))
+	// 	find_command(s, cmd);
 	return (0);
 }
 

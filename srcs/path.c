@@ -3,31 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:29:59 by llim              #+#    #+#             */
-/*   Updated: 2021/03/31 17:13:24 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/03 00:08:45 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    parse_path(t_state *state)
+void	parse_path(t_state *state)
 {
-    char    *path_env;
-    char    **path_list;
-    t_path  *path;
-    int     i;
+	char	*path_env;
+	char	**path_list;
+	t_path	*path;
+	int		i;
 
-    path_env = find_env_val(state->env_head, "PATH");
-    path_list = ft_split(path_env, ':');
-    path = state->path_head;
-    i = 0;
-    while (path_list[i])
-    {
-        add_path_back(&state->path_head, path_list[i]);
-        i++;
-    }
+	(void)path;
+	path_env = find_env_val(state->env_head, "PATH");
+	path_list = ft_split(path_env, ':');
+	path = state->path_head;
+	i = 0;
+	while (path_list[i])
+	{
+		add_path_back(&state->path_head, path_list[i]);
+		i++;
+	}
 }
 
 void	add_path_back(t_path **head, char *path_str)
