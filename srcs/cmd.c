@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/03 00:07:38 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/03 00:15:19 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ int		builtin(t_state *s, t_cmd *cmd)
 		ft_unset(s, cmd);
 	else if (!ft_strcmp(s->input, "exit"))
 		ft_exit(s, cmd);
-	else if (!ft_strcmp(s->input, "test"))
-		find_command(s, cmd);
+	// else if (!ft_strcmp(s->input, "test"))
+	// 	find_command(s, cmd);
 	return (0);
 }
 
