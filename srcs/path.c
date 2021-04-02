@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:29:59 by llim              #+#    #+#             */
-/*   Updated: 2021/04/03 00:08:45 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/03 00:55:02 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ t_path	*create_path(char *path_str)
 	if (path == NULL)
 		return (0);
 	path->path = ft_strdup(path_str);
+	path->next = 0;
 	return (path);
 }
