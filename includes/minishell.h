@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/02 23:14:46 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/03 00:16:50 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void	handle_signal(int signo);
 */
 void	prompt(t_state *state);
 void	prompt2(t_state *state);
+int		ft_putchar(int c);
 
 /*
 **	tokenizer
