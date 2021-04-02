@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/03 03:59:54 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/03 04:16:48 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,14 +131,15 @@ void	parse_cmd(t_state *state)
 			else 
 				type = COLON_TYPE;
 			ac = 0;
-			start = token->next; // 없어도 되나?
+			token = token->next;
 		}
 		else
 		{
 			if (token->type != SPACE)
 				ac++;
 		}
-		token = token->next;
+		if (token)
+			token = token->next;
 	}
 	print_cmd(state);
 	ft_memset((void *)state->token_head, 0, sizeof(t_token));
@@ -158,7 +159,7 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 	i = 0; 
 	while (start && i < ac)
 	{
-		if (start->type == SPACE)
+		if (start->type == SPACE || start->type == PIPE || start->type == SEMICOLON)
 			i++;
 		else 
 		{
