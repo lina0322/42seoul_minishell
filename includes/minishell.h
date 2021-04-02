@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/31 17:52:20 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/02 19:04:56 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,13 @@
 # define BACKSLASH 9
 
 # define ERROR 0
+
 # define FALSE 0
 # define TRUE 1
+
+# define NORMAL_TYPE 0
+# define COLON_TYPE 1
+# define PIPE_TYPE 2
 
 typedef struct s_path
 {
@@ -79,7 +84,7 @@ typedef struct s_state
 {
 	t_token			*token_head;
 	t_env			*env_head;
-	t_cmd			*cmd;
+	t_cmd			*cmd_head;
 	t_path			*path_head;
 	char			*input;
 	int				ret;
@@ -174,6 +179,7 @@ void	make_path(t_cmd *cmd, char *str);
 int		find_command(t_state *s, t_cmd *cmd);
 int		builtin(t_state *s, t_cmd *cmd);
 void	parse_cmd(t_state *state);
+char	**make_av(t_token **head, int ac);
 void	add_cmd_back(t_cmd **head, char **av, int ac, int type);
 t_cmd	*create_cmd(char **av, int ac, int type);
 
