@@ -1,12 +1,23 @@
 {
     "tasks": [
         {
-            "type": "shell",
-            "label": "gcc build active file",
+            "type": "cppbuild",
+            "label": "C/C++: gcc 활성 파일 빌드",
             "command": "make",
             "args": [
                 "re"
-            ]
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "디버거에서 생성된 작업입니다."
         }
     ],
     "version": "2.0.0"

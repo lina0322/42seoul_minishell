@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:26:45 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/03 00:37:35 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/03 01:02:14 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,5 @@ int		main(int argc, char **argv, char *envp[])
 
 void	init_state(t_state *state)
 {
-	state->token_head = 0;
-	state->env_head = 0;
-	state->input = 0;
-	state->ret = 0;
+	ft_memset((void *)state, 0, sizeof(t_state));
 }
