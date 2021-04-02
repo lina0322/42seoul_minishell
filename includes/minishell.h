@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/02 19:04:56 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/02 20:48:15 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ t_token	*create_token(char *str, int type);
 int		is_operator(char *c, int i);
 int		get_len(char *input, int i);
 int		find_end(char *input, int type, int i);
+void	free_token();
+void	free_tokens();
 
 /*
 **	env
@@ -179,7 +181,7 @@ void	make_path(t_cmd *cmd, char *str);
 int		find_command(t_state *s, t_cmd *cmd);
 int		builtin(t_state *s, t_cmd *cmd);
 void	parse_cmd(t_state *state);
-char	**make_av(t_token **head, int ac);
+void	make_av(t_state *state, int ac, int type);
 void	add_cmd_back(t_cmd **head, char **av, int ac, int type);
 t_cmd	*create_cmd(char **av, int ac, int type);
 

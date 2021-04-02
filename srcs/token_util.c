@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:41:40 by llim              #+#    #+#             */
-/*   Updated: 2021/03/27 18:41:44 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/02 20:55:47 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,26 @@ int		find_end(char *input, int type, int i)
 		i++;
 	}
 	return (ERROR);
+}
+
+void	free_token(t_token *token)
+{
+	if (token->str != NULL)
+		free(token->str);
+	if (token != NULL)
+		free(token);
+}
+
+void	free_tokens(t_token *head)
+{
+	t_token *temp;
+
+	if (head == NULL)
+		return ;
+	if (head)
+	{
+		temp = head;
+		head = head->next;
+		free_token(temp);
+	}	
 }
