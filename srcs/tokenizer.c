@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/04/03 00:37:09 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/03 03:48:47 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	print_token(t_state *state)
 		printf("%s, %i\n", token->str, token->type);
 		token = token->next;
 	}
+	tputs("---------\n", 0, ft_putchar);
 }
 
 void	tokenizer(t_state *state)
@@ -50,7 +51,8 @@ void	tokenizer(t_state *state)
 			count = 1;
 		i = make_token(state, count, i, type);
 	}
-	print_token(state);
+//	print_token(state);
+	parse_cmd(state);
 }
 
 int		make_token(t_state *state, int count, int i, int type)
