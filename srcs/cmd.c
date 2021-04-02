@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/02 19:44:16 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/03 00:07:38 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	make_path(t_cmd *cmd, char *str)
 	char	*tmp2;
 
 	(void)cmd;
+	(void)tmp;
 	tmp = av[0];
 	tmp2 = ft_strjoin(str, "/");
 	if (!tmp2)
@@ -152,7 +153,7 @@ char	**make_av(t_token **head, int ac)
 	char	**av;
 	int		i;
 
-	if (ac == 0 || head == NULL) 
+	if (ac == 0 || head == NULL)
 		return NULL;
 	token = *head;
 	i = 0;

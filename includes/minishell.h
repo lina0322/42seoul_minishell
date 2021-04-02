@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/02 19:04:56 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/02 23:14:46 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <limits.h>
 # include <sys/types.h>
 # include <dirent.h>
+# include <termcap.h>
+# include <curses.h>
+# include <termios.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
@@ -104,6 +107,7 @@ void	handle_signal(int signo);
 **	prompt
 */
 void	prompt(t_state *state);
+void	prompt2(t_state *state);
 
 /*
 **	tokenizer

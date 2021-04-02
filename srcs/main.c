@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:26:45 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/02 19:36:28 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/02 23:15:02 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		main(int argc, char **argv, char *envp[])
 	parse_path(&state);
 	while (1)
 	{
-	 	prompt(&state);
+	 	prompt2(&state);
 	// 	builtin(&state, state.cmd_head); // 임시파일
 	 	tokenizer(&state);
 	 	parse_cmd(&state);
