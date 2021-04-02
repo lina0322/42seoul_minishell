@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:26:45 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/03 00:18:46 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/03 00:37:35 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int		main(int argc, char **argv, char *envp[])
 	 	prompt(&state);
 	// 	builtin(&state, state.cmd_head); // 임시파일
 	 	tokenizer(&state);
+		state.token_head = 0;
 	// 	parse_cmd(&state);
 	}
 }

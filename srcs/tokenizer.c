@@ -6,24 +6,24 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/04/03 00:18:29 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/03 00:37:09 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /// token 확인용 출력구문, 차후 삭제예정
-// void	print_token(t_state *state) 
-// {
-// 	t_token *token;
+void	print_token(t_state *state) 
+{
+	t_token *token;
 
-// 	token = state->token_head;
-// 	while (token)
-// 	{
-// 		printf("%s, %i\n", token->str, token->type);
-// 		token = token->next;
-// 	}
-// }
+	token = state->token_head;
+	while (token)
+	{
+		printf("%s, %i\n", token->str, token->type);
+		token = token->next;
+	}
+}
 
 void	tokenizer(t_state *state)
 {
@@ -50,7 +50,7 @@ void	tokenizer(t_state *state)
 			count = 1;
 		i = make_token(state, count, i, type);
 	}
-	// print_token(state);
+	print_token(state);
 }
 
 int		make_token(t_state *state, int count, int i, int type)
@@ -73,9 +73,7 @@ void	add_token_back(t_token **head, char *str, int type)
 	t_token *token;
 	int		i;
 
-	if (type == SPACE)
-		return ;
-	else if (type == SINGLE || type == DOUBLE)
+	if (type == SINGLE || type == DOUBLE)
 		str[ft_strlen(str) - 1] = '\0';
 	else if (type == BACKSLASH)
 	{
