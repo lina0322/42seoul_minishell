@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/04 21:55:04 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 23:58:29 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,18 @@ void	print_cmd(t_state *state)
 {
 	t_cmd	*cmd = state->cmd_head;
 	int		i = 0;
-
+	char string[2];
+	string[1] = 0;
+	
 	while (cmd)
 	{
+		string[0] = '0' + cmd->type;
+		tputs(string, 0, ft_putchar);
 		while (i < cmd->ac)
 		{
 			tputs(cmd->av[i], 0, ft_putchar);
 			tputs(" ", 0, ft_putchar);
+			
 			i++;
 		}
 		cmd = cmd->next;
@@ -44,27 +49,21 @@ void	parse_cmd(t_state *state)
 	ac = 0;
 	while (token)
 	{
+		ac++;
 		if (token->type == PIPE || token->type == SEMICOLON || !token->next)
 		{
-			ac++;
 			make_cmd(state, start, ac, type);
 			if (token->type == PIPE)
 				type = PIPE_TYPE;
 			else
 				type = COLON_TYPE;
 			ac = 0;
-			token = token->next;
-		}
-		else
-		{
-			if (token->type != SPACE)
-				ac++;
 		}
 		if (token)
 			token = token->next;
 	}
-	// print_cmd(state);
-	free_token(state->token_head);
+	print_cmd(state);
+	// free_token(state->token_head);
 }
 
 void	make_cmd(t_state *state, t_token *start, int ac, int type)
@@ -74,13 +73,12 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 
     if (!ft_calloc(ac + 1, sizeof(char *), (void **)& av))
 	    return ;
-	i = 0;
-	while (i < ac)
-		av[i++] = 0;
-	i = 0;
-	while (start && i < ac)
+	i = ac + 1;
+	while (i > 0)
+		av[--i] = 0;
+	while (start && i < ac && start->type != PIPE && start->type != SEMICOLON)
 	{
-		if (start->type == SPACE || start->type == PIPE || start->type == SEMICOLON)
+		if (start->type == SPACE)
 			i++;
 		else
 		{
@@ -89,6 +87,23 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 		}
 		start = start->next;
 	}
+
+	// j = 0;
+	// while (start && j < ac)
+	// {
+	// 	while ((start->type == SPACE || start->type == PIPE || start->type == SEMICOLON) && (j < ac))
+	// 	{
+	// 		start->str = 0;
+	// 		start = start->next;
+	// 		j++;
+	// 	}
+	// 	// todo: type == DOUBLE일ㄸㅐ $처리!
+	// 	av[i] = ft_strjoin2(av[i], start->str);
+	// 	start = start->next;
+	// 	// if (start->type == SPACE || start->type == PIPE || start->type == SEMICOLON)
+	// 	i++;
+	// 	j++;
+	// }
 	add_cmd_back(&state->cmd_head, av, ac, type);
 }
 

@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:26:45 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/04 21:40:22 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 23:04:15 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int		main(int argc, char **argv, char *envp[])
 
 void	prepare_token_and_cmd(t_state *state)
 {
-	free_cmd(state->cmd_head);
-	ft_memset((void *)state->token_head, 0, sizeof(t_token));
+	// free_cmd(state->cmd_head);
+	// ft_memset((void *)state->token_head, 0, sizeof(t_token));
 	state->token_head = 0;
- 	ft_memset((void *)state->cmd_head, 0, sizeof(t_cmd));
+ 	// ft_memset((void *)state->cmd_head, 0, sizeof(t_cmd));
 	state->cmd_head = 0;
 }
 
