@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/04 12:14:32 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 12:27:12 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ void	parse_cmd(t_state *state)
 			token = token->next;
 	}
 	print_cmd(state);
-	free_tokens(state->token_head);
+	free_token(state->token_head);
 }
 
 void	make_cmd(t_state *state, t_token *start, int ac, int type)
@@ -205,7 +205,7 @@ t_cmd	*create_cmd(char **av, int ac, int type)
 	return (cmd);
 }
 
-void	free_cmds(t_cmd *cmd)
+void	free_cmd(t_cmd *cmd)
 {
 	t_cmd *tmp;
 
