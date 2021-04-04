@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/04 09:43:41 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/04 12:09:06 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,8 +136,7 @@ t_token	*create_token(char *str, int type);
 int		is_operator(char *c, int i);
 int		get_len(char *input, int i);
 int		find_end(char *input, int type, int i);
-void	free_token();
-void	free_tokens();
+void	free_tokens(t_token *token);
 
 /*
 **	env
@@ -201,5 +200,6 @@ void	parse_cmd(t_state *state);
 void	make_cmd(t_state *state, t_token *start, int ac, int type);
 void	add_cmd_back(t_cmd **head, char **av, int ac, int type);
 t_cmd	*create_cmd(char **av, int ac, int type);
+void	free_cmds(t_cmd *cmd);
 
 #endif
