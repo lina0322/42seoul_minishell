@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:38:22 by llim              #+#    #+#             */
-/*   Updated: 2021/04/04 21:49:42 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 22:05:16 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,23 @@ void	print_env_all(t_env *env)
 				printf("%s=\n", tmp->key);
 		}
 		tmp = tmp->next;
+	}
+}
+
+void	free_env(t_env *env)
+{
+	t_env	*tmp;
+	t_env	*next;
+
+	tmp = env;
+	while (tmp)
+	{
+		if (env->key)
+			free(env->key);
+		if (env->value)
+			free(env->value);
+		next = tmp->next;
+		free(tmp);
+		tmp = next;
 	}
 }
