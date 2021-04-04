@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 21:28:42 by llim              #+#    #+#             */
-/*   Updated: 2021/04/04 21:45:56 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 21:57:19 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	print_export(t_env *env_head)
 		printf("declare -x %s\n", env_list[i]);
 		i++;
 	}
+	free_2d(env_list);
 }
 
 void	print_one_export(t_env *head, char *key)
