@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/04 21:34:03 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 21:40:59 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct s_state
 */
 void	init_state(t_state *state);
 void	prepare_token_and_cmd(t_state *state);
+void	free_2d(char **array);
 
 /*
 **	signal
