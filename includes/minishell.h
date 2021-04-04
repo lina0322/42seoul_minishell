@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/04 21:40:59 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 22:13:16 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ t_env	*find_env(t_env *head, char *key);
 void	print_env_all(t_env *head);
 char	*find_env_val(t_env *head, char *key);
 int		ft_strcmp(char *s1, char *s2);
+void	free_env(t_env *env);
 
 /*
 **	export
