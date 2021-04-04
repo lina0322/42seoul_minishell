@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/04 21:49:36 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 21:55:04 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void	free_cmd(t_cmd *cmd)
 	while (tmp)
 	{
 		if (cmd->av)
-			free(cmd->av); // 반복문으로 *av 프리후 다돌며는 **av free
+			free_2d(cmd->av);
 		next = tmp->next;
 		free(tmp);
 		tmp = next;
