@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/04 13:44:13 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 14:29:37 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	parse_cmd(t_state *state)
 		if (token)
 			token = token->next;
 	}
-	print_cmd(state);
+	// print_cmd(state);
 	free_token(state->token_head);
 }
 
@@ -127,14 +127,16 @@ t_cmd	*create_cmd(char **av, int ac, int type)
 
 void	free_cmd(t_cmd *cmd)
 {
-	t_cmd *tmp;
+	t_cmd	*tmp;
+	t_cmd	*next;
 
-	while (cmd)
+	tmp = cmd;
+	while (tmp)
 	{
-		tmp = cmd;
 		if (cmd->av)
-			free(cmd->av);
-		cmd = cmd->next;
+			free(cmd->av); // 반복문으로 *av 프리후 다돌며는 **av free
+		next = tmp->next;
 		free(tmp);
+		tmp = next;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:38:22 by llim              #+#    #+#             */
-/*   Updated: 2021/03/31 17:14:14 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 13:59:05 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,15 +115,18 @@ char	*find_env_val(t_env *head, char *key)
 
 void	print_env_all(t_env *env)
 {
-	while (env)
+	t_env	*tmp;
+
+	tmp = env;
+	while (tmp)
 	{
-		if (env->has_equal == TRUE)
+		if (tmp->has_equal == TRUE)
 		{
-			if (env->value)
-				printf("%s=%s\n", env->key, env->value);
+			if (tmp->value)
+				printf("%s=%s\n", tmp->key, tmp->value);
 			else
-				printf("%s=\n", env->key);
+				printf("%s=\n", tmp->key);
 		}
-		env = env->next;
+		tmp = tmp->next;
 	}
 }
