@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: llim <llim@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/15 17:02:38 by llim              #+#    #+#              #
-#    Updated: 2021/04/03 00:09:06 by dhyeon           ###   ########.fr        #
+#    Updated: 2021/04/04 13:43:57 by llim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRCS	=	srcs/main.c\
 			srcs/ft_unset.c \
 			srcs/ft_export.c \
 			srcs/cmd.c \
+			srcs/cmd_parse.c \
 			srcs/path.c \
 
 INCS	=	-I includes -I libft

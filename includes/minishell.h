@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/04 12:26:15 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 13:43:37 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,9 @@ void	free_path(t_path *path);
 void	make_path(t_cmd *cmd, char *str);
 int		find_command(t_state *s, t_cmd *cmd);
 int		builtin(t_state *s, t_cmd *cmd);
+/*
+**	cmd_parse
+*/
 void	parse_cmd(t_state *state);
 void	make_cmd(t_state *state, t_token *start, int ac, int type);
 void	add_cmd_back(t_cmd **head, char **av, int ac, int type);
