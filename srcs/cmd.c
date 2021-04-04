@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/04 10:01:31 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/04 12:13:30 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ void	parse_cmd(t_state *state)
 			token = token->next;
 	}
 	print_cmd(state);
-	// ft_memset((void *)state->token_head, 0, sizeof(t_token));
+	free_tokens(state->token_head);
 }
 
 void	make_cmd(t_state *state, t_token *start, int ac, int type)
