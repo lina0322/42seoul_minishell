@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/03 00:22:58 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/03 04:42:41 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@
 # include <sys/types.h>
 # include <dirent.h>
 # include <termcap.h>
+# include <term.h>
 # include <curses.h>
 # include <termios.h>
+# include <sys/ioctl.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
@@ -59,6 +61,13 @@ typedef struct s_path
 	struct s_path	*next;
 }					t_path;
 
+typedef struct s_term
+{
+	struct termios	term;
+	char			*cm;
+	char			*ce;
+}					t_term;
+
 typedef struct s_cmd
 {
 	char			**av;
@@ -89,8 +98,11 @@ typedef struct s_state
 	t_env			*env_head;
 	t_cmd			*cmd_head;
 	t_path			*path_head;
+	t_term			t;
 	char			*input;
 	int				ret;
+	int				col;
+	int				row;
 }					t_state;
 
 /*
@@ -109,6 +121,7 @@ void	handle_signal(int signo);
 void	prompt(t_state *state);
 void	prompt2(t_state *state);
 int		ft_putchar(int c);
+void	set_cursor(t_state *s);
 
 /*
 **	tokenizer
