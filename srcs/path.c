@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:29:59 by llim              #+#    #+#             */
-/*   Updated: 2021/04/03 00:55:02 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 12:25:45 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,18 @@ t_path	*create_path(char *path_str)
 	path->path = ft_strdup(path_str);
 	path->next = 0;
 	return (path);
+}
+
+void	free_path(t_path *path)
+{
+	t_path *tmp;
+
+	while (path)
+	{
+		tmp = path;
+		if (path->path)
+			free(path->path);
+		path = path->next;
+		free(tmp);
+	}
 }
