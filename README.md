@@ -71,10 +71,10 @@
 - 🧾 회의 내용 : 진행 상황 공유
 - ⚖️ 업무 분담 
     - dhyeon👸🏻 : prompt 완성, . .. 처리  
-    - llim👩🏻‍💻 : cmd 파싱 마무리, malloc 한거 전부 변경, free 함수 만들기
+    - llim👩🏻‍💻 : cmd 파싱 마무리, free 함수 만들기
 
 ### 아홉번째 만남: 4/4일(일) 12:00
-- 🧾 회의 내용 :
+- 🧾 회의 내용 : 각종 bug 수정(세그폴트, memset, free관련...)
 - ⚖️ 업무 분담 
-    - dhyeon👸🏻 : 
-    - llim👩🏻‍💻 : 
+    - dhyeon👸🏻 : prompt 완성, cd 없는 파일 관련 처리
+    - llim👩🏻‍💻 : cmd 완성, malloc 한거 전부 변경, free 함수 다시 만들기
