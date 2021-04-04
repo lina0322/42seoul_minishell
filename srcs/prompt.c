@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/04 09:54:10 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/04 13:22:14 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,23 +154,14 @@ void	handle_keycode(t_state *s, int keycode)
 	}
 }
 
-void	prompt2(t_state *s)
+void	term_loop(t_state *s)
 {
-	int c;
-	int	flag;
-	(void)s;
+	int	c;
 
-	init_term(s);
-	// write(1, "bash", 4);
-	tputs("bash", 0, ft_putchar);
+	set_cursor(s);
 	c = 0;
-	flag = 0;
-	while (1)
+	while (read(0, &c, sizeof(c)) > 0)
 	{
-		if (!flag)
-			tputs("> ", 0, ft_putchar);
-		set_cursor(s);
-		read(0, &c, sizeof(c));
 		printf("keycode : %d\n", c);//test
 		if (c == '\n')
 		{
@@ -182,5 +173,23 @@ void	prompt2(t_state *s)
 			handle_keycode(s, c);
 		}
 		c = 0; // flush buffer
+	}
+}
+
+void	prompt2(t_state *s)
+{
+	int	flag;
+	(void)s;
+
+	init_term(s);
+	// write(1, "bash", 4);
+	tputs("bash", 0, ft_putchar);
+	flag = 0;
+	while (1)
+	{
+		if (!flag)
+			tputs("> ", 0, ft_putchar);
+		term_loop(s);
+
 	}
 }

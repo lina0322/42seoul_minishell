@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/04 12:14:32 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 13:23:18 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	print_cmd(t_state *state)
 	}
 }
 
-char *av[] = {"ls", "-al", 0}; //
+char *av[] = {"grep", "-al", 0}; //
 
 void	make_path(t_cmd *cmd, char *str)
 {
@@ -106,8 +106,8 @@ int		builtin(t_state *s, t_cmd *cmd)
 		ft_unset(s, cmd);
 	else if (!ft_strcmp(s->input, "exit"))
 		ft_exit(s, cmd);
-	// else if (!ft_strcmp(s->input, "test"))
-	// 	find_command(s, cmd);
+	else if (!ft_strcmp(s->input, "test"))
+		find_command(s, cmd);
 	return (0);
 }
 
