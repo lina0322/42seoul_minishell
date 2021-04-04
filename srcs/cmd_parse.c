@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/04 14:29:37 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/04 21:49:36 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,8 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 	char	**av;
 	int		i;
 
-	av = (char **)malloc(sizeof(char *) * ac + 1);
-	if (!av)
-		return;
+    if (!ft_calloc(ac + 1, sizeof(char *), (void **)& av))
+	    return ;
 	i = 0;
 	while (i < ac)
 		av[i++] = 0;
@@ -114,9 +113,8 @@ t_cmd	*create_cmd(char **av, int ac, int type)
 
 	if (av == NULL)
 		return NULL;
-	cmd = (t_cmd *)malloc(sizeof(t_cmd));
-	if (cmd == NULL)
-		return (0);
+    if (!ft_calloc(1, sizeof(t_cmd), (void *)& cmd))
+	    return (NULL);
 	cmd->av = av;
 	cmd->ac = ac;
 	cmd->type = type;

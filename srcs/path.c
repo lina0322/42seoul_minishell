@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:29:59 by llim              #+#    #+#             */
-/*   Updated: 2021/04/04 12:25:45 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 21:50:08 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ t_path	*create_path(char *path_str)
 {
 	t_path *path;
 
-	path = (t_path *)malloc(sizeof(t_path));
-	if (path == NULL)
+	if (!ft_calloc(1, sizeof(t_path), (void *)& path))
 		return (0);
 	path->path = ft_strdup(path_str);
 	path->next = 0;

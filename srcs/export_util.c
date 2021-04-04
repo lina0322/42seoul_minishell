@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorted_export.c                                    :+:      :+:    :+:   */
+/*   export_util.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 16:35:56 by llim              #+#    #+#             */
-/*   Updated: 2021/03/15 21:29:35 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 21:49:48 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ char	*make_env_string(char *key, char *value, int has_equal)
 	int		j;
 
 	len = ft_strlen(key) + ft_strlen(value) + 4;
-	result = (char *)malloc(sizeof(char) * len);
-	if (result == NULL)
+	if (!ft_calloc(len, sizeof(char), (void *)& result))
 		return (0);
 	i = 0;
 	j = 0;

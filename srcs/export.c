@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 21:28:42 by llim              #+#    #+#             */
-/*   Updated: 2021/04/03 00:23:12 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 21:45:56 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void	print_export(t_env *env_head)
 	int		i;
 
 	len = check_env_length(env_head);
-	env_list = (char **)malloc(sizeof(char *) * len);
-	if (env_list == NULL)
+	if (!ft_calloc(len, sizeof(char *), (void **)& env_list))
 		return ;
 	i = 0;
 	while (env_head)

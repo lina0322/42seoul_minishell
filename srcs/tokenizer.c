@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/04/03 03:48:47 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 21:50:18 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int		make_token(t_state *state, int count, int i, int type)
 	char	*token_str;
 	int		j;
 
-	token_str = malloc(sizeof(char) * count + 1);
+	if (!ft_calloc(count + 1, sizeof(char), (void *)& token_str))
+		return (0);
 	j = 0;
 	while (j < count)
 		token_str[j++] = state->input[i++];
@@ -98,7 +99,8 @@ t_token	*create_token(char *str, int type)
 {
 	t_token *token;
 
-	token = (t_token *)malloc(sizeof(t_token));
+	if (!ft_calloc(1, sizeof(t_token), (void *)& token))
+		return (0);
 	if (token == NULL)
 		return (0);
 	token->str = ft_strdup(str);
