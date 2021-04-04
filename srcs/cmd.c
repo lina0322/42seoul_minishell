@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/04 12:13:30 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 12:14:32 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,4 +203,18 @@ t_cmd	*create_cmd(char **av, int ac, int type)
 	// cmd->pip
 	cmd->next = 0;
 	return (cmd);
+}
+
+void	free_cmds(t_cmd *cmd)
+{
+	t_cmd *tmp;
+
+	while (cmd)
+	{
+		tmp = cmd;
+		if (cmd->av)
+			free(cmd->av);
+		cmd = cmd->next;
+		free(tmp);
+	}
 }
