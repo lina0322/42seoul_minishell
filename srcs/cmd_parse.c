@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/04 23:58:29 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/05 00:48:51 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	print_cmd(t_state *state)
 		while (i < cmd->ac)
 		{
 			tputs(cmd->av[i], 0, ft_putchar);
-			tputs(" ", 0, ft_putchar);
+			tputs(",", 0, ft_putchar);
 			
 			i++;
 		}
@@ -79,33 +79,30 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 	while (start && i < ac && start->type != PIPE && start->type != SEMICOLON)
 	{
 		if (start->type == SPACE)
-			i++;
-		else
 		{
-			// todo: type == DOUBLE일ㄸㅐ $처리!
+			if (av[i])
+				i++; 
+		}
+		else
+		{	
+			// todo: type == DOUBLE일ㄸㅐ $처리, 따옴표 종류들 \처리
+			if (start->type == DOUBLE)
+			{
+				// check_env(start);
+			}
 			av[i] = ft_strjoin2(av[i], start->str);
 		}
 		start = start->next;
 	}
-
-	// j = 0;
-	// while (start && j < ac)
-	// {
-	// 	while ((start->type == SPACE || start->type == PIPE || start->type == SEMICOLON) && (j < ac))
-	// 	{
-	// 		start->str = 0;
-	// 		start = start->next;
-	// 		j++;
-	// 	}
-	// 	// todo: type == DOUBLE일ㄸㅐ $처리!
-	// 	av[i] = ft_strjoin2(av[i], start->str);
-	// 	start = start->next;
-	// 	// if (start->type == SPACE || start->type == PIPE || start->type == SEMICOLON)
-	// 	i++;
-	// 	j++;
-	// }
 	add_cmd_back(&state->cmd_head, av, ac, type);
 }
+
+// void	check_env(t_token *token)
+// {
+// 	int i
+// 	while 
+// 	token->str
+// }
 
 void	add_cmd_back(t_cmd **head, char **av, int ac, int type)
 {
