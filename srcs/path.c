@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:29:59 by llim              #+#    #+#             */
-/*   Updated: 2021/04/04 21:50:08 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 21:58:44 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,16 @@ t_path	*create_path(char *path_str)
 
 void	free_path(t_path *path)
 {
-	t_path *tmp;
+	t_path	*tmp;
+	t_path	*next;
 
-	while (path)
+	tmp = path;
+	while (tmp)
 	{
-		tmp = path;
 		if (path->path)
 			free(path->path);
-		path = path->next;
+		next = path->next;
 		free(tmp);
+		tmp = next;
 	}
 }

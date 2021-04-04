@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:41:40 by llim              #+#    #+#             */
-/*   Updated: 2021/04/04 12:27:10 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 21:56:05 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,15 @@ int		find_end(char *input, int type, int i)
 void	free_token(t_token *token)
 {
 	t_token *tmp;
+	t_token *next;
 
-	while (token)
+	tmp = token;
+	while (tmp)
 	{
-		tmp = token;
 		if (token->str)
 			free(token->str);
-		token = token->next;
+		next = token->next;
 		free(tmp);
+		tmp = next;
 	}
 }
