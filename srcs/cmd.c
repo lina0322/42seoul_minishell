@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/03 00:19:45 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/03 04:16:48 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,18 @@
 void	print_cmd(t_state *state)
 {
 	t_cmd	*cmd = state->cmd_head;
-	int i = 0;
-	int count = cmd->ac;
+	int		i = 0;
 
 	while (cmd)
 	{
-		printf("type %d\n", cmd->type);
-		while (i < count)
+		while (i < cmd->ac)
 		{
-			printf("av[%i] %s, ", i, cmd->av[i]);
+			tputs(cmd->av[i], 0, ft_putchar);
+			tputs(" ", 0, ft_putchar);		
 			i++;
 		}
 		cmd = cmd->next;
-		printf("\n");
+		tputs("\n", 0, ft_putchar);		
 	}		
 }
 
@@ -113,69 +112,69 @@ int		builtin(t_state *s, t_cmd *cmd)
 void	parse_cmd(t_state *state)
 {
 	t_token	*token;
+	t_token *start;
 	int		type;
 	int		ac;
 	
 	token = state->token_head;
+	start = state->token_head;
 	type = NORMAL_TYPE;
 	ac = 0;
 	while (token)
 	{
-		if (token->type == PIPE || token->type == SEMICOLON)
+		if (token->type == PIPE || token->type == SEMICOLON || !token->next)
 		{
-			make_av(state, ac, type);
+			ac++;
+			make_cmd(state, start, ac, type);
 			if (token->type == PIPE)
 				type = PIPE_TYPE;
-			else
+			else 
 				type = COLON_TYPE;
 			ac = 0;
-		} 
+			token = token->next;
+		}
 		else
-			ac++;
-		token = token->next;
+		{
+			if (token->type != SPACE)
+				ac++;
+		}
+		if (token)
+			token = token->next;
 	}
-	make_av(state, ac, type);
-	free_tokens(token);	
 	print_cmd(state);
+	ft_memset((void *)state->token_head, 0, sizeof(t_token));
 }
 
-void	make_av(t_state *state, int ac, int type)
+void	make_cmd(t_state *state, t_token *start, int ac, int type)
 {
-	t_token	*token;
-	t_token	*temp;
 	char	**av;
 	int		i;
 
-	if (state->token_head == NULL) 
-		return ;
-	token = state->token_head;
-	av = 0;
-	if (ac != 0)
+	av = (char **)malloc(sizeof(char *) * ac + 1);
+	if (!av)
+		return;
+	i = 0;
+	while (i < ac)
+		av[i++] = 0;
+	i = 0; 
+	while (start && i < ac)
 	{
-		i = 0;
-		av = (char **)malloc(sizeof(char *) * ac + 1);
-		if (!av)
-		while (i < ac)
+		if (start->type == SPACE || start->type == PIPE || start->type == SEMICOLON)
+			i++;
+		else 
 		{
-			av[i++] = ft_strdup(token->str);
-			temp = token;
-			token = token->next;
-			state->token_head = token;
-			free_token(temp);
+			// todo: type == DOUBLE일ㄸㅐ $처리!
+			av[i] = ft_strjoin2(av[i], start->str);	
 		}
-		av[i] = 0;
+		start = start->next;
 	}
-	temp = token;
-	token = token->next;
-	state->token_head = token;
-	free_token(temp);
-	return (add_cmd_back(&state->cmd_head, av, ac, type));
+	add_cmd_back(&state->cmd_head, av, ac, type);
 }
 
 void	add_cmd_back(t_cmd **head, char **av, int ac, int type)
 {
 	t_cmd	*cmd;
-
+ 
 	if (*head == NULL)
 		*head = create_cmd(av, ac, type);
 	else

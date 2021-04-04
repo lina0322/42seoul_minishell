@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/03 04:42:41 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/04 09:43:41 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,18 +159,19 @@ void	update_env(t_env *head, char *key, char *value, int has_equal);
 /*
 **	export_util
 */
-
 char	*make_env_string(char *key, char *value, int has_equal);
 int		check_env_length(t_env *env);
 void	sorted_list(char **list, int size);
 
+/*
+**	GNL
+*/
 char	*ft_strjoin2(char *s1, char *s2);
 int		get_next_line(int fd, char **line);
 
 /*
 **	builtin
 */
-
 int		builtin(t_state *state, t_cmd *cmd);
 int		ft_pwd(t_state *s, t_cmd *cmd);
 int		ft_pwd(t_state *state, t_cmd *cmd);
@@ -186,7 +187,6 @@ int		find_command(t_state *s, t_cmd *cmd);
 /*
 **	path
 */
-
 void	parse_path(t_state *state);
 void	add_path_back(t_path **head, char *path_str);
 t_path	*create_path(char *path_str);
@@ -194,12 +194,11 @@ t_path	*create_path(char *path_str);
 /*
 **	cmd
 */
-
 void	make_path(t_cmd *cmd, char *str);
 int		find_command(t_state *s, t_cmd *cmd);
 int		builtin(t_state *s, t_cmd *cmd);
 void	parse_cmd(t_state *state);
-void	make_av(t_state *state, int ac, int type);
+void	make_cmd(t_state *state, t_token *start, int ac, int type);
 void	add_cmd_back(t_cmd **head, char **av, int ac, int type);
 t_cmd	*create_cmd(char **av, int ac, int type);
 
