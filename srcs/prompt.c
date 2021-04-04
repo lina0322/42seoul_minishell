@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/03 04:50:33 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/04 09:54:10 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,6 @@ void	prompt(t_state *state)
 
 void	init_term(t_state *s)
 {
-	char	*cm;
-	char	*ce;
-
 	tcgetattr(STDIN_FILENO, &s->t.term);
 	s->t.term.c_lflag &= ~ICANON;
 	s->t.term.c_lflag &= ~ECHO;

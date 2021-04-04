@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/03 04:16:48 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 10:01:31 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	print_cmd(t_state *state)
 		while (i < cmd->ac)
 		{
 			tputs(cmd->av[i], 0, ft_putchar);
-			tputs(" ", 0, ft_putchar);		
+			tputs(" ", 0, ft_putchar);
 			i++;
 		}
 		cmd = cmd->next;
-		tputs("\n", 0, ft_putchar);		
-	}		
+		tputs("\n", 0, ft_putchar);
+	}
 }
 
 char *av[] = {"ls", "-al", 0}; //
@@ -74,7 +74,9 @@ int		find_command(t_state *s, t_cmd *cmd) // 찾으면 1 못찾으면 0
 			file = readdir(dir_ptr);
 			if (file == 0)
 				break ;
-			if (!ft_strcmp(av[0], file->d_name))
+			else if (!ft_strcmp(file->d_name, ".") || !ft_strcmp(file->d_name, ".."))
+				continue ;
+			else if (!ft_strcmp(av[0], file->d_name))
 			{
 				make_path(cmd, paths[i]);
 				return (1);
@@ -115,7 +117,7 @@ void	parse_cmd(t_state *state)
 	t_token *start;
 	int		type;
 	int		ac;
-	
+
 	token = state->token_head;
 	start = state->token_head;
 	type = NORMAL_TYPE;
@@ -128,7 +130,7 @@ void	parse_cmd(t_state *state)
 			make_cmd(state, start, ac, type);
 			if (token->type == PIPE)
 				type = PIPE_TYPE;
-			else 
+			else
 				type = COLON_TYPE;
 			ac = 0;
 			token = token->next;
@@ -142,7 +144,7 @@ void	parse_cmd(t_state *state)
 			token = token->next;
 	}
 	print_cmd(state);
-	ft_memset((void *)state->token_head, 0, sizeof(t_token));
+	// ft_memset((void *)state->token_head, 0, sizeof(t_token));
 }
 
 void	make_cmd(t_state *state, t_token *start, int ac, int type)
@@ -156,15 +158,15 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 	i = 0;
 	while (i < ac)
 		av[i++] = 0;
-	i = 0; 
+	i = 0;
 	while (start && i < ac)
 	{
 		if (start->type == SPACE || start->type == PIPE || start->type == SEMICOLON)
 			i++;
-		else 
+		else
 		{
 			// todo: type == DOUBLE일ㄸㅐ $처리!
-			av[i] = ft_strjoin2(av[i], start->str);	
+			av[i] = ft_strjoin2(av[i], start->str);
 		}
 		start = start->next;
 	}
@@ -174,7 +176,7 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 void	add_cmd_back(t_cmd **head, char **av, int ac, int type)
 {
 	t_cmd	*cmd;
- 
+
 	if (*head == NULL)
 		*head = create_cmd(av, ac, type);
 	else
