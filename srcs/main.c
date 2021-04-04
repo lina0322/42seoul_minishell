@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:26:45 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/04 21:35:02 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/04 21:40:22 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,17 @@ void	prepare_token_and_cmd(t_state *state)
 void	init_state(t_state *state)
 {
 	ft_memset((void *)state, 0, sizeof(t_state));
+}
+
+void	free_2d(char **array)
+{
+	char **temp;
+
+	temp = array;
+	while (*temp)
+	{
+		free(*temp);
+		temp++;
+	}
+	free(array);
 }
