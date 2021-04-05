@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/06 05:13:08 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/06 06:08:44 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,8 +143,8 @@ void	free_cmd(t_cmd *cmd)
 	tmp = cmd;
 	while (tmp)
 	{
-		if (cmd->av)
-			free_2d(cmd->av);
+		if (tmp->av)
+			free_2d(tmp->av);
 		next = tmp->next;
 		free(tmp);
 		tmp = next;
