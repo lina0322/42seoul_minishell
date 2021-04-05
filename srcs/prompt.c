@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/06 04:47:32 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/06 08:29:42 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	init_term(t_state *s)
 	s->t.term.c_cc[VMIN] = 1;
 	s->t.term.c_cc[VTIME] = 0;
 	tcsetattr(STDIN_FILENO, TCSANOW, &s->t.term);
+	tgetent(NULL, "xterm");
 	s->t.cm = tgetstr("cm", NULL);
 	s->t.ce = tgetstr("ce", NULL);
 }
@@ -83,8 +84,8 @@ void	set_cursor_win(t_state *s)
 	struct winsize w;
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-	s->col = w.ws_col;
-	s->row = w.ws_row;
+	s->max_col = w.ws_col;
+	s->max_row = w.ws_row;
 }
 
 int	get_nbr_len(int n)
@@ -100,7 +101,7 @@ int	get_nbr_len(int n)
 	return (ret);
 }
 
-void	set_cursor(t_state *s)
+void	set_cursor(int *col, int *row)
 {
 	int		i;
 	int		flag;
@@ -117,11 +118,14 @@ void	set_cursor(t_state *s)
 		if ('0' <= buf[i] && buf[i] <= '9')
 		{
 			if (flag == 0)
-				s->row = ft_atoi(&buf[i]) - 1;
+				*row = ft_atoi(&buf[i]) - 1;
 			else
-				s->col = ft_atoi(&buf[i]) - 1;
+			{
+				*col = ft_atoi(&buf[i]) - 1;
+				break ;
+			}
 			flag++;
-			i += get_nbr_len(s->col + 1) - 1;
+			i += get_nbr_len(*row) - 1;
 		}
 	}
 }
@@ -133,14 +137,14 @@ char	*ft_strcjoin(char *str, char c)
 
 	if (!str)
 	{
-		if (ft_calloc(2, sizeof(char *), (void *)& ret))
+		if (!ft_calloc(2, sizeof(char *), (void *)& ret))
 			return (0); // exit 처리
 		ret[0] = c;
 		ret[1] = '\0';
 	}
 	else
 	{
-		if (ft_calloc(ft_strlen(str) + 2, sizeof(char *), (void *)& ret))
+		if (!ft_calloc(ft_strlen(str) + 2, sizeof(char *), (void *)& ret))
 			return (0); // exit 처리
 		i = -1;
 		while (str[++i])
@@ -158,6 +162,24 @@ void	print_save_char(t_state *s, char c)
 	write(1, &c, 1);
 }
 
+void	put_backspace(t_state *s)
+{
+	int	col;
+	int	row;
+
+	if (!s->input)
+		return ;
+	set_cursor(&col, &row);
+	col--;
+	if (col < 0)
+	{
+		row -= 1;
+		col = s->max_col;
+	}
+	tputs(tgoto(s->t.cm, col, row), 1, ft_putchar);
+	tputs(s->t.ce, 1, ft_putchar);
+}
+
 void	handle_keycode(t_state *s, int keycode)
 {
 	// set_cursor_win(s);
@@ -168,6 +190,7 @@ void	handle_keycode(t_state *s, int keycode)
 	}
 	else if (keycode == 127) // backspace
 	{
+		put_backspace(s);
 		// write(1, "backspace\n", 11);
 		// 출력된 문자, 저장된 문자 지우고 커서 옮기기
 	}
@@ -190,15 +213,17 @@ void	term_loop(t_state *s)
 	int	c;
 
 	set_cursor_win(s);
-	set_cursor(s);
+	set_cursor(&s->col, &s->row);
 	c = 0;
 	while (read(0, &c, sizeof(c)) > 0)
 	{
+		// printf("[[[col : %drow : %d]]]", s->col, s->row);
 		// printf("keycode : %d\n", c);//test
 		if (c == '\n')
 		{
 			// if is_backslash
 			// 커맨드 입력 처리
+			break ;
 		}
 		else
 		{
@@ -214,14 +239,14 @@ void	prompt2(t_state *s)
 	(void)s;
 
 	init_term(s);
-	// write(1, "bash", 4);
-	tputs("bash", 0, ft_putchar);
+	write(1, "bash", 4);
+	// tputs("bash", 0, ft_putchar);
 	flag = 0;
 	while (1)
 	{
 		if (!flag)
-			tputs("> ", 0, ft_putchar);
+			write(1, "> ", 2);
+			// tputs("> ", 0, ft_putchar); //이부분 나중에 수정 다른함수로 옮기자
 		term_loop(s);
-
 	}
 }
