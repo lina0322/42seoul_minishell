@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/04 13:22:14 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/06 04:47:32 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,13 @@ int	is_backslash(char *str)
 	return (0);
 }
 
-void	handle_eof(char *input, int *flag)
+void	handle_eof(char *input)
 {
-	if (ft_strlen(input) == 0) // 입력값없이 컨트롤D 누른경우
+	if (input) // 입력값없이 컨트롤D 누른경우
 	{
 		printf("exit\n");
 		free(input); // 모든 malloc 해제하는 함수 필요할듯
 		exit(1);
-	}
-	else // 이전입력값이있고 eof로 컨트롤D한경우
-	{
-		printf(" \b\b");
-		*flag = 1;
 	}
 }
 
@@ -57,7 +52,7 @@ void	prompt(t_state *state)
 			flag = 0;
 		}
 		else if (gnl == 0) // 컨트롤 + D 입력경우 eof
-			handle_eof(state->input, &flag); //후에 bash나오게 수정
+			handle_eof(state->input); //후에 bash나오게 수정
 		else
 		{
 			state->input = input;
@@ -83,7 +78,7 @@ int	ft_putchar(int c)
 	return (write(1, &c, 1));
 }
 
-void	cursor_win(t_state *s)
+void	set_cursor_win(t_state *s)
 {
 	struct winsize w;
 
@@ -131,26 +126,62 @@ void	set_cursor(t_state *s)
 	}
 }
 
+char	*ft_strcjoin(char *str, char c)
+{
+	char	*ret;
+	int		i;
+
+	if (!str)
+	{
+		if (ft_calloc(2, sizeof(char *), (void *)& ret))
+			return (0); // exit 처리
+		ret[0] = c;
+		ret[1] = '\0';
+	}
+	else
+	{
+		if (ft_calloc(ft_strlen(str) + 2, sizeof(char *), (void *)& ret))
+			return (0); // exit 처리
+		i = -1;
+		while (str[++i])
+			ret[i] = str[i];
+		ret[i] = c;
+		ret[i + 1] = '\0';
+		free(str);
+	}
+	return (ret);
+}
+
+void	print_save_char(t_state *s, char c)
+{
+	s->input = ft_strcjoin(s->input, c);
+	write(1, &c, 1);
+}
+
 void	handle_keycode(t_state *s, int keycode)
 {
-	cursor_win(s);
-	set_cursor(s);
+	// set_cursor_win(s);
+	// set_cursor(s);
 	if (keycode == 4) // ctrl + D
 	{
-		// if (input == 0) => exit 출력후 종료
-		// else 아무 변화 없음
+		handle_eof(s->input);
 	}
 	else if (keycode == 127) // backspace
 	{
+		// write(1, "backspace\n", 11);
 		// 출력된 문자, 저장된 문자 지우고 커서 옮기기
 	}
 	else if (keycode == 4283163) // up
-	{}
+	{
+		write(1, "up\n", 3);
+	}
 	else if (keycode == 4348699) // down
-	{}
+	{
+		write(1, "down\n", 5);
+	}
 	else // 문자 붙이기
 	{
-		write(1, &keycode, 1);// input에 저장후 출력, 커서위치 변경
+		print_save_char(s, (char)keycode);// input에 저장후 출력, 커서위치 변경
 	}
 }
 
@@ -158,11 +189,12 @@ void	term_loop(t_state *s)
 {
 	int	c;
 
+	set_cursor_win(s);
 	set_cursor(s);
 	c = 0;
 	while (read(0, &c, sizeof(c)) > 0)
 	{
-		printf("keycode : %d\n", c);//test
+		// printf("keycode : %d\n", c);//test
 		if (c == '\n')
 		{
 			// if is_backslash
