@@ -52,4 +52,6 @@ Mkfile.old
 dkms.conf
 
 .DS_Store
-.vscode/
+.vscode/lauch.json
+.vscode/tasks.json
+libft/Makefile
