@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/06 07:43:13 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/06 22:26:56 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ void	prompt(t_state *state);
 void	prompt2(t_state *state);
 int		ft_putchar(int c);
 void	set_cursor(int *col, int *row);
+void	delete_last_char(char *str);
 
 /*
 **	tokenizer

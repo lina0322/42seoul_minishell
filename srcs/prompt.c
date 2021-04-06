@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/06 22:14:54 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/06 22:37:55 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ int	is_backslash(char *str)
 		i--;
 	}
 	if (flag == 1) // 마지막 백슬래시 지워주는 함수 추가
+	{
+		delete_last_char(str);
 		return (1);
+	}
 	else
 		return (0);
 }
@@ -175,6 +178,26 @@ void	print_save_char(t_state *s, char c)
 	write(1, &c, 1);
 }
 
+void	delete_last_char(char *str)
+{
+	char	*tmp;
+	int		len;
+	int		i;
+
+	len = ft_strlen(str);
+	if (!ft_calloc(len, sizeof(char *), (void *)& tmp))
+		return ; //exit 처리
+	i = 0;
+	while (str[i + 1])
+	{
+		tmp[i] = str[i];
+		i++;
+	}
+	tmp[len] = '\0';
+	free(str);
+	str = tmp;
+}
+
 void	put_backspace(t_state *s)
 {
 	int	col;
@@ -191,6 +214,7 @@ void	put_backspace(t_state *s)
 	}
 	tputs(tgoto(s->t.cm, col, row), 1, ft_putchar);
 	tputs(s->t.ce, 1, ft_putchar);
+	// delete_last_char(s->input);
 }
 
 void	handle_keycode(t_state *s, int keycode)
