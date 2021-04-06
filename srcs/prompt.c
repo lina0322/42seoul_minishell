@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/06 08:37:50 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/06 22:14:54 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,25 @@
 
 int	is_backslash(char *str)
 {
-	int	len;
+	int	flag;
+	int	i;
 
-	len = ft_strlen(str);
-	if (len > 0 && str[len - 1] == '\\')
+	if (str == 0)
+		return (0);
+	flag = -1;
+	i = 0;
+	while (str[i])
+		i++;
+	i--;
+	while (str[i] == '\\' && i >= 0)
+	{
+		flag *= -1;
+		i--;
+	}
+	if (flag == 1) // 마지막 백슬래시 지워주는 함수 추가
 		return (1);
-	return (0);
+	else
+		return (0);
 }
 
 void	handle_eof(char *input)
@@ -204,11 +217,12 @@ void	handle_keycode(t_state *s, int keycode)
 	}
 	else // 문자 붙이기
 	{
+		//if printable 해서 출력가능문자만 받자
 		print_save_char(s, (char)keycode);// input에 저장후 출력, 커서위치 변경
 	}
 }
 
-void	term_loop(t_state *s)
+int	term_loop(t_state *s)
 {
 	int	c;
 
@@ -221,9 +235,16 @@ void	term_loop(t_state *s)
 		// printf("keycode : %d\n", c);//test
 		if (c == '\n')
 		{
+			if (is_backslash(s->input))
+			{
+				write(1, "\n", 1);
+				return (1);
+			}
+			else
+				return (0);
 			// if is_backslash
 			// 커맨드 입력 처리
-			break ;
+			// break ;
 		}
 		else
 		{
@@ -231,23 +252,27 @@ void	term_loop(t_state *s)
 		}
 		c = 0; // flush buffer
 	}
+	return (0);
 }
 
 void	prompt2(t_state *s)
 {
-	int	flag;
+	// int	flag;
 	(void)s;
 
 	init_term(s);
 	write(1, "bash", 4);
 	// tputs("bash", 0, ft_putchar);
-	flag = 0;
+	// flag = 0;
 	while (1)
 	{
-		if (!flag)
+		// if (!flag)
 			write(1, "> ", 2); // 이부분 나중에 수정, 반복문도 빼고 \ 입력 받앗을때만 > 출력하고 입력받도록 해보자
-		else
+		// else
+		// 	break ;
+		if (term_loop(s) == 0)
 			break ;
-		term_loop(s);
+		else
+			continue ;
 	}
 }
