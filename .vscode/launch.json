@@ -14,7 +14,8 @@
 			"cwd": "${workspaceFolder}",
 			"environment": [],
 			"externalConsole": false,
-			"MIMode": "gdb",
+			"MIMode": "lldb", // for 리나
+		//	"MIMode": "gdb",  // for 다솜
 			"setupCommands": [
 				{
 					"description": "gdb에 자동 서식 지정 사용",
@@ -23,7 +24,7 @@
 				}
 			],
 			"preLaunchTask": "C/C++: gcc 활성 파일 빌드",
-			"miDebuggerPath": "/usr/bin/gdb"
+		//	"miDebuggerPath": "/usr/bin/gdb" // for 다솜
 		}
 	]
 }
