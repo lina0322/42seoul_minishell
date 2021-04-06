@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/05 00:48:51 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/06 06:08:44 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_cmd(t_state *state)
 	int		i = 0;
 	char string[2];
 	string[1] = 0;
-	
+
 	while (cmd)
 	{
 		string[0] = '0' + cmd->type;
@@ -28,7 +28,7 @@ void	print_cmd(t_state *state)
 		{
 			tputs(cmd->av[i], 0, ft_putchar);
 			tputs(",", 0, ft_putchar);
-			
+
 			i++;
 		}
 		cmd = cmd->next;
@@ -71,7 +71,7 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 	char	**av;
 	int		i;
 
-    if (!ft_calloc(ac + 1, sizeof(char *), (void **)& av))
+    if (!ft_calloc(ac + 1, sizeof(char **), (void **)& av))
 	    return ;
 	i = ac + 1;
 	while (i > 0)
@@ -81,10 +81,10 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 		if (start->type == SPACE)
 		{
 			if (av[i])
-				i++; 
+				i++;
 		}
 		else
-		{	
+		{
 			// todo: type == DOUBLE일ㄸㅐ $처리, 따옴표 종류들 \처리
 			if (start->type == DOUBLE)
 				// check_env(start);
@@ -100,7 +100,7 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 // void	check_env(t_token *token)
 // {
 // 	int i
-// 	while 
+// 	while
 // 	token->str
 // }
 
@@ -143,8 +143,8 @@ void	free_cmd(t_cmd *cmd)
 	tmp = cmd;
 	while (tmp)
 	{
-		if (cmd->av)
-			free_2d(cmd->av);
+		if (tmp->av)
+			free_2d(tmp->av);
 		next = tmp->next;
 		free(tmp);
 		tmp = next;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/04 22:13:16 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/06 07:43:13 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ typedef struct s_state
 	int				ret;
 	int				col;
 	int				row;
+	int				max_col;
+	int				max_row;
 }					t_state;
 
 /*
@@ -123,7 +125,7 @@ void	handle_signal(int signo);
 void	prompt(t_state *state);
 void	prompt2(t_state *state);
 int		ft_putchar(int c);
-void	set_cursor(t_state *s);
+void	set_cursor(int *col, int *row);
 
 /*
 **	tokenizer
