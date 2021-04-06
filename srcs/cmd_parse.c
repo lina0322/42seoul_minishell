@@ -87,9 +87,9 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 		{	
 			// todo: type == DOUBLE일ㄸㅐ $처리, 따옴표 종류들 \처리
 			if (start->type == DOUBLE)
-			{
 				// check_env(start);
-			}
+			if (start->type == SINGLE || start->type == DOUBLE)
+				// check_backslass
 			av[i] = ft_strjoin2(av[i], start->str);
 		}
 		start = start->next;
