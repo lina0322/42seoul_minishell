@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:26:45 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/06 06:35:07 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/06 11:40:52 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,8 @@ int		main(int argc, char **argv, char *envp[])
 void	prepare_token_and_cmd(t_state *state)
 {
 	free_cmd(state->cmd_head);
-	// ft_memset((void *)state->token_head, 0, sizeof(t_token));
 	state->token_head = 0;
- 	// ft_memset((void *)state->cmd_head, 0, sizeof(t_cmd));
-	state->cmd_head = 0;
-	free(state->input);
-	state->input = 0;
+ 	state->cmd_head = 0;
 }
 
 void	init_state(t_state *state)

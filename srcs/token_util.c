@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:41:40 by llim              #+#    #+#             */
-/*   Updated: 2021/04/04 21:56:05 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/06 11:40:54 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void	free_token(t_token *token)
 	tmp = token;
 	while (tmp)
 	{
-		if (token->str)
-			free(token->str);
-		next = token->next;
+		if (tmp->str)
+			free(tmp->str);
+		next = tmp->next;
 		free(tmp);
 		tmp = next;
 	}

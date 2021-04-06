@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/04/04 21:50:18 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/06 11:40:55 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	tokenizer(t_state *state)
 			count = 1;
 		i = make_token(state, count, i, type);
 	}
-//	print_token(state);
+	print_token(state);
 	parse_cmd(state);
 }
 
