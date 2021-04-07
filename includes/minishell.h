@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/07 19:16:04 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/07 23:51:20 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,8 @@ int		builtin(t_state *s, t_cmd *cmd);
 */
 void	parse_cmd(t_state *state);
 void	make_cmd(t_state *state, t_token *start, int ac, int type);
-void	check_env_and_backslash(t_state *state, t_token *token);
+void	check_env(t_state *state, t_token *token);
+void	check_backslash(t_token *token);
 void	add_cmd_back(t_cmd **head, char **av, int type);
 t_cmd	*create_cmd(char **av, int ac, int type);
 void	free_cmd(t_cmd *cmd);
