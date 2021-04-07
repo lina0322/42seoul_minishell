@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:38:22 by llim              #+#    #+#             */
-/*   Updated: 2021/04/04 22:13:12 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/08 02:37:01 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ char	*find_env_val(t_env *head, char *key)
 			return (env->value);
 		env = env->next;
 	}
-	return (NULL);
+	return ("");
 }
 
 void	print_env_all(t_env *env)
