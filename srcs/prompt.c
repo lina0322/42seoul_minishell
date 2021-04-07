@@ -6,19 +6,21 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/06 22:37:55 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/07 23:43:01 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	is_backslash(char *str)
+int	is_backslash(t_state *s)
 {
 	int	flag;
 	int	i;
+	char	*str;
 
-	if (str == 0)
+	if (s->input == 0)
 		return (0);
+	str = s->input;
 	flag = -1;
 	i = 0;
 	while (str[i])
@@ -31,7 +33,7 @@ int	is_backslash(char *str)
 	}
 	if (flag == 1) // 마지막 백슬래시 지워주는 함수 추가
 	{
-		delete_last_char(str);
+		s->input = delete_last_char(str);
 		return (1);
 	}
 	else
@@ -62,7 +64,7 @@ void	prompt(t_state *state)
 			write(1, "> ", 2);
 		gnl = get_next_line(0, &input);
 		state->input = ft_strjoin2(state->input, input);
-		if (is_backslash(state->input))
+		if (is_backslash(state))
 		{
 			state->input[ft_strlen(state->input) - 1] = '\0';
 			flag = 0;
@@ -93,15 +95,6 @@ void	init_term(t_state *s)
 int	ft_putchar(int c)
 {
 	return (write(1, &c, 1));
-}
-
-void	set_cursor_win(t_state *s)
-{
-	struct winsize w;
-
-	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-	s->max_col = w.ws_col;
-	s->max_row = w.ws_row;
 }
 
 int	get_nbr_len(int n)
@@ -146,6 +139,16 @@ void	set_cursor(int *col, int *row)
 	}
 }
 
+void	set_cursor_win(t_state *s)
+{
+	struct winsize w;
+
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	s->max.col = w.ws_col;
+	s->max.row = w.ws_row;
+	set_cursor(&s->start.col, &s->start.row);
+}
+
 char	*ft_strcjoin(char *str, char c)
 {
 	char	*ret;
@@ -178,7 +181,7 @@ void	print_save_char(t_state *s, char c)
 	write(1, &c, 1);
 }
 
-void	delete_last_char(char *str)
+char	*delete_last_char(char *str)
 {
 	char	*tmp;
 	int		len;
@@ -186,7 +189,7 @@ void	delete_last_char(char *str)
 
 	len = ft_strlen(str);
 	if (!ft_calloc(len, sizeof(char *), (void *)& tmp))
-		return ; //exit 처리
+		return (0); //exit 처리
 	i = 0;
 	while (str[i + 1])
 	{
@@ -196,6 +199,7 @@ void	delete_last_char(char *str)
 	tmp[len] = '\0';
 	free(str);
 	str = tmp;
+	return (str);
 }
 
 void	put_backspace(t_state *s)
@@ -203,18 +207,18 @@ void	put_backspace(t_state *s)
 	int	col;
 	int	row;
 
-	if (!s->input)
-		return ;
 	set_cursor(&col, &row);
+	if (!s->input || (s->start.row >= row && s->start.col >= col))
+		return ;
 	col--;
 	if (col < 0)
 	{
 		row -= 1;
-		col = s->max_col;
+		col = s->max.col;
 	}
 	tputs(tgoto(s->t.cm, col, row), 1, ft_putchar);
 	tputs(s->t.ce, 1, ft_putchar);
-	// delete_last_char(s->input);
+	s->input = delete_last_char(s->input);
 }
 
 void	handle_keycode(t_state *s, int keycode)
@@ -251,7 +255,7 @@ int	term_loop(t_state *s)
 	int	c;
 
 	set_cursor_win(s);
-	set_cursor(&s->col, &s->row);
+	set_cursor(&s->cur.col, &s->cur.row);
 	c = 0;
 	while (read(0, &c, sizeof(c)) > 0)
 	{
@@ -259,11 +263,9 @@ int	term_loop(t_state *s)
 		// printf("keycode : %d\n", c);//test
 		if (c == '\n')
 		{
-			if (is_backslash(s->input))
-			{
-				write(1, "\n", 1);
+			write(1, "\n", 1);
+			if (is_backslash(s))
 				return (1);
-			}
 			else
 				return (0);
 			// if is_backslash
@@ -281,19 +283,13 @@ int	term_loop(t_state *s)
 
 void	prompt2(t_state *s)
 {
-	// int	flag;
 	(void)s;
 
 	init_term(s);
 	write(1, "bash", 4);
-	// tputs("bash", 0, ft_putchar);
-	// flag = 0;
 	while (1)
 	{
-		// if (!flag)
-			write(1, "> ", 2); // 이부분 나중에 수정, 반복문도 빼고 \ 입력 받앗을때만 > 출력하고 입력받도록 해보자
-		// else
-		// 	break ;
+		write(1, "> ", 2); // 이부분 나중에 수정, 반복문도 빼고 \ 입력 받앗을때만 > 출력하고 입력받도록 해보자
 		if (term_loop(s) == 0)
 			break ;
 		else

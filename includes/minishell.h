@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/04/07 23:51:20 by llim             ###   ########.fr       */
+=======
+/*   Updated: 2021/04/07 21:47:24 by dhyeon           ###   ########.fr       */
+>>>>>>> 97fe65df26931e7a805a04451832fb594109e50b
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +96,12 @@ typedef struct s_token
 	struct s_token	*next;
 }					t_token;
 
+typedef struct s_keypos
+{
+	int				col;
+	int				row;
+}					t_keypos;
+
 typedef struct s_state
 {
 	t_token			*token_head;
@@ -101,10 +111,9 @@ typedef struct s_state
 	t_term			t;
 	char			*input;
 	int				ret;
-	int				col;
-	int				row;
-	int				max_col;
-	int				max_row;
+	t_keypos		cur;
+	t_keypos		max;
+	t_keypos		start;
 }					t_state;
 
 /*
@@ -126,7 +135,7 @@ void	prompt(t_state *state);
 void	prompt2(t_state *state);
 int		ft_putchar(int c);
 void	set_cursor(int *col, int *row);
-void	delete_last_char(char *str);
+char	*delete_last_char(char *str);
 
 /*
 **	tokenizer
