@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/08 05:25:50 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/08 05:53:03 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	make_path(t_cmd *cmd, char *str)
 
 	(void)cmd;
 	(void)tmp;
-	tmp = av[0];
+	tmp = av[0]; // cmd로 변경해야함
 	tmp2 = ft_strjoin(str, "/");
 	if (!tmp2)
 		return ; //exit
@@ -59,7 +59,7 @@ int	find_command(t_state *s, t_cmd *cmd) // 찾으면 1 못찾으면 0
 				break ;
 			else if (!ft_strcmp(file->d_name, ".") || !ft_strcmp(file->d_name, ".."))
 				continue ;
-			else if (!ft_strcmp(av[0], file->d_name))
+			else if (!ft_strcmp(s->input, file->d_name)) // input을 나중에 cmd로 변경해야함
 				return (find_success_cmd(s, cmd, p->path, dir_ptr));
 		}
 		p = p->next;
@@ -88,8 +88,6 @@ int		builtin(t_state *s, t_cmd *cmd)
 		ft_unset(s, cmd);
 	else if (!ft_strcmp(s->input, "exit"))
 		ft_exit(s, cmd);
-	else if (!ft_strcmp(s->input, "test"))
-		find_command(s, cmd);
 	else
 		return (0);
 	return (1);
