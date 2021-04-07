@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/07 23:51:20 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/08 05:29:42 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,9 +205,11 @@ void	free_path(t_path *path);
 /*
 **	cmd
 */
+void	execute_cmd(t_state *s, t_cmd *cmd);
 void	make_path(t_cmd *cmd, char *str);
 int		find_command(t_state *s, t_cmd *cmd);
 int		builtin(t_state *s, t_cmd *cmd);
+
 /*
 **	cmd_parse
 */

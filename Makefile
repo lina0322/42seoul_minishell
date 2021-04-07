@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: llim <llim@student.42.fr>                  +#+  +:+       +#+         #
+#    By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/15 17:02:38 by llim              #+#    #+#              #
-#    Updated: 2021/04/06 19:46:43 by llim             ###   ########.fr        #
+#    Updated: 2021/04/08 05:30:11 by dhyeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS	=	srcs/main.c\
 			srcs/cmd.c \
 			srcs/cmd_parse.c \
 			srcs/path.c \
+			srcs/execute_cmd.c
 
 INCS	=	-I includes -I libft
 OBJS	=	$(SRCS:.c=.o)
