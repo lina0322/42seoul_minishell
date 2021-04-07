@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/06 03:51:04 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/08 04:26:28 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,18 @@ int		find_command(t_state *s, t_cmd *cmd) // 찾으면 1 못찾으면 0
 	(void)s;
 	(void)cmd;
 	//test
-	char *paths[] = {"/home/dhyeon/.local/bin", "/home/dhyeon/.rbenv/shims", "/home/dhyeon/.rbenv/bin", "/usr/local/sbin", "/usr/local/bin",
-				"/usr/sbin", "/usr/bin", "/sbin", "/bin", "/usr/games", "/usr/local/games", "/snap/bin", 0};
+	// char *paths[] = {"/home/dhyeon/.local/bin", "/home/dhyeon/.rbenv/shims", "/home/dhyeon/.rbenv/bin", "/usr/local/sbin", "/usr/local/bin",
+	// 			"/usr/sbin", "/usr/bin", "/sbin", "/bin", "/usr/games", "/usr/local/games", "/snap/bin", 0};
 	// char *paths[] = {"/Users/dhyeon/.brew/bin", "/usr/local/bin", "/usr/bin", "/bin", "/usr/sbin", "/sbin", "/usr/local/munki", 0};
-	int i = 0;
 	DIR				*dir_ptr;
 	struct dirent	*file;
-	char			*tmp;
-	(void)tmp;
+	t_path			*p;
 
-	while (paths[i]) // 나중엔 링크드리스트로 수정
+	parse_path(s);
+	p = s->path_head;
+	while (p) // 나중엔 링크드리스트로 수정
 	{
-		dir_ptr = opendir(paths[i]);
+		dir_ptr = opendir(p->path);
 		while (dir_ptr)
 		{
 			file = readdir(dir_ptr);
@@ -59,12 +59,12 @@ int		find_command(t_state *s, t_cmd *cmd) // 찾으면 1 못찾으면 0
 				continue ;
 			else if (!ft_strcmp(av[0], file->d_name))
 			{
-				make_path(cmd, paths[i]);
+				make_path(cmd, p->path);
 				closedir(dir_ptr);
 				return (1);
 			}
 		}
-		i++;
+		p = p->next;
 	}
 	closedir(dir_ptr);
 	return (0);
