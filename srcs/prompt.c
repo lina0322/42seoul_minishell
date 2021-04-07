@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/07 22:00:15 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/07 23:43:01 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,11 +263,9 @@ int	term_loop(t_state *s)
 		// printf("keycode : %d\n", c);//test
 		if (c == '\n')
 		{
+			write(1, "\n", 1);
 			if (is_backslash(s))
-			{
-				write(1, "\n", 1);
 				return (1);
-			}
 			else
 				return (0);
 			// if is_backslash
