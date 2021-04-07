@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/08 04:13:36 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/08 04:21:44 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,8 +259,6 @@ int	term_loop(t_state *s)
 	c = 0;
 	while (read(0, &c, sizeof(c)) > 0)
 	{
-		// printf("[[[col : %drow : %d]]]", s->col, s->row);
-		// printf("keycode : %d\n", c);//test
 		if (c == '\n')
 		{
 			write(1, "\n", 1);
@@ -268,15 +266,10 @@ int	term_loop(t_state *s)
 				return (1);
 			else
 				return (0);
-			// if is_backslash
-			// 커맨드 입력 처리
-			// break ;
 		}
 		else
-		{
 			handle_keycode(s, c);
-		}
-		c = 0; // flush buffer
+		c = 0;
 	}
 	return (0);
 }
@@ -289,7 +282,7 @@ void	prompt2(t_state *s)
 	write(1, "bash", 4);
 	while (1)
 	{
-		write(1, "> ", 2); // 이부분 나중에 수정, 반복문도 빼고 \ 입력 받앗을때만 > 출력하고 입력받도록 해보자
+		write(1, "> ", 2);
 		if (term_loop(s) == 0)
 			break ;
 		else
