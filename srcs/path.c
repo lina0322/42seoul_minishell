@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:29:59 by llim              #+#    #+#             */
-/*   Updated: 2021/04/04 21:58:44 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/06 11:44:26 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ void	free_path(t_path *path)
 	tmp = path;
 	while (tmp)
 	{
-		if (path->path)
-			free(path->path);
-		next = path->next;
+		if (tmp->path)
+			free(tmp->path);
+		next = tmp->next;
 		free(tmp);
 		tmp = next;
 	}
