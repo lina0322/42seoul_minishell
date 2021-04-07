@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:41:40 by llim              #+#    #+#             */
-/*   Updated: 2021/04/06 11:40:54 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/08 02:24:16 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,18 @@ int		find_end(char *input, int type, int i)
 	len = 1;
 	while (input[i])
 	{
-		if ((type == SINGLE && input[i] == '\'')
-		|| (type == DOUBLE && input[i] == '\"'))
+		if (type == SINGLE && input[i] == '\'')
 			return (len);
+		if (type == DOUBLE && input[i] == '\"')
+		{
+			if (input[i - 1] == '\\')
+			{
+				if (input[i + 1] == ' ' || !input[i + 1])
+					return (len);
+			}
+			else
+				return (len);
+		}
 		len++;
 		i++;
 	}

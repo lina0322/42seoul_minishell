@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/07 19:15:54 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/08 02:28:17 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	print_cmd(t_state *state)
 {
 	t_cmd	*cmd = state->cmd_head;
-	int		i = 0;
+	int		i;
 	char string[2];
 	string[1] = 0;
 
@@ -26,6 +26,7 @@ void	print_cmd(t_state *state)
 		string[0] = '0' + cmd->type;
 		tputs(string, 0, ft_putchar);
 		tputs("\n", 0, ft_putchar);
+		i = 0;
 		while (i < cmd->ac)
 		{
 			tputs(cmd->av[i], 0, ft_putchar);
@@ -90,8 +91,11 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 		}
 		else
 		{
-			if (start->type == DOUBLE)
-				check_env_and_backslash(state, start);
+			if (start->type == DOUBLE || start->type == COMMON)
+			{
+				check_backslash(start);
+				check_env(state, start);
+			}
 			av[i] = ft_strjoin2(av[i], start->str);
 		}
 		start = start->next;
@@ -99,8 +103,8 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 	add_cmd_back(&state->cmd_head, av, type);
 }
 
-/// todo: 없는 env 터짐(빈값 출력), 큰 따옴표 안에 작은 따옴표.. 처리..! 여러개 들어오는경우ㅠㅠ
-void	check_env_and_backslash(t_state *state, t_token *token)
+/// todo: 없는 env 터짐
+void	check_backslash(t_token *token)
 {
 	int i;
 	char *tmp;
@@ -109,22 +113,51 @@ void	check_env_and_backslash(t_state *state, t_token *token)
 	i = 0;
 	while (token->str[i])
 	{
-		if (token->str[i] == '$')
+		if (token->str[i] == '\\' && 
+		(token->str[i + 1] == '\\' || token->str[i + 1] == '\"'))
 		{
-			tmp = find_env_val(state->env_head, &token->str[i + 1]);
-			free(token->str);
-			token->str = ft_strdup(tmp);
-			free(tmp);
-			return ;
-		}
-		else if (token->str[i] == '\\' && token->str[i + 1] == '\\')
-		{
-			tmp = ft_substr(token->str, 0, i + 1);
-			tmp2 = ft_strjoin2(tmp, &token->str[i + 2]);
+			tmp = ft_substr(token->str, 0, i);
+			tmp2 = ft_strjoin2(tmp, &token->str[i + 1]);
 			free(token->str);
 			token->str = ft_strdup(tmp2);
 			free(tmp);
 			free(tmp2);
+		}
+		i++;
+	}
+}
+
+void	check_env(t_state *state, t_token *token)
+{
+	int i;
+	int j;
+	char *value;
+	char *temp;
+	char *temp2;
+
+	i = 0;
+	while (token->str[i])
+	{
+		if (token->str[i] == '$' && token->str[i + 1])
+		{
+			j = i + 1;
+			while (token->str[j])
+			{
+				if (token->str[j] == '\'' || token->str[j] == ' ')
+					break;
+				j++;
+			}
+			temp = ft_substr(token->str, i + 1, j - 1 - i); // key
+			value = ft_strdup(find_env_val(state->env_head, temp));
+			free(temp);
+			temp = ft_substr(token->str, 0, i); // $이전 str
+			temp2 = ft_strjoin2(temp, value); // $이전 str에 value 합침
+			temp = ft_substr(token->str, j, ft_strlen(token->str)); // 환경변수 이후 str
+			free(token->str);
+			token->str = ft_strjoin2(temp2, temp); // $이전 str에 value합친거 뒤에 환경변수 이후 str까지 더함
+			free(value);
+			free(temp2);
+			free(temp);
 		}
 		i++;
 	}
