@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/06 11:40:51 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/07 19:15:54 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@ void	print_cmd(t_state *state)
 	char string[2];
 	string[1] = 0;
 
+	tputs("----------\n", 0, ft_putchar);
 	while (cmd)
 	{
 		string[0] = '0' + cmd->type;
 		tputs(string, 0, ft_putchar);
+		tputs("\n", 0, ft_putchar);
 		while (i < cmd->ac)
 		{
 			tputs(cmd->av[i], 0, ft_putchar);
 			tputs(",", 0, ft_putchar);
-
 			i++;
 		}
 		cmd = cmd->next;
@@ -52,13 +53,17 @@ void	parse_cmd(t_state *state)
 		ac++;
 		if (token->type == PIPE || token->type == SEMICOLON || !token->next)
 		{
+			if (token->type == SPACE || token->type == PIPE || token->type == SEMICOLON)
+				ac--;
 			make_cmd(state, start, ac, type);
 			if (token->type == PIPE)
 				type = PIPE_TYPE;
 			else
 				type = COLON_TYPE;
 			ac = 0;
-		}
+			start = token->next;
+		} else if (token->type == SPACE)
+			ac--;
 		if (token)
 			token = token->next;
 	}
@@ -71,7 +76,7 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 	char	**av;
 	int		i;
 
-    if (!ft_calloc(ac + 1, sizeof(char **), (void **)& av))
+    if (!ft_calloc(ac + 1, sizeof(char *), (void **)& av))
 	    return ;
 	i = ac + 1;
 	while (i > 0)
@@ -85,29 +90,54 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 		}
 		else
 		{
-			// todo: type == DOUBLE일ㄸㅐ $처리, 따옴표 종류들 \처리
 			if (start->type == DOUBLE)
-				// check_env(start);
-			if (start->type == SINGLE || start->type == DOUBLE)
-				// check_backslass
+				check_env_and_backslash(state, start);
 			av[i] = ft_strjoin2(av[i], start->str);
 		}
 		start = start->next;
 	}
-	add_cmd_back(&state->cmd_head, av, ac, type);
+	add_cmd_back(&state->cmd_head, av, type);
 }
 
-// void	check_env(t_token *token)
-// {
-// 	int i
-// 	while
-// 	token->str
-// }
+/// todo: 없는 env 터짐(빈값 출력), 큰 따옴표 안에 작은 따옴표.. 처리..! 여러개 들어오는경우ㅠㅠ
+void	check_env_and_backslash(t_state *state, t_token *token)
+{
+	int i;
+	char *tmp;
+	char *tmp2;
+	
+	i = 0;
+	while (token->str[i])
+	{
+		if (token->str[i] == '$')
+		{
+			tmp = find_env_val(state->env_head, &token->str[i + 1]);
+			free(token->str);
+			token->str = ft_strdup(tmp);
+			free(tmp);
+			return ;
+		}
+		else if (token->str[i] == '\\' && token->str[i + 1] == '\\')
+		{
+			tmp = ft_substr(token->str, 0, i + 1);
+			tmp2 = ft_strjoin2(tmp, &token->str[i + 2]);
+			free(token->str);
+			token->str = ft_strdup(tmp2);
+			free(tmp);
+			free(tmp2);
+		}
+		i++;
+	}
+}
 
-void	add_cmd_back(t_cmd **head, char **av, int ac, int type)
+void	add_cmd_back(t_cmd **head, char **av, int type)
 {
 	t_cmd	*cmd;
+	int		ac;
 
+	ac = 0;
+	while (av[ac])
+		ac++;
 	if (*head == NULL)
 		*head = create_cmd(av, ac, type);
 	else
