@@ -19,7 +19,8 @@
 			"setupCommands": [
 				{
 					"description": "gdb에 자동 서식 지정 사용",
-					"text": "-enable-pretty-printing",
+					"text": "settings set target.input-path ${workspaceFolder}/input.txt", // for 리나
+				//	"text": "-enable-pretty-printing", // 다솜
 					"ignoreFailures": true
 				}
 			],
