@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/07 23:43:01 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/08 04:13:36 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,8 +245,8 @@ void	handle_keycode(t_state *s, int keycode)
 	}
 	else // 문자 붙이기
 	{
-		//if printable 해서 출력가능문자만 받자
-		print_save_char(s, (char)keycode);// input에 저장후 출력, 커서위치 변경
+		if (ft_isprint((char)keycode))
+			print_save_char(s, (char)keycode);// input에 저장후 출력, 커서위치 변경
 	}
 }
 
