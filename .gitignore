@@ -56,3 +56,4 @@ dkms.conf
 .vscode/tasks.json
 .vscode/settings.json
 libft/Makefile
+input.txt
