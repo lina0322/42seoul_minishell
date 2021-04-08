@@ -6,7 +6,7 @@
 #    By: llim <llim@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/15 17:02:38 by llim              #+#    #+#              #
-#    Updated: 2021/04/06 19:46:43 by llim             ###   ########.fr        #
+#    Updated: 2021/04/08 23:41:28 by llim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,10 @@ SRCS	=	srcs/main.c\
 			srcs/cmd.c \
 			srcs/cmd_parse.c \
 			srcs/path.c \
+			srcs/execve.c \
+			srcs/string_util.c \
+			srcs/term.c \
+			srcs/cursor.c
 
 INCS	=	-I includes -I libft
 OBJS	=	$(SRCS:.c=.o)
