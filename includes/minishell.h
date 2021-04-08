@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/04/07 23:51:20 by llim             ###   ########.fr       */
-=======
-/*   Updated: 2021/04/07 21:47:24 by dhyeon           ###   ########.fr       */
->>>>>>> 97fe65df26931e7a805a04451832fb594109e50b
+/*   Updated: 2021/04/08 23:34:13 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +75,7 @@ typedef struct s_cmd
 	int				type;
 	int				pip[2];
 	struct s_cmd	*next;
+	struct s_cmd	*prev;
 }					t_cmd;
 
 typedef struct s_env
@@ -220,7 +217,7 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type);
 void	check_env(t_state *state, t_token *token);
 void	check_backslash(t_token *token);
 void	add_cmd_back(t_cmd **head, char **av, int type);
-t_cmd	*create_cmd(char **av, int ac, int type);
+t_cmd	*create_cmd(char **av, int ac, int type, t_cmd *prev);
 void	free_cmd(t_cmd *cmd);
 
 #endif

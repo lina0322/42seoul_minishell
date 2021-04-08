@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/08 02:28:17 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/08 23:35:56 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,17 +172,17 @@ void	add_cmd_back(t_cmd **head, char **av, int type)
 	while (av[ac])
 		ac++;
 	if (*head == NULL)
-		*head = create_cmd(av, ac, type);
+		*head = create_cmd(av, ac, type, 0);
 	else
 	{
 		cmd = *head;
 		while (cmd->next)
 			cmd = cmd->next;
-		cmd->next = create_cmd(av, ac, type);
+		cmd->next = create_cmd(av, ac, type, cmd);
 	}
 }
 
-t_cmd	*create_cmd(char **av, int ac, int type)
+t_cmd	*create_cmd(char **av, int ac, int type, t_cmd *prev)
 {
 	t_cmd *cmd;
 
@@ -193,8 +193,8 @@ t_cmd	*create_cmd(char **av, int ac, int type)
 	cmd->av = av;
 	cmd->ac = ac;
 	cmd->type = type;
-	// cmd->pip
 	cmd->next = 0;
+	cmd->prev = prev;
 	return (cmd);
 }
 
