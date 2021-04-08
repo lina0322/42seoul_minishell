@@ -6,37 +6,11 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/08 23:35:56 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/08 23:46:52 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-///for test
-void	print_cmd(t_state *state)
-{
-	t_cmd	*cmd = state->cmd_head;
-	int		i;
-	char string[2];
-	string[1] = 0;
-
-	tputs("----------\n", 0, ft_putchar);
-	while (cmd)
-	{
-		string[0] = '0' + cmd->type;
-		tputs(string, 0, ft_putchar);
-		tputs("\n", 0, ft_putchar);
-		i = 0;
-		while (i < cmd->ac)
-		{
-			tputs(cmd->av[i], 0, ft_putchar);
-			tputs(",", 0, ft_putchar);
-			i++;
-		}
-		cmd = cmd->next;
-		tputs("\n", 0, ft_putchar);
-	}
-}
 
 void	parse_cmd(t_state *state)
 {
