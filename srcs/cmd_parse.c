@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/08 23:46:52 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/08 23:47:26 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	parse_cmd(t_state *state)
 		if (token)
 			token = token->next;
 	}
-	print_cmd(state);
 	free_token(state->token_head);
 }
 
