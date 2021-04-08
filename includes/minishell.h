@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/08 23:34:13 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/08 23:38:04 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,27 @@ void	handle_signal(int signo);
 */
 void	prompt(t_state *state);
 void	prompt2(t_state *state);
-int		ft_putchar(int c);
+int		is_backslash(t_state *s);
+void	handle_eof(char *input);
+/*
+**	term
+*/
+void	init_term(t_state *s);
+void	put_backspace(t_state *s);
+void	handle_keycode(t_state *s, int keycode);
+int		term_loop(t_state *s);
+/*
+**	cursor
+*/
+int		get_nbr_len(int n);
 void	set_cursor(int *col, int *row);
+void	set_cursor_win(t_state *s);
+/*
+**	string_util
+*/
+int		ft_putchar(int c);
+char	*ft_strcjoin(char *str, char c);
+void	print_save_char(t_state *s, char c);
 char	*delete_last_char(char *str);
 
 /*
@@ -206,9 +225,11 @@ void	free_path(t_path *path);
 /*
 **	cmd
 */
+void	execute_cmd(t_state *s, t_cmd *cmd);
 void	make_path(t_cmd *cmd, char *str);
 int		find_command(t_state *s, t_cmd *cmd);
 int		builtin(t_state *s, t_cmd *cmd);
+
 /*
 **	cmd_parse
 */

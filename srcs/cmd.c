@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/06 03:51:04 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/08 05:53:03 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	make_path(t_cmd *cmd, char *str)
 
 	(void)cmd;
 	(void)tmp;
-	tmp = av[0];
+	tmp = av[0]; // cmd로 변경해야함
 	tmp2 = ft_strjoin(str, "/");
 	if (!tmp2)
 		return ; //exit
@@ -30,26 +30,28 @@ void	make_path(t_cmd *cmd, char *str)
 		return ; //exit
 	printf("%s\n", av[0]);
 	// free(tmp);
-	// free(tmp2);
+	free(tmp2);
 }
 
-int		find_command(t_state *s, t_cmd *cmd) // 찾으면 1 못찾으면 0
+int	find_success_cmd(t_state *s, t_cmd *cmd, char *path, DIR *dir_ptr)
 {
-	(void)s;
-	(void)cmd;
-	//test
-	char *paths[] = {"/home/dhyeon/.local/bin", "/home/dhyeon/.rbenv/shims", "/home/dhyeon/.rbenv/bin", "/usr/local/sbin", "/usr/local/bin",
-				"/usr/sbin", "/usr/bin", "/sbin", "/bin", "/usr/games", "/usr/local/games", "/snap/bin", 0};
-	// char *paths[] = {"/Users/dhyeon/.brew/bin", "/usr/local/bin", "/usr/bin", "/bin", "/usr/sbin", "/sbin", "/usr/local/munki", 0};
-	int i = 0;
+	make_path(cmd, path);
+	closedir(dir_ptr);
+	free_path(s->path_head);
+	return (1);
+}
+
+int	find_command(t_state *s, t_cmd *cmd) // 찾으면 1 못찾으면 0
+{
 	DIR				*dir_ptr;
 	struct dirent	*file;
-	char			*tmp;
-	(void)tmp;
+	t_path			*p;
 
-	while (paths[i]) // 나중엔 링크드리스트로 수정
+	parse_path(s);
+	p = s->path_head;
+	while (p)
 	{
-		dir_ptr = opendir(paths[i]);
+		dir_ptr = opendir(p->path);
 		while (dir_ptr)
 		{
 			file = readdir(dir_ptr);
@@ -57,16 +59,13 @@ int		find_command(t_state *s, t_cmd *cmd) // 찾으면 1 못찾으면 0
 				break ;
 			else if (!ft_strcmp(file->d_name, ".") || !ft_strcmp(file->d_name, ".."))
 				continue ;
-			else if (!ft_strcmp(av[0], file->d_name))
-			{
-				make_path(cmd, paths[i]);
-				closedir(dir_ptr);
-				return (1);
-			}
+			else if (!ft_strcmp(s->input, file->d_name)) // input을 나중에 cmd로 변경해야함
+				return (find_success_cmd(s, cmd, p->path, dir_ptr));
 		}
-		i++;
+		p = p->next;
 	}
 	closedir(dir_ptr);
+	free_path(s->path_head);
 	return (0);
 }
 
@@ -89,7 +88,7 @@ int		builtin(t_state *s, t_cmd *cmd)
 		ft_unset(s, cmd);
 	else if (!ft_strcmp(s->input, "exit"))
 		ft_exit(s, cmd);
-	else if (!ft_strcmp(s->input, "test"))
-		find_command(s, cmd);
-	return (0);
+	else
+		return (0);
+	return (1);
 }
