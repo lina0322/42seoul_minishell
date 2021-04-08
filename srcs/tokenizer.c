@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/04/07 23:43:55 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/09 01:15:28 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	tokenizer(t_state *state)
 	int		count;
 	int		i;
 
+	if (!state->input)
+		return ;
 	i = 0;
 	while (state->input[i])
 	{
