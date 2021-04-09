@@ -86,13 +86,13 @@
 - 🧾 회의 내용 : 백슬래시와 따옴표 관련 정리
 - ⚖️ 업무 분담 
     - dhyeon👸🏻 : execve
-    - llim👩🏻‍💻 : 빈 env 터지는거, 작은따옴표 cmd, signal
+    - llim👩🏻‍💻 : 빈 env 터지는거, 작은따옴표 cmd
 
 ### 열두번째 만남: 4/9일(금) 14:00
-- 🧾 회의 내용 : 
+- 🧾 회의 내용 : 리다이렉션 처리 관련 - cmd에 fdin, fdout 만들기
 - ⚖️ 업무 분담 
-    - dhyeon👸🏻 : 
-    - llim👩🏻‍💻 : 
+    - dhyeon👸🏻 : execve
+    - llim👩🏻‍💻 : signal, check_redirection
 
 ### 열세번째 만남: 4/11일(일) 10:00~22:00(예정) in 클러스터
 - 🗂 작업 내용 : 클러스터에서 작업, UML정리
