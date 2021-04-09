@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/04/09 01:15:28 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/09 10:54:27 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	tokenizer(t_state *state)
 		{
 			if (!(count = find_end(state->input, type, ++i)))
 			{
-				printf("따옴표 에러\n");
+				printf("> quote error\n");
 				return ;
 			}
 		}
