@@ -12,24 +12,6 @@
 
 #include "minishell.h"
 
-int		ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	if (s1 == 0)
-		return (-1);
-	while (s1[i] || s2[i])
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
-	}
-	if (s1[i] == '\0' && s2[i] == '\0')
-		return (0);
-	return (s1[i] - s2[i]);
-}
-
 void	parse_env(char **envp, t_state *state)
 {
 	int		i;
@@ -84,68 +66,4 @@ t_env	*create_env(char *key, char *value, int has_equal)
 	if (value)
 		env->value = ft_strdup(value);
 	return (env);
-}
-
-t_env	*find_env(t_env *head, char *key)
-{
-	t_env *env;
-
-	env = head;
-	while (env)
-	{
-		if (!ft_strcmp(env->key, key))
-			return (env);
-		env = env->next;
-	}
-	return (NULL);
-}
-
-char	*find_env_val(t_env *head, char *key)
-{
-	t_env	*env;
-
-	env = head;
-	while (env)
-	{
-		if (!ft_strcmp(env->key, key))
-			return (env->value);
-		env = env->next;
-	}
-	return ("");
-}
-
-void	print_env_all(t_env *env)
-{
-	t_env	*tmp;
-
-	tmp = env;
-	while (tmp)
-	{
-		if (tmp->has_equal == TRUE)
-		{
-			if (tmp->value)
-				printf("%s=%s\n", tmp->key, tmp->value);
-			else
-				printf("%s=\n", tmp->key);
-		}
-		tmp = tmp->next;
-	}
-}
-
-void	free_env(t_env *env)
-{
-	t_env	*tmp;
-	t_env	*next;
-
-	tmp = env;
-	while (tmp)
-	{
-		if (env->key)
-			free(env->key);
-		if (env->value)
-			free(env->value);
-		next = tmp->next;
-		free(tmp);
-		tmp = next;
-	}
 }
