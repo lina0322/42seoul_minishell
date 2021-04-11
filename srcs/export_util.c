@@ -34,7 +34,7 @@ char	*make_env_string(char *key, char *value, int has_equal)
 	int		i;
 	int		j;
 
-	len = check_len(key, value, has_equal);	
+	len = check_len(key, value, has_equal);
 	if (!ft_calloc(len, sizeof(char), (void *)& result))
 		return (0);
 	i = 0;
@@ -44,12 +44,11 @@ char	*make_env_string(char *key, char *value, int has_equal)
 	if (has_equal == TRUE)
 	{
 		result[j++] = '=';
-		i = 0;
 		if (value)
 		{
 			result[j++] = '\"';
-			while (value[i])
-				result[j++] = value[i++];
+			while (*value)
+				result[j++] = *value++;
 			result[j++] = '\"';
 		}
 	}
@@ -73,7 +72,7 @@ int		check_len(char *key, char *value, int has_equal)
 		else
 			len = ft_strlen(key) + 2;
 	}
-	return len;
+	return (len);
 }
 
 void	sorted_list(char **list, int size)

@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int	ft_putchar(int c)
+int		ft_putchar(int c)
 {
 	return (write(1, &c, 1));
 }
