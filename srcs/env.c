@@ -65,5 +65,7 @@ t_env	*create_env(char *key, char *value, int has_equal)
 	env->next = 0;
 	if (value)
 		env->value = ft_strdup(value);
+	else
+		env->value = ft_strdup("");
 	return (env);
 }

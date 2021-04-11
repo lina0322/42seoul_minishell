@@ -196,6 +196,7 @@ void	update_env(t_env *head, char *key, char *value, int has_equal);
 **	export_util
 */
 char	*make_env_string(char *key, char *value, int has_equal);
+int		check_len(char *key, char *value, int has_equal);
 int		check_env_length(t_env *env);
 void	sorted_list(char **list, int size);
 
