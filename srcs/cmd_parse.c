@@ -76,7 +76,6 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 	add_cmd_back(&state->cmd_head, av, type);
 }
 
-/// todo: 없는 env 터짐
 void	check_backslash(t_token *token)
 {
 	int i;
@@ -121,6 +120,11 @@ void	check_env(t_state *state, t_token *token)
 				j++;
 			}
 			temp = ft_substr(token->str, i + 1, j - 1 - i); // key
+			if (!ft_strcmp(temp, "?"))
+			{
+				i++;
+				continue;
+			}
 			value = ft_strdup(find_env_val(state->env_head, temp));
 			free(temp);
 			temp = ft_substr(token->str, 0, i); // $이전 str
