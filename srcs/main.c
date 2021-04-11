@@ -26,7 +26,7 @@ int		main(int argc, char **argv, char *envp[])
 	while (1)
 	{
 		prompt2(&state);
-	 	execute_cmd(&state, state.cmd_head);
+		execute_cmd(&state, state.cmd_head);
 		tokenizer(&state);
 		prepare_token_and_cmd(&state);
 	}
@@ -49,8 +49,8 @@ void	init_state(t_state *state)
 
 void	free_2d(char **array)
 {
-	char **temp;
-	int	i;
+	char	**temp;
+	int		i;
 
 	temp = array;
 	i = 0;
