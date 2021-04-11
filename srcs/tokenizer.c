@@ -23,21 +23,36 @@ void	tokenizer(t_state *state)
 	i = 0;
 	while (state->input[i])
 	{
+		count = 1;
 		if (!(type = is_operator(state->input, i)))
 			count = get_len(state->input, i);
 		else if (type == DOUBLERIGHT || type == BACKSLASH)
 			count = 2;
 		else if (type == SINGLE || type == DOUBLE)
-		{
 			if (!(count = find_end(state->input, type, ++i)))
 			{
 				i = make_token(state, 1, i - 1, ERROR_QUOTE);
-				break;
+				break ;
 			}
-		}
-		else
-			count = 1;
 		i = make_token(state, count, i, type);
+	}
+	check_quote_error(state);
+}
+
+void	check_quote_error(t_state *state)
+{
+	t_token	*token;
+
+	token = state->token_head;
+	while (token)
+	{
+		if (token->type == ERROR_QUOTE)
+		{
+			make_cmd(state, token, 1, ERROR_QUOTE);
+			free_token(state->token_head);
+			return ;
+		}
+		token = token->next;
 	}
 	parse_cmd(state);
 }
