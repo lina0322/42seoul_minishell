@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 15:12:15 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/04 22:13:06 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/11 17:35:21 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	delete_env(t_env *head, char *key)
 		{
 			pre->next = env->next;
 			free_one_env(env);
+			return ;
 		}
 		else
 			pre = env;
@@ -55,27 +56,27 @@ int	check_key(char *key)
 void	ft_unset(t_state *s, t_cmd *cmd)
 {
 	int		i;
-	//test
-	char	*av[] = {"unset", "TEST", "!test", 0};
-	int		ac = 3;
+	// //test
+	// char	*av[] = {"unset", "TEST", "!test", 0};
+	// int		ac = 3;
 
-	(void)s;
-	(void)cmd;
-	add_env_back(&s->env_head, "TEST", "123", 1);
-	add_env_back(&s->env_head, "TEST2", "456", 1);
-	add_env_back(&s->env_head, "TEST3", "456", 1);
-	print_env_all(s->env_head);
-	printf("=============================\n"); //
+	// (void)s;
+	// (void)cmd;
+	// add_env_back(&s->env_head, "TEST", "123", 1);
+	// add_env_back(&s->env_head, "TEST2", "456", 1);
+	// add_env_back(&s->env_head, "TEST3", "456", 1);
+	// print_env_all(s->env_head);
+	// printf("=============================\n"); //
 
-	if (ac > 1)
+	if (cmd->ac > 1)
 	{
 		i = 1;
-		while (i < ac)
+		while (i < cmd->ac)
 		{
-			if (!check_key(av[i]))
-				printf("bash: unset: `%s': not a valid identifier\n", av[i]);
+			if (!check_key(cmd->av[i]))
+				printf("bash: unset: `%s': not a valid identifier\n", cmd->av[i]);
 			else
-				delete_env(s->env_head, av[i]);
+				delete_env(s->env_head, cmd->av[i]);
 			i++;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:26:45 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/08 05:34:13 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/11 17:30:51 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int		main(int argc, char **argv, char *envp[])
 	while (1)
 	{
 		prompt2(&state);
-		execute_cmd(&state, state.cmd_head);
 		tokenizer(&state);
+		execute_cmd(&state, state.cmd_head);
 		prepare_token_and_cmd(&state);
 	}
 }

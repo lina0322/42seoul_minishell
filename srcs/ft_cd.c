@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 01:52:08 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/06 07:10:04 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/11 17:23:31 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ int	change_dir(t_state *s, char *path)
 
 int	ft_cd(t_state *s, t_cmd *cmd)
 {
-	char	*test[] = {"cd", "..", 0};
+	// char	*test[] = {"cd", "..", 0};
 	char	pwd[999];
 
 	(void)cmd;
 	// if (cmd->argc == 1)
 	// 	change_dir(s, "~"); // cd만 입력했을 경우 home으로 이동하도록하는 함수 / 주석풀고는 밑에 else 추가
-	if (change_dir(s, test[1]) == -1)
+	if (change_dir(s, cmd->av[1]) == -1)
 	{
-		printf("bash: cd: %s: No such file or directory\n", test[1]); // test수정 + 리턴 코드 수정
+		printf("bash: cd: %s: No such file or directory\n", cmd->av[1]); // test수정 + 리턴 코드 수정
 		s->ret = 1;
 	}
 	else

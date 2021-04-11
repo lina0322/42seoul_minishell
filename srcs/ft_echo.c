@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 14:42:21 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/22 20:21:10 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/11 17:22:57 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,16 @@ void	ft_echo(t_state *t, t_cmd *cmd)
 	// char	*av[] = {"echo", "Hello", "World", 0};
 	// int		ac = 3;
 	// test
-	char	*av[] = {"echo", "-nnnnnna", "Hello", "World", 0};
-	int		ac = 4;
-
-	(void)cmd;
+	// char	*av[] = {"echo", "-nnnnnna", "Hello", "World", 0};
+	// int		ac = 4;
 	(void)t;
 	flag = 0;
 	i = 0;
-	check_echo_flag(av, &i, &flag);
-	while (i < ac)
+	check_echo_flag(cmd->av, &i, &flag);
+	while (i < cmd->ac)
 	{
-		write(1, av[i], ft_strlen(av[i]));
-		if (i < ac - 1)
+		write(1, cmd->av[i], ft_strlen(cmd->av[i]));
+		if (i < cmd->ac - 1)
 			write(1, " ", 1);
 		i++;
 	}
