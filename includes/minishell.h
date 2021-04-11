@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/08 23:44:14 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/11 18:05:05 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ typedef struct s_cmd
 	int				ac;
 	int				type;
 	int				pip[2];
+	int				fd_in;
+	int				fd_out;
 	struct s_cmd	*next;
 	struct s_cmd	*prev;
 }					t_cmd;
