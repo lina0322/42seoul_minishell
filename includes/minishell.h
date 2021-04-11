@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/11 18:05:05 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/11 22:14:11 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_path
 typedef struct s_term
 {
 	struct termios	term;
+	struct termios	save;
 	char			*cm;
 	char			*ce;
 }					t_term;
@@ -135,6 +136,12 @@ void	prompt(t_state *state);
 void	prompt2(t_state *state);
 int		is_backslash(t_state *s);
 void	handle_eof(char *input);
+
+/*
+**	prompt
+*/
+void	execute(t_state *s, t_cmd *cmd);
+
 /*
 **	term
 */

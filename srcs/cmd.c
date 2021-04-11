@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/11 17:28:08 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/11 22:25:31 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,11 @@ int		builtin(t_state *s, t_cmd *cmd)
 {
 	//test용
 	(void)cmd;
-
+	//fd값 있는경우 dup2로 연결
+	if (cmd->fd_in != 0)
+		dup2(cmd->fd_in, 0);
+	if (cmd->fd_out != 1)
+		dup2(cmd->fd_out, 1);
 	if (!ft_strcmp(cmd->av[0], "pwd")) // 나중에 input 대신 cmd의 명령어로 수정해야함
 		ft_pwd(s, cmd);
 	else if (!ft_strcmp(cmd->av[0], "echo"))
@@ -87,8 +91,8 @@ int		builtin(t_state *s, t_cmd *cmd)
 		ft_export(s, cmd);
 	else if (!ft_strcmp(cmd->av[0], "unset"))
 		ft_unset(s, cmd);
-	else if (!ft_strcmp(cmd->av[0], "exit"))
-		ft_exit(s, cmd);
+	// else if (!ft_strcmp(cmd->av[0], "exit"))
+	// 	ft_exit(s, cmd);
 	else
 		return (0);
 	return (1);

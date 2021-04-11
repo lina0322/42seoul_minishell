@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 14:42:21 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/11 17:22:57 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/11 22:23:47 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	ft_echo(t_state *t, t_cmd *cmd)
 	(void)t;
 	flag = 0;
 	i = 0;
+
+	// dup2(cmd->fd_out, 1);
 	check_echo_flag(cmd->av, &i, &flag);
 	while (i < cmd->ac)
 	{

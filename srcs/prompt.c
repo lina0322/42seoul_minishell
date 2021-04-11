@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/08 06:24:54 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/11 22:34:52 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ void	prompt2(t_state *s)
 {
 	(void)s;
 
-	init_term(s);
 	write(1, "bash", 4);
+	init_term(s);
 	while (1)
 	{
 		write(1, "> ", 2);
