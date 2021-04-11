@@ -35,10 +35,7 @@ void	print_export(t_env *env_head)
 	sorted_list(env_list, len);
 	i = 0;
 	while (i < len)
-	{
-		printf("declare -x %s\n", env_list[i]);
-		i++;
-	}
+		printf("declare -x %s\n", env_list[i++]);
 	free_2d(env_list);
 }
 
