@@ -12,13 +12,14 @@
 
 NAME	=	minishell
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -g -arch x86_64 # -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror -g -arch x86_64 -fsanitize=address
 SRCS	=	srcs/main.c\
 			srcs/signal.c \
 			srcs/prompt.c \
 			srcs/tokenizer.c \
 			srcs/token_util.c \
 			srcs/env.c\
+			srcs/env_util.c\
 			srcs/export.c\
 			srcs/export_util.c \
 			srcs/get_next_line.c \
@@ -30,6 +31,7 @@ SRCS	=	srcs/main.c\
 			srcs/ft_export.c \
 			srcs/cmd.c \
 			srcs/cmd_parse.c \
+			srcs/cmd_check.c \
 			srcs/path.c \
 			srcs/execve.c \
 			srcs/string_util.c \
