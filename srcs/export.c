@@ -24,7 +24,8 @@ void	print_export(t_env *env_head)
 	i = 0;
 	while (env_head)
 	{
-		env_list[i] = make_env_string(env_head->key, env_head->value, env_head->has_equal);
+		env_list[i] = make_env_string(env_head->key,
+							env_head->value, env_head->has_equal);
 		env_head = env_head->next;
 		i++;
 	}

@@ -39,7 +39,7 @@ char	*ft_strjoin2(char *s1, char *s2)
 	return (res);
 }
 
-int	get_index(char *back)
+int		get_index(char *back)
 {
 	int	i;
 
@@ -55,7 +55,7 @@ int	get_index(char *back)
 	return (-1);
 }
 
-int	gnl_return(char **back, char **line, char *buf)
+int		gnl_return(char **back, char **line, char *buf)
 {
 	char	*back_tmp;
 	int		idx;
@@ -84,7 +84,7 @@ int	gnl_return(char **back, char **line, char *buf)
 	return (GNL_EOF);
 }
 
-int	get_next_line(int fd, char **line)
+int		get_next_line(int fd, char **line)
 {
 	static char	*back[FOPEN_MAX];
 	char		*buf;
