@@ -43,9 +43,9 @@
 # define LEFT 4
 # define RIGHT 5
 # define DOUBLERIGHT 6
-# define SEMICOLON 7
+# define BACKSLASH 7
 # define PIPE 8
-# define BACKSLASH 9
+# define SEMICOLON 9
 
 # define ERROR 0
 
@@ -53,8 +53,8 @@
 # define TRUE 1
 
 # define NORMAL_TYPE 0
-# define COLON_TYPE 1
-# define PIPE_TYPE 2
+# define PIPE_TYPE 8
+# define COLON_TYPE 9
 
 typedef struct s_path
 {
@@ -161,6 +161,8 @@ void	tokenizer(t_state *state);
 int		make_token(t_state *state, int count, int i, int type);
 void	add_token_back(t_token **head, char *str, int type);
 t_token	*create_token(char *str, int type);
+void	check_quote_error(t_state *state);
+
 /*
 **	token_util
 */
@@ -175,10 +177,13 @@ void	free_token(t_token *token);
 void	parse_env(char **envp, t_state *state);
 void	add_env_back(t_env **head, char *key, char *value, int has_equal);
 t_env	*create_env(char *key, char *value, int has_equal);
-t_env	*find_env(t_env *head, char *key);
-void	print_env_all(t_env *head);
-char	*find_env_val(t_env *head, char *key);
+/*
+**	env_util
+*/
 int		ft_strcmp(char *s1, char *s2);
+void	print_env_all(t_env *head);
+t_env	*find_env(t_env *head, char *key);
+char	*find_env_val(t_env *head, char *key);
 void	free_env(t_env *env);
 
 /*
@@ -230,16 +235,21 @@ void	execute_cmd(t_state *s, t_cmd *cmd);
 void	make_path(t_cmd *cmd, char *str);
 int		find_command(t_state *s, t_cmd *cmd);
 int		builtin(t_state *s, t_cmd *cmd);
-
 /*
 **	cmd_parse
 */
 void	parse_cmd(t_state *state);
 void	make_cmd(t_state *state, t_token *start, int ac, int type);
-void	check_env(t_state *state, t_token *token);
-void	check_backslash(t_token *token);
 void	add_cmd_back(t_cmd **head, char **av, int type);
 t_cmd	*create_cmd(char **av, int ac, int type, t_cmd *prev);
 void	free_cmd(t_cmd *cmd);
+/*
+**	cmd_check
+*/
+void	check_backslash_and_env(t_state *state, t_token *start);
+void	check_backslash(t_token *token);
+void	check_env(t_state *state, t_token *token);
+int		check_key_len(char *str, int len);
+void	change_str_to_env(t_state *state, t_token *token, char *key, int i);
 
 #endif
