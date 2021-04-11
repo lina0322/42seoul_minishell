@@ -26,7 +26,12 @@ void	parse_cmd(t_state *state)
 	while (token)
 	{
 		ac++;
-		if (token->type == PIPE || token->type == SEMICOLON || !token->next)
+		if (token->type == ERROR_QUOTE)
+		{
+			make_cmd(state, start, 1, ERROR_QUOTE);
+			break;
+		}
+		else if (token->type == PIPE || token->type == SEMICOLON || !token->next)
 		{
 			if (token->type == SPACE || token->type == PIPE || token->type == SEMICOLON)
 				ac--;
@@ -37,7 +42,8 @@ void	parse_cmd(t_state *state)
 				type = COLON_TYPE;
 			ac = 0;
 			start = token->next;
-		} else if (token->type == SPACE)
+		} 
+		else if (token->type == SPACE)
 			ac--;
 		if (token)
 			token = token->next;
