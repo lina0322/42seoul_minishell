@@ -35,6 +35,7 @@
 # define GNL_EOF 0
 # define GNL_ERROR -1
 
+# define ERROR_QUOTE -1
 # define COMMON 0
 # define SPACE 1
 # define SINGLE 2
