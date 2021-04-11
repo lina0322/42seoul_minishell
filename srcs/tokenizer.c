@@ -31,8 +31,8 @@ void	tokenizer(t_state *state)
 		{
 			if (!(count = find_end(state->input, type, ++i)))
 			{
-				printf("> quote error\n");
-				return ;
+				i = make_token(state, 1, i - 1, ERROR_QUOTE);
+				break;
 			}
 		}
 		else
@@ -87,8 +87,6 @@ t_token	*create_token(char *str, int type)
 	t_token *token;
 
 	if (!ft_calloc(1, sizeof(t_token), (void *)& token))
-		return (0);
-	if (token == NULL)
 		return (0);
 	token->str = ft_strdup(str);
 	token->type = type;
