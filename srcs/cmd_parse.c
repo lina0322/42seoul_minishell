@@ -28,7 +28,7 @@ void	parse_cmd(t_state *state)
 		ac++;
 		if (token->type == ERROR_QUOTE)
 		{
-			make_cmd(state, start, 1, ERROR_QUOTE);
+			make_cmd(state, start, ac, ERROR_QUOTE);
 			break;
 		}
 		else if (token->type == PIPE || token->type == SEMICOLON || !token->next)
