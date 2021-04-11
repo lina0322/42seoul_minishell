@@ -94,8 +94,7 @@
     - dhyeon👸🏻 : execve
     - llim👩🏻‍💻 : check_redirection
 
-### 열세번째 만남: 4/11일(일) 10:00~22:00(예정) in 클러스터
+### 열세번째 만남: 4/11일(일) 12:00~21:00 in 클러스터
 - 🗂 작업 내용 : 클러스터에서 작업, UML정리
     - dhyeon👸🏻 : execve
-    - llim👩🏻‍💻 : 따옴표 에러일때 tokenizer, paser_cmd에서 에러 처리 | $? 그대로 넘기기 | check_redirection
-
+    - llim👩🏻‍💻 : 따옴표 에러일때 tokenizer, paser_cmd에서 에러 처리 | $? 그대로 넘기기

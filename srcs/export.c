@@ -15,18 +15,21 @@
 void	print_export(t_env *env_head)
 {
 	char	**env_list;
+	t_env	*env;
 	int		len;
 	int		i;
 
+	env = env_head;
 	len = check_env_length(env_head);
-	if (!ft_calloc(len, sizeof(char *), (void **)& env_list))
+	if (!ft_calloc(len + 1, sizeof(char *), (void **)& env_list))
 		return ;
+	env_list[len] = 0;
 	i = 0;
-	while (env_head)
+	while (env)
 	{
-		env_list[i] = make_env_string(env_head->key,
-							env_head->value, env_head->has_equal);
-		env_head = env_head->next;
+		env_list[i] = make_env_string(env->key,
+							env->value, env->has_equal);
+		env = env->next;
 		i++;
 	}
 	sorted_list(env_list, len);
@@ -67,7 +70,8 @@ void	update_env(t_env *head, char *key, char *value, int has_equal)
 		}
 		else
 		{
-			env->value = ft_strdup(value);
+			if (value)
+				env->value = ft_strdup(value);
 		}
 		env->has_equal = has_equal;
 	}

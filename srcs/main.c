@@ -59,5 +59,5 @@ void	free_2d(char **array)
 		free(temp[i]);
 		i++;
 	}
-	free(array);
+	free(temp);
 }
