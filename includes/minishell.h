@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/11 22:14:11 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/13 07:01:58 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,15 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <sys/types.h>
+# include <sys/wait.h>
 # include <dirent.h>
 # include <termcap.h>
 # include <term.h>
 # include <curses.h>
 # include <termios.h>
 # include <sys/ioctl.h>
+# include <errno.h>
+# include <string.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
@@ -140,7 +143,7 @@ void	handle_eof(char *input);
 /*
 **	prompt
 */
-void	execute(t_state *s, t_cmd *cmd);
+void	execute(t_state *s, t_cmd *cmd, char **envp);
 
 /*
 **	term

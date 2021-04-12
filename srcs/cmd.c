@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/11 22:25:31 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/13 07:19:08 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	find_success_cmd(t_state *s, t_cmd *cmd, char *path, DIR *dir_ptr)
 	make_path(cmd, path);
 	closedir(dir_ptr);
 	free_path(s->path_head);
+	s->path_head = 0;
 	return (1);
 }
 
@@ -75,6 +76,8 @@ int		builtin(t_state *s, t_cmd *cmd)
 	//test용
 	(void)cmd;
 	//fd값 있는경우 dup2로 연결
+	//test
+
 	if (cmd->fd_in != 0)
 		dup2(cmd->fd_in, 0);
 	if (cmd->fd_out != 1)

@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 05:11:32 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/11 21:35:23 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/13 07:27:56 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	check_multiline_quote(t_cmd *cmd)
 
 void	set_pipe(t_cmd *cmd)
 {
-	if (cmd->type == PIPE_TYPE || (cmd->next != 0 && cmd->next->type == PIPE_TYPE))
+	if (cmd->type == PIPE_TYPE ||
+		(cmd->next != 0 && cmd->next->type == PIPE_TYPE))
 	{
 		if (cmd->type != PIPE_TYPE)
 			dup2(cmd->pip[1], 1);
@@ -127,13 +128,58 @@ int	check_redirection(t_cmd *cmd)
 	return (1);
 }
 
-void	execute_path(t_state *s, t_cmd *cmd)
+void	execute_error(t_cmd *cmd, int type)
 {
-	(void)s;
-	(void)cmd;
+	if (type == 1)
+	{
+		ft_putstr_fd("sh: ", 2);
+		ft_putstr_fd(cmd->av[0], 2);
+		ft_putstr_fd(": ", 2);
+		ft_putstr_fd(strerror(errno), 2);
+		ft_putstr_fd("\n", 2);
+		if (errno == 13)
+			exit(126);
+		else if (errno == 2)
+			exit(127);
+		exit(1);
+	}
+	else if (type == 2)
+	{
+		ft_putstr_fd("sh: ", 2);
+		ft_putstr_fd(cmd->av[0], 2);
+		ft_putstr_fd(": ", 2);
+		ft_putstr_fd("command not found\n", 2);
+	}
 }
 
-void	execute_cmd2(t_state *s, t_cmd *cmd)
+void	execute_path(t_state *s, t_cmd *cmd, char **envp)
+{
+	int		status;
+	pid_t	pid;
+	(void)s;
+	(void)cmd;
+
+	pid = fork();
+	if (pid < 0)
+		exit(1);
+	if (pid == 0)
+	{
+		if (cmd->fd_in != 0)
+			dup2(cmd->fd_in, 0);
+		if (cmd->fd_out != 1)
+			dup2(cmd->fd_out, 1);
+		if (execve(cmd->av[0], cmd->av, envp) < 0)
+			execute_error(cmd, 1);
+	}
+	else
+	{
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			s->ret = WIFEXITED(status);
+	}
+}
+
+void	execute_cmd2(t_state *s, t_cmd *cmd, char **envp)
 {
 	if (!check_redirection(cmd)) // file 없거나 에러인 경우
 	{
@@ -141,23 +187,48 @@ void	execute_cmd2(t_state *s, t_cmd *cmd)
 	}
 	else if (builtin(s, cmd)) // builtin 들어간경우
 		return ;
-	else if (!find_command(s, cmd)) // path 함수인경우
+	else if (find_command(s, cmd)) // path 함수인경우
 	{
-		execute_path(s, cmd);
+		execute_path(s, cmd, envp);
 	}
 	else // path에 함수가 없는 경우
 	{
-		if (s->input)
-			printf("bash: %s: command not found\n", s->input); // av[0] 으로 수정해야함
+		execute_error(cmd, 2); // av[0] 으로 수정해야함
 		return ;
 	}
 
 }
 
-void	execute(t_state *s, t_cmd *cmd)
+void	close_fd_dup(t_cmd *cmd, int *stin, int *stout)
+{
+	dup2(*stin, 0);
+	dup2(*stout, 1);
+	close(*stin);
+	close(*stout);
+	if (cmd->fd_in != 0)
+		close(cmd->fd_in);
+	if (cmd->fd_out != 1)
+		close(cmd->fd_out);
+	if (cmd->type == PIPE_TYPE || (cmd->next != 0 && cmd->next->type == PIPE_TYPE))
+	{
+		if (cmd->type != PIPE_TYPE)
+			close(cmd->pip[1]);
+		else if (cmd->next == 0 || cmd->type == COLON_TYPE)
+			close(cmd->prev->pip[0]);
+		else
+		{
+			close(cmd->prev->pip[0]);
+			close(cmd->pip[1]);
+		}
+	}
+}
+
+void	execute(t_state *s, t_cmd *cmd, char **envp)
 {
 	t_cmd	*cur;
-	
+	int		stin;
+	int		stout;
+
 	if (!check_multiline_quote(cmd))
 		write(1, "error : quote error\n", 21);
 	else
@@ -167,11 +238,11 @@ void	execute(t_state *s, t_cmd *cmd)
 		{
 			pipe(cmd->pip);
 			set_pipe(cmd);
-			execute_cmd2(s, cur);
-			if (cmd->fd_in != 0)
-				close(cmd->fd_in);
-			if (cmd->fd_out != 1)
-				close(cmd->fd_out);
+			stin = dup(0);
+			stout = dup(1);
+			execute_cmd2(s, cur, envp);
+			close_fd_dup(cmd, &stin, &stout);
+
 			//close_pipe
 			cur = cur->next;
 		}
