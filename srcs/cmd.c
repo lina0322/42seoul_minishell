@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/13 20:27:29 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/13 21:06:14 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	builtin(t_state *s, t_cmd *cmd)
 		{
 			waitpid(pid, &status, 0);
 			if (WIFEXITED(status))
-				s->ret = WIFEXITED(status);
+				s->ret = WEXITSTATUS(status);
 		}
 		return (1);
 	}
