@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/13 07:19:08 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/13 20:27:29 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,9 @@ int	find_command(t_state *s, t_cmd *cmd) // 찾으면 1 못찾으면 0
 	return (0);
 }
 
-int		builtin(t_state *s, t_cmd *cmd)
+void	execute_builtin(t_state *s, t_cmd *cmd)
 {
-	//test용
-	(void)cmd;
-	//fd값 있는경우 dup2로 연결
-	//test
-
+	set_pipe(cmd);
 	if (cmd->fd_in != 0)
 		dup2(cmd->fd_in, 0);
 	if (cmd->fd_out != 1)
@@ -94,9 +90,33 @@ int		builtin(t_state *s, t_cmd *cmd)
 		ft_export(s, cmd);
 	else if (!ft_strcmp(cmd->av[0], "unset"))
 		ft_unset(s, cmd);
-	// else if (!ft_strcmp(cmd->av[0], "exit"))
-	// 	ft_exit(s, cmd);
+	else if (!ft_strcmp(cmd->av[0], "exit"))
+		ft_exit(s, cmd);
+}
+
+int	builtin(t_state *s, t_cmd *cmd)
+{
+	pid_t	pid;
+	int		status;
+
+	if (!ft_strcmp(cmd->av[0], "pwd") || !ft_strcmp(cmd->av[0], "echo")
+		|| !ft_strcmp(cmd->av[0], "cd") || !ft_strcmp(cmd->av[0], "env")
+		|| !ft_strcmp(cmd->av[0], "export") || !ft_strcmp(cmd->av[0], "unset")
+		|| !ft_strcmp(cmd->av[0], "exit"))
+	{
+		pid = fork();
+		if (pid < 0)
+			exit(1);
+		if (pid == 0)
+			execute_builtin(s, cmd);
+		else
+		{
+			waitpid(pid, &status, 0);
+			if (WIFEXITED(status))
+				s->ret = WIFEXITED(status);
+		}
+		return (1);
+	}
 	else
 		return (0);
-	return (1);
 }
