@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/13 21:06:14 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/13 21:41:27 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int	builtin(t_state *s, t_cmd *cmd)
 			execute_builtin(s, cmd);
 		else
 		{
+			close(cmd->pip[1]);
 			waitpid(pid, &status, 0);
 			if (WIFEXITED(status))
 				s->ret = WEXITSTATUS(status);

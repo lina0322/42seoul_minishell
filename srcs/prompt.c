@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/11 22:34:52 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/13 21:00:20 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	prompt(t_state *state)
 {
 	int		gnl; //gnl return
 	int		flag; //추가 입력인지 체크하는 flag
-	char	*input;
+	char	*input = 0;
 
 	flag = 0;
 	write(1, "bash", 4);
@@ -64,12 +64,12 @@ void	prompt(t_state *state)
 			write(1, "> ", 2);
 		gnl = get_next_line(0, &input);
 		state->input = ft_strjoin2(state->input, input);
-		if (is_backslash(state))
-		{
-			state->input[ft_strlen(state->input) - 1] = '\0';
-			flag = 0;
-		}
-		else if (gnl == 0) // 컨트롤 + D 입력경우 eof
+		// if (is_backslash(state))
+		// {
+		// 	state->input[ft_strlen(state->input) - 1] = '\0';
+		// 	flag = 0;
+		// }
+		if (gnl == 0) // 컨트롤 + D 입력경우 eof
 			handle_eof(state->input); //후에 bash나오게 수정
 		else
 		{
