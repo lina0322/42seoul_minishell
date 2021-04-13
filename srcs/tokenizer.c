@@ -36,25 +36,35 @@ void	tokenizer(t_state *state)
 			}
 		i = make_token(state, count, i, type);
 	}
-	check_quote_error(state);
+	print_token(state);
+	check_token_error(state);
 }
 
-void	check_quote_error(t_state *state)
+void	check_token_error(t_state *state)
 {
 	t_token	*token;
+	int		type;
 
 	token = state->token_head;
 	while (token)
 	{
-		if (token->type == ERROR_QUOTE)
+		if (token->type <= ERROR_QUOTE)
 		{
-			make_cmd(state, token, 1, ERROR_QUOTE);
+			type = token->type;
+			if (token->next)
+			{
+				if (token->next->type <= ERROR_PIPE2)
+					type = token->next->type;
+			}
+			make_cmd(state, token, 1, type);
 			free_token(state->token_head);
-			return ;
+			print_cmd2(state);
+			return;
 		}
 		token = token->next;
 	}
 	parse_cmd(state);
+	free_token(state->token_head);
 }
 
 int		make_token(t_state *state, int count, int i, int type)
@@ -77,6 +87,8 @@ void	add_token_back(t_token **head, char *str, int type)
 {
 	t_token *token;
 	int		i;
+	int		token_type;
+	int		cur_type;
 
 	if (type == SINGLE || type == DOUBLE)
 		str[ft_strlen(str) - 1] = '\0';
@@ -87,14 +99,67 @@ void	add_token_back(t_token **head, char *str, int type)
 		str[i + 1] = '\0';
 	}
 	if (*head == NULL)
-		*head = create_token(str, type);
+	{
+		token_type = check_syntax_error(ERROR_NULL, type);
+		*head = create_token(str, token_type);
+	}
 	else
 	{
 		token = *head;
 		while (token->next)
 			token = token->next;
-		token->next = create_token(str, type);
+		cur_type = find_cur_type(head);
+		token_type = check_syntax_error(cur_type, type);
+		token->next = create_token(str, token_type);
 	}
+}
+
+int		find_cur_type(t_token **head)
+{
+	t_token	*token;
+	int		type;
+	
+	token = *head;
+	type = token->type;
+	while (token)
+	{
+		if (token->type != SPACE)
+			type = token->type;
+		token = token->next;
+	}
+	return type;
+}
+
+int		check_syntax_error(int cur_type, int next_type)
+{
+	int	type;
+
+	type = next_type;
+	if (cur_type == ERROR_NULL && next_type >= PIPE)
+	{
+		if (next_type == PIPE)
+			type = ERROR_PIPE;
+		else if (next_type == SEMICOLON)
+			type = ERROR_COLON; 
+	}
+	else if ((cur_type >= PIPE || cur_type <= ERROR_PIPE) && next_type >= PIPE)
+	{
+		if (cur_type == PIPE || cur_type == ERROR_PIPE)
+		{
+			if (next_type == PIPE)
+				type = ERROR_PIPE2;
+			else if (next_type == SEMICOLON)
+				type = ERROR_COLON;
+		}
+		else if (cur_type == SEMICOLON || cur_type == ERROR_COLON)
+		{
+			if (next_type == SEMICOLON)
+				type = ERROR_COLON2;
+			else if (next_type == PIPE)
+				type = ERROR_PIPE;
+		}
+	}
+	return (type);
 }
 
 t_token	*create_token(char *str, int type)

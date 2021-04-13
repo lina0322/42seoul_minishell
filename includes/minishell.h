@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/13 11:17:10 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/13 23:05:24 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@
 # define GNL_EOF 0
 # define GNL_ERROR -1
 
+# define ERROR_NULL -6
+# define ERROR_COLON2 -5
+# define ERROR_PIPE2 -4
+# define ERROR_COLON -3
+# define ERROR_PIPE -2
 # define ERROR_QUOTE -1
 # define COMMON 0
 # define SPACE 1
@@ -173,7 +178,7 @@ void	tokenizer(t_state *state);
 int		make_token(t_state *state, int count, int i, int type);
 void	add_token_back(t_token **head, char *str, int type);
 t_token	*create_token(char *str, int type);
-void	check_quote_error(t_state *state);
+void	check_token_error(t_state *state);
 
 /*
 **	token_util
@@ -182,6 +187,8 @@ int		is_operator(char *c, int i);
 int		get_len(char *input, int i);
 int		find_end(char *input, int type, int i);
 void	free_token(t_token *token);
+int		check_syntax_error(int cur_type, int next_type);
+int		find_cur_type(t_token **head);
 
 /*
 **	env
