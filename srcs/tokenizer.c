@@ -89,6 +89,7 @@ void	add_token_back(t_token **head, char *str, int type)
 	int		i;
 	int		token_type;
 	int		cur_type;
+	int		has_space;
 
 	if (type == SINGLE || type == DOUBLE)
 		str[ft_strlen(str) - 1] = '\0';
@@ -98,9 +99,10 @@ void	add_token_back(t_token **head, char *str, int type)
 		str[i] = str[i + 1];
 		str[i + 1] = '\0';
 	}
+	has_space = FALSE;
 	if (*head == NULL)
 	{
-		token_type = check_syntax_error(ERROR_NULL, type);
+		token_type = check_syntax_error(ERROR_NULL, type, has_space);
 		*head = create_token(str, token_type);
 	}
 	else
@@ -108,13 +110,13 @@ void	add_token_back(t_token **head, char *str, int type)
 		token = *head;
 		while (token->next)
 			token = token->next;
-		cur_type = find_cur_type(head);
-		token_type = check_syntax_error(cur_type, type);
+		cur_type = find_cur_type(head, &has_space);
+		token_type = check_syntax_error(cur_type, type, has_space);
 		token->next = create_token(str, token_type);
 	}
 }
 
-int		find_cur_type(t_token **head)
+int		find_cur_type(t_token **head, int *has_space)
 {
 	t_token	*token;
 	int		type;
@@ -125,12 +127,14 @@ int		find_cur_type(t_token **head)
 	{
 		if (token->type != SPACE)
 			type = token->type;
+		else
+			*has_space = TRUE;
 		token = token->next;
 	}
 	return type;
 }
 
-int		check_syntax_error(int cur_type, int next_type)
+int		check_syntax_error(int cur_type, int next_type, int has_space)
 {
 	int	type;
 
@@ -150,6 +154,8 @@ int		check_syntax_error(int cur_type, int next_type)
 				type = ERROR_PIPE2;
 			else if (next_type == SEMICOLON)
 				type = ERROR_COLON;
+			else if (has_space)
+				type = ERROR_PIPE;
 		}
 		else if (cur_type == SEMICOLON || cur_type == ERROR_COLON)
 		{
@@ -157,6 +163,8 @@ int		check_syntax_error(int cur_type, int next_type)
 				type = ERROR_COLON2;
 			else if (next_type == PIPE)
 				type = ERROR_PIPE;
+			else if (has_space)
+				type = ERROR_COLON;
 		}
 	}
 	return (type);

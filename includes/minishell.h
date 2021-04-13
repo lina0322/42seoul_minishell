@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/13 23:05:24 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/14 00:06:36 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,8 +187,8 @@ int		is_operator(char *c, int i);
 int		get_len(char *input, int i);
 int		find_end(char *input, int type, int i);
 void	free_token(t_token *token);
-int		check_syntax_error(int cur_type, int next_type);
-int		find_cur_type(t_token **head);
+int		check_syntax_error(int cur_type, int next_type, int has_space);
+int		find_cur_type(t_token **head, int *has_space);
 
 /*
 **	env
