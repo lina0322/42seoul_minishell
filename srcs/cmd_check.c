@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_parse.c                                        :+:      :+:    :+:   */
+/*   cmd_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 16:19:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/08 23:47:26 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/13 13:45:00 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,13 @@ void	check_env(t_state *state, t_token *token)
 	{
 		if (token->str[i] == '$' && token->str[i + 1])
 		{
-			len = check_key_len(&token->str[i], i + 1);
-			key = ft_substr(token->str, i + 1, len - 1 - i);
+			if (i > 0 && token->str[i - 1] == '\\')
+			{
+				i++;
+				continue ;
+			}
+			len = check_key_len(&token->str[i + 1]);
+			key = ft_substr(&token->str[i + 1], 0, len);
 			if (!ft_strcmp(key, "?"))
 				i++;
 			else
@@ -64,8 +69,11 @@ void	check_env(t_state *state, t_token *token)
 	}
 }
 
-int		check_key_len(char *str, int len)
+int		check_key_len(char *str)
 {
+	int len;
+
+	len = 0;
 	while (str[len])
 	{
 		if (str[len] == '\'' || str[len] == ' ')
@@ -83,11 +91,11 @@ void	change_str_to_env(t_state *state, t_token *token, char *key, int i)
 	char	*back;
 	int		len;
 
-	len = check_key_len(&token->str[i], i + 1);
+	len = check_key_len(&token->str[i + 1]);
 	value = ft_strdup(find_env_val(state->env_head, key));
 	front = ft_substr(token->str, 0, i);
 	front_value = ft_strjoin2(front, value);
-	back = ft_substr(token->str, len, ft_strlen(token->str));
+	back = ft_substr(token->str, i + len + 1, ft_strlen(token->str) - len);
 	free(token->str);
 	token->str = ft_strjoin2(front_value, back);
 	free(value);
