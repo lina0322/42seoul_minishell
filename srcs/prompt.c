@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/13 21:00:20 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/15 02:21:57 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,10 @@ void	prompt2(t_state *s)
 	{
 		write(1, "> ", 2);
 		if (term_loop(s) == 0)
+		{
+			reset_save(s);
 			break ;
+		}
 		else
 			continue ;
 	}

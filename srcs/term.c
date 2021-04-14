@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 06:24:33 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/14 22:21:06 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/15 02:53:18 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ void	test_save(t_state *s)
 
 void	press_up(t_state *s)
 {
-	(void)s;
-	t_save		*tmp;
 	t_keypos	pos;
 	int			len;
 
@@ -87,42 +85,61 @@ void	press_up(t_state *s)
 		return ;
 	if (s->input != 0 && s->s_flag == 0)
 	{
-		// printf("in in \n");
-		// printf("s->input : %s\n s->save_head : %p\n s->sh->input: %s\n", s->input, s->save_head, s->save_head->input);
-		tmp = create_save(s->input, s->save_head, 0);
-		s->save_head = tmp;
+		s->save_head = push_front_save(s->input, s->save_head, 0);
+		s->save_head = s->save_head->next;
 	}
 	s->s_flag = 1;
-	test_save(s);
+	// test_save(s);
 	if (s->input != 0)
 		len = ft_strlen(s->input);
 	else
 		len = 0;
 	set_cursor(&pos.col, &pos.row);
-	while (len)
+	pos.col -= len;
+	if (pos.col < 0)
 	{
-		tputs(tgoto(s->t.cm, pos.col, pos.row), 1, ft_putchar);
-		tputs(tgetstr("ce", NULL), 1, ft_putchar);
-		len--;
+		pos.row--;
+		pos.col = s->max.col + pos.col;
 	}
-	// pos.col = s->start.col + ft_strlen(s->save_head->input);
-	// pos.row = s->cur.row;
-	// if (pos.col > s->max.col)
-	// {
-	// 	pos.col -= s->max.col;
-	// 	pos.row += 1;
-	// }
-	// tputs(tgoto(s->t.cm, s->start.col, s->start.row), 1, ft_putchar);
+	tputs(tgoto(s->t.cm, pos.col, pos.row), 1, ft_putchar);
+	tputs(tgetstr("ce", NULL), 1, ft_putchar);
 	write(1, s->save_head->input, ft_strlen(s->save_head->input));
-	// tputs(tgoto(s->t.cm, pos.col, pos.row), 1, ft_putchar);
-	free(s->input);
+	if (s->input)
+		free(s->input);
 	s->input = ft_strdup(s->save_head->input);
-	s->save_head = s->save_head->next;
+	if (s->save_head->next != 0)
+		s->save_head = s->save_head->next;
 }
 
 void	press_down(t_state *s)
 {
-	(void)s;
+	t_keypos	pos;
+	int			len;
+
+	if (s->save_head == 0)
+		return ;
+	if (s->input != 0)
+		len = ft_strlen(s->input);
+	else
+		len = 0;
+	set_cursor(&pos.col, &pos.row);
+	pos.col -= len;
+	if (pos.col < 0)
+	{
+		pos.row--;
+		pos.col = s->max.col + pos.col;
+	}
+	tputs(tgoto(s->t.cm, pos.col, pos.row), 1, ft_putchar);
+	tputs(tgetstr("ce", NULL), 1, ft_putchar);
+	if (s->input)
+		free(s->input);
+	s->input = 0;
+	if (s->save_head->prev == 0)
+		return ;
+	write(1, s->save_head->prev->input, ft_strlen(s->save_head->prev->input));
+	s->input = ft_strdup(s->save_head->prev->input);
+	// if (s->save_head->prev->pre != 0)
+		s->save_head = s->save_head->prev;
 }
 
 void	handle_keycode(t_state *s, int keycode)
@@ -146,7 +163,7 @@ void	handle_keycode(t_state *s, int keycode)
 	}
 	else if (keycode == 4348699) // down
 	{
-		write(1, "down\n", 5);
+		// write(1, "down\n", 5);
 		press_down(s);
 	}
 	else // 문자 붙이기

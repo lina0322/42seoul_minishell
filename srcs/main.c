@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:26:45 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/14 21:55:42 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/15 01:51:04 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		main(int argc, char **argv, char *envp[])
 	while (1)
 	{
 		prompt2(&state);
-		// tcsetattr(0, TCSANOW, &state.t.save);
+		tcsetattr(0, TCSANOW, &state.t.save);
 		tokenizer(&state);
 		execute(&state, state.cmd_head, envp);
 		prepare_token_and_cmd(&state);
@@ -41,12 +41,13 @@ void	prepare_token_and_cmd(t_state *state)
 	state->path_head = 0;
 	free(state->input);
 	state->input = 0;
+	reset_save(state);
 }
 
 void	init_state(t_state *state)
 {
 	ft_memset((void *)state, 0, sizeof(t_state));
-	// tcgetattr(0, &state->t.save);
+	tcgetattr(0, &state->t.save);
 }
 
 void	free_2d(char **array)

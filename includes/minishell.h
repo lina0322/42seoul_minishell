@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/14 21:19:51 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/15 01:36:48 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,9 @@ int		term_loop(t_state *s);
 void	put_backspace(t_state *s);
 
 void	save_history(t_state *s);
-t_save	*create_save(char *input, t_save *next, int flag);
+t_save	*push_front_save(char *input, t_save *old_head, int flag);
+void	reset_save(t_state *s);
+
 /*
 **	cursor
 */

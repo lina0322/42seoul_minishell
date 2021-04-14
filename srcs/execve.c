@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 05:11:32 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/14 18:33:09 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/15 01:49:47 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void	execute_error(t_state *s, t_cmd *cmd, int type)
 {
 	if (type == EXECVE_ERR)
 	{
-		printf("sh: %s: %s\n", cmd->av[0], strerror(errno));
+		printf("bash: %s: %s\n", cmd->av[0], strerror(errno));
 		if (errno == 13)
 			exit(126);
 		else if (errno == 2)
@@ -142,7 +142,7 @@ void	execute_error(t_state *s, t_cmd *cmd, int type)
 	else if (type == NOT_FOUND || type == NO_F_OR_D)
 	{
 		if (type == 2)
-			printf("sh: %s: command not found\n", cmd->av[0]);
+			printf("bash: %s: command not found\n", cmd->av[0]);
 		else if (type == 4)
 			printf("bash: %s: No such file or directory\n", cmd->av[0]);
 		s->ret = 127;
