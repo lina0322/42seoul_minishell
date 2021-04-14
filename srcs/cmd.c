@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/14 16:49:57 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/14 17:23:40 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,28 +106,37 @@ void	execute_builtin(t_state *s, t_cmd *cmd)
 		ft_exit(s, cmd);
 }
 
-int	builtin(t_state *s, t_cmd *cmd)
+void	set_fork_builtin(t_state *s, t_cmd *cmd)
 {
 	pid_t	pid;
 	int		status;
 
-	if (!ft_strcmp(cmd->av[0], "pwd") || !ft_strcmp(cmd->av[0], "echo")
-		|| !ft_strcmp(cmd->av[0], "cd") || !ft_strcmp(cmd->av[0], "env")
-		|| !ft_strcmp(cmd->av[0], "export") || !ft_strcmp(cmd->av[0], "unset")
-		|| !ft_strcmp(cmd->av[0], "exit"))
+	pid = fork();
+	if (pid < 0)
+		exit(1);
+	if (pid == 0)
+		execute_builtin(s, cmd);
+	else
 	{
-		pid = fork();
-		if (pid < 0)
-			exit(1);
-		if (pid == 0)
-			execute_builtin(s, cmd);
-		else
-		{
-			close(cmd->pip[1]);
-			waitpid(pid, &status, 0);
-			if (WIFEXITED(status))
-				s->ret = WEXITSTATUS(status);
-		}
+		close(cmd->pip[1]);
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			s->ret = WEXITSTATUS(status);
+	}	
+}
+
+int	builtin(t_state *s, t_cmd *cmd)
+{
+	if (!ft_strcmp(cmd->av[0], "pwd") || !ft_strcmp(cmd->av[0], "echo")
+		|| !ft_strcmp(cmd->av[0], "env") || !ft_strcmp(cmd->av[0], "export")
+		|| !ft_strcmp(cmd->av[0], "unset"))
+	{
+		set_fork_builtin(s, cmd);
+		return (1);
+	}
+	else if (!ft_strcmp(cmd->av[0], "cd") || !ft_strcmp(cmd->av[0], "exit"))
+	{
+		execute_builtin(s, cmd);
 		return (1);
 	}
 	else
