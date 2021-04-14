@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/04/09 10:54:27 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/15 01:13:55 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	tokenizer(t_state *state)
 			}
 		i = make_token(state, count, i, type);
 	}
-	print_token(state);
+	// print_token(state);
 	check_token_error(state);
 }
 
@@ -58,7 +58,7 @@ void	check_token_error(t_state *state)
 			}
 			make_cmd(state, token, 1, type);
 			free_token(state->token_head);
-			print_cmd2(state);
+			// print_cmd2(state);
 			return;
 		}
 		token = token->next;
@@ -120,7 +120,7 @@ int		find_cur_type(t_token **head, int *has_space)
 {
 	t_token	*token;
 	int		type;
-	
+
 	token = *head;
 	type = token->type;
 	while (token)
@@ -144,7 +144,7 @@ int		check_syntax_error(int cur_type, int next_type, int has_space)
 		if (next_type == PIPE)
 			type = ERROR_PIPE;
 		else if (next_type == SEMICOLON)
-			type = ERROR_COLON; 
+			type = ERROR_COLON;
 	}
 	else if ((cur_type >= PIPE || cur_type <= ERROR_PIPE) && next_type >= PIPE)
 	{
