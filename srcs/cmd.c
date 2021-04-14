@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/15 03:14:29 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/15 03:39:09 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,13 +140,13 @@ void	set_fork_builtin(t_state *s, t_cmd *cmd)
 int	builtin(t_state *s, t_cmd *cmd)
 {
 	if (!ft_strcmp(cmd->av[0], "pwd") || !ft_strcmp(cmd->av[0], "echo")
-		|| !ft_strcmp(cmd->av[0], "env") || !ft_strcmp(cmd->av[0], "export")
-		|| !ft_strcmp(cmd->av[0], "unset"))
+		|| !ft_strcmp(cmd->av[0], "env"))
 	{
 		set_fork_builtin(s, cmd);
 		return (1);
 	}
-	else if (!ft_strcmp(cmd->av[0], "cd") || !ft_strcmp(cmd->av[0], "exit"))
+	else if (!ft_strcmp(cmd->av[0], "cd") || !ft_strcmp(cmd->av[0], "exit")
+		|| !ft_strcmp(cmd->av[0], "export") || !ft_strcmp(cmd->av[0], "unset"))
 	{
 		execute_builtin(s, cmd);
 		return (1);
