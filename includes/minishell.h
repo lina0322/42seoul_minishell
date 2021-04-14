@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/14 00:06:36 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/14 17:59:43 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@
 # include <limits.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
+# include <sys/ioctl.h>
 # include <dirent.h>
 # include <termcap.h>
 # include <term.h>
 # include <curses.h>
 # include <termios.h>
-# include <sys/ioctl.h>
 # include <errno.h>
 # include <string.h>
 
@@ -63,6 +64,11 @@
 # define NORMAL_TYPE 0
 # define PIPE_TYPE 8
 # define COLON_TYPE 9
+
+# define EXECVE_ERR 1
+# define NOT_FOUND 2
+# define IS_DIR 3
+# define NO_F_OR_D 4
 
 typedef struct s_path
 {
@@ -146,9 +152,10 @@ int		is_backslash(t_state *s);
 void	handle_eof(char *input);
 
 /*
-**	prompt
+**	execute
 */
 void	execute(t_state *s, t_cmd *cmd, char **envp);
+void	set_pipe(t_cmd *cmd);
 
 /*
 **	term
@@ -231,14 +238,13 @@ int		get_next_line(int fd, char **line);
 int		builtin(t_state *state, t_cmd *cmd);
 int		ft_pwd(t_state *s, t_cmd *cmd);
 int		ft_pwd(t_state *state, t_cmd *cmd);
-int		ft_exit(t_state *state, t_cmd *cmd);
+void	ft_exit(t_state *state, t_cmd *cmd);
 int		ft_cd(t_state *s, t_cmd *cmd);
 void	ft_echo(t_state *t, t_cmd *cmd);
 void	ft_unset(t_state *s, t_cmd *cmd);
 void	ft_export(t_state *state, t_cmd *cmd);
 
 int		check_key(char *key);
-int		find_command(t_state *s, t_cmd *cmd);
 
 /*
 **	path
@@ -255,6 +261,7 @@ void	execute_cmd(t_state *s, t_cmd *cmd);
 void	make_path(t_cmd *cmd, char *str);
 int		find_command(t_state *s, t_cmd *cmd);
 int		builtin(t_state *s, t_cmd *cmd);
+int		find_simple_cmd(t_cmd *cmd, int *err);
 /*
 **	cmd_parse
 */

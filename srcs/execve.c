@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 05:11:32 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/14 16:49:56 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/14 18:03:39 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,27 +128,29 @@ int	check_redirection(t_cmd *cmd)
 	return (1);
 }
 
-void	execute_error(t_cmd *cmd, int type)
+void	execute_error(t_state *s, t_cmd *cmd, int type)
 {
-	if (type == 1)
+	if (type == EXECVE_ERR)
 	{
-		ft_putstr_fd("sh: ", 2);
-		ft_putstr_fd(cmd->av[0], 2);
-		ft_putstr_fd(": ", 2);
-		ft_putstr_fd(strerror(errno), 2);
-		ft_putstr_fd("\n", 2);
+		printf("sh: %s: %s\n", cmd->av[0], strerror(errno));
 		if (errno == 13)
 			exit(126);
 		else if (errno == 2)
 			exit(127);
 		exit(1);
 	}
-	else if (type == 2)
+	else if (type == NOT_FOUND || type == NO_F_OR_D)
 	{
-		ft_putstr_fd("sh: ", 2);
-		ft_putstr_fd(cmd->av[0], 2);
-		ft_putstr_fd(": ", 2);
-		ft_putstr_fd("command not found\n", 2);
+		if (type == 2)
+			printf("sh: %s: command not found\n", cmd->av[0]);
+		else if (type == 4)
+			printf("bash: %s: No such file or directory\n", cmd->av[0]);
+		s->ret = 127;
+	}
+	else if (type == IS_DIR)
+	{
+		printf("bash: %s: is a directory\n", cmd->av[0]);
+		s->ret = 126;
 	}
 }
 
@@ -170,7 +172,7 @@ void	execute_path(t_state *s, t_cmd *cmd, char **envp)
 		if (cmd->fd_out != 1)
 			dup2(cmd->fd_out, 1);
 		if (execve(cmd->av[0], cmd->av, envp) < 0)
-			execute_error(cmd, 1);
+			execute_error(s, cmd, 1);
 	}
 	else
 	{
@@ -183,23 +185,26 @@ void	execute_path(t_state *s, t_cmd *cmd, char **envp)
 
 void	execute_cmd2(t_state *s, t_cmd *cmd, char **envp)
 {
+	int	err;
+
 	if (!check_redirection(cmd)) // file 없거나 에러인 경우
 	{
 		// 에러처리?
 	}
 	else if (builtin(s, cmd)) // builtin 들어간경우
 		return ;
-	else if (find_command(s, cmd) ||
-		(cmd->av[0][0] == '/' && find_simple_cmd(cmd)) ) // path 함수인경우
-	{
+	else if (find_command(s, cmd)) // path 함수인경우
 		execute_path(s, cmd, envp);
+	else if (cmd->av[0][0] == '/')
+	{
+		// ret = find_simple_cmd(cmd);
+		if (find_simple_cmd(cmd, &err))// path함수인 경우
+			execute_path(s, cmd, envp);
+		else
+			execute_error(s, cmd, err);
 	}
 	else // path에 함수가 없는 경우
-	{
-		execute_error(cmd, 2); // av[0] 으로 수정해야함
-		return ;
-	}
-
+		execute_error(s, cmd, 2); // av[0] 으로 수정해야함
 }
 
 void	close_fd_dup(t_cmd *cmd, int *stin, int *stout)

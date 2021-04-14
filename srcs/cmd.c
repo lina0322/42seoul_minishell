@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/14 17:23:40 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/14 18:04:02 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,25 @@ int	find_success_cmd(t_state *s, t_cmd *cmd, char *path, DIR *dir_ptr)
 	return (1);
 }
 
-int	find_simple_cmd(t_cmd *cmd)
+int	find_simple_cmd(t_cmd *cmd, int *err)
 {
-	struct stat	buf[999];
+	struct stat	buf;
 
-	if (stat(cmd->av[0], buf) == 0)
-		return (1);
+	if (stat(cmd->av[0], &buf) == 0)
+	{
+		if (S_ISDIR(buf.st_mode))
+		{
+			*err = 3;
+			return (0);
+		}
+		else
+			return (1);
+	}
 	else
+	{
+		*err = 4;
 		return (0);
+	}
 }
 
 int	find_command(t_state *s, t_cmd *cmd) // 찾으면 1 못찾으면 0
