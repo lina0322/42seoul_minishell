@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:38:22 by llim              #+#    #+#             */
-/*   Updated: 2021/04/09 01:03:59 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/15 02:51:36 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	parse_env(char **envp, t_state *state)
 			j++;
 		}
 		add_env_back(&(state->env_head), key, value, TRUE);
+		free(key);
+		free(value);
 		i++;
 	}
 	update_env(state->env_head, "OLDPWD", "", FALSE);
