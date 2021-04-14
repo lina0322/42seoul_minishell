@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/15 01:58:13 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/15 02:00:31 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,10 +128,7 @@ void	set_fork_builtin(t_state *s, t_cmd *cmd)
 	if (pid == 0)
 	{
 		execute_builtin(s, cmd);
-		if (s->ret != 0)
-			exit(s->ret);
-		else
-			exit(0);
+		exit(s->ret);
 	}
 	else
 	{
