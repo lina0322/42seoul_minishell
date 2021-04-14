@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 05:11:32 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/13 21:38:00 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/14 16:49:56 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,8 @@ void	execute_cmd2(t_state *s, t_cmd *cmd, char **envp)
 	}
 	else if (builtin(s, cmd)) // builtin 들어간경우
 		return ;
-	else if (find_command(s, cmd)) // path 함수인경우
+	else if (find_command(s, cmd) ||
+		(cmd->av[0][0] == '/' && find_simple_cmd(cmd)) ) // path 함수인경우
 	{
 		execute_path(s, cmd, envp);
 	}
@@ -203,20 +204,6 @@ void	execute_cmd2(t_state *s, t_cmd *cmd, char **envp)
 
 void	close_fd_dup(t_cmd *cmd, int *stin, int *stout)
 {
-	// if (cmd->type == PIPE_TYPE || (cmd->next != 0 && cmd->next->type == PIPE_TYPE))
-	// {
-	// 	if (cmd->type != PIPE_TYPE)
-	// 		close(cmd->pip[1]);
-	// 	else if (cmd->next == 0 || cmd->type == COLON_TYPE)
-	// 		close(cmd->prev->pip[0]);
-	// 	else
-	// 	{
-	// 		close(cmd->prev->pip[0]);
-	// 		close(cmd->pip[1]);
-	// 	}
-	// }
-	
-	
 	if (cmd->prev != 0)
 		close(cmd->prev->pip[0]);
 	close(cmd->pip[1]);
