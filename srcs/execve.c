@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 05:11:32 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/14 18:03:39 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/14 18:33:09 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,6 +231,7 @@ void	execute(t_state *s, t_cmd *cmd, char **envp)
 	int		stin;
 	int		stout;
 
+	//syntax error check
 	if (!check_multiline_quote(cmd))
 		write(1, "error : quote error\n", 21);
 	else
@@ -249,4 +250,5 @@ void	execute(t_state *s, t_cmd *cmd, char **envp)
 			cur = cur->next;
 		}
 	}
+	save_history(s);
 }

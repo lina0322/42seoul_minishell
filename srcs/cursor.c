@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 06:21:00 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/08 06:22:16 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/14 21:58:13 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ void	set_cursor(int *col, int *row)
 	write(0, "\033[6n", 4);
 	read_ret = read(0, buf, 254);
 	buf[read_ret] = '\0';
+	// printf("\nreadret : %d\nbuf : %s\n",read_ret, buf);
+	// for (int i = 0 ; i < read_ret ; i++)
+	// 	printf("%d %c\n", buf[i], buf[i]);
 	i = 0;
 	flag = 0;
 	while (buf[++i])

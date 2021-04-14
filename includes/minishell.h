@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/14 17:59:43 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/14 21:19:51 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,14 @@ typedef struct s_keypos
 	int				row;
 }					t_keypos;
 
+typedef struct s_save
+{
+	char			*input;
+	int				flag;
+	struct s_save	*prev;
+	struct s_save	*next;
+}					t_save;
+
 typedef struct s_state
 {
 	t_token			*token_head;
@@ -124,6 +132,8 @@ typedef struct s_state
 	t_cmd			*cmd_head;
 	t_path			*path_head;
 	t_term			t;
+	t_save			*save_head;
+	int				s_flag;
 	char			*input;
 	int				ret;
 	t_keypos		cur;
@@ -161,9 +171,12 @@ void	set_pipe(t_cmd *cmd);
 **	term
 */
 void	init_term(t_state *s);
-void	put_backspace(t_state *s);
 void	handle_keycode(t_state *s, int keycode);
 int		term_loop(t_state *s);
+void	put_backspace(t_state *s);
+
+void	save_history(t_state *s);
+t_save	*create_save(char *input, t_save *next, int flag);
 /*
 **	cursor
 */

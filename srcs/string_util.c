@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 06:22:35 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/08 06:23:44 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/14 22:05:28 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ char	*ft_strcjoin(char *str, char c)
 
 	if (!str)
 	{
-		if (!ft_calloc(2, sizeof(char *), (void *)& ret))
+		if (!ft_calloc(2, sizeof(char), (void *)& ret))
 			return (0); // exit 처리
 		ret[0] = c;
 		ret[1] = '\0';
 	}
 	else
 	{
-		if (!ft_calloc(ft_strlen(str) + 2, sizeof(char *), (void *)& ret))
+		if (!ft_calloc(ft_strlen(str) + 2, sizeof(char), (void *)& ret))
 			return (0); // exit 처리
 		i = -1;
 		while (str[++i])
@@ -55,6 +55,9 @@ char	*delete_last_char(char *str)
 	int		len;
 	int		i;
 
+	// printf("ee\n");
+	if (str == 0)
+		return (0);
 	len = ft_strlen(str);
 	if (!ft_calloc(len, sizeof(char *), (void *)& tmp))
 		return (0); //exit 처리
