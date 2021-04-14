@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 13:55:05 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/11 17:24:46 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/15 03:35:01 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	parse_export(t_env *tmp, char *str)
 	vlen = 0;
 	while (str[klen] != '=')
 		klen++;
-	if (!ft_calloc(sizeof(char *), klen + 1, (void *)& tmp->key))
+	if (!ft_calloc(sizeof(char), klen + 1, (void *)& tmp->key))
 		return (0); // 말록실패는 exit처리
 	i = -1;
 	while (++i < klen)
@@ -32,7 +32,7 @@ int	parse_export(t_env *tmp, char *str)
 		return (0);
 	while (str[klen + 1 + vlen] != '\0')
 		vlen++;
-	if (!ft_calloc(sizeof(char *), vlen + 1, (void *)& tmp->value))
+	if (!ft_calloc(sizeof(char), vlen + 1, (void *)& tmp->value))
 		return (0);
 	i = -1;
 	while (++i < vlen)
@@ -57,13 +57,7 @@ int	check_key2(char *key)
 
 void	ft_export(t_state *s, t_cmd *cmd)
 {
-	(void)cmd;
 	int	i;
-	//test 2
-	// int ac = 2;
-	// add_env_back(&s->env_head, "TEST2", "123", 1);
-	// print_env_all(s->env_head);
-	// char *av[] = {"export", "TEST2=456", "0"};
 	t_env tmp;
 
 	if (cmd->ac == 1) // cmd->ac
@@ -83,6 +77,8 @@ void	ft_export(t_state *s, t_cmd *cmd)
 				if (parse_export(&tmp, cmd->av[i]) == 0) // value 값이 없는 경우 value = 0 으로
 					tmp.value = 0;
 				update_env(s->env_head, tmp.key, tmp.value, 1);
+				free(tmp.key);
+				free(tmp.value);
 			}
 			i++;
 		}
