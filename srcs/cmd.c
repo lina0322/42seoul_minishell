@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/15 03:39:09 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/15 04:21:11 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void	set_fork_builtin(t_state *s, t_cmd *cmd)
 	else
 	{
 		close(cmd->pip[1]);
-		close(cmd->pip[0]);
+		// close(cmd->pip[0]);
 		waitpid(pid, &status, 0);
 		if (WIFEXITED(status))
 			s->ret = WEXITSTATUS(status);
