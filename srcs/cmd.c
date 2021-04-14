@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/15 02:00:31 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/15 03:14:29 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ int	find_command(t_state *s, t_cmd *cmd) // 찾으면 1 못찾으면 0
 	struct dirent	*file;
 	t_path			*p;
 
-	// if (cmd->av[0] == '/')
-	// 	return (find_simple_cmd(s,cmd));
 	parse_path(s);
 	p = s->path_head;
 	while (p)
@@ -87,9 +85,8 @@ int	find_command(t_state *s, t_cmd *cmd) // 찾으면 1 못찾으면 0
 				return (find_success_cmd(s, cmd, p->path, dir_ptr));
 		}
 		p = p->next;
-	}
-	if (dir_ptr)
 		closedir(dir_ptr);
+	}
 	free_path(s->path_head);
 	return (0);
 }
