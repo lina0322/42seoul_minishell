@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 05:11:32 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 05:03:36 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 05:11:44 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,8 @@ void	execute_error(t_state *s, t_cmd *cmd, int type)
 	}
 	else if (type == NOT_FOUND || type == NO_F_OR_D)
 	{
+		if (!find_env(s->env_head, "PATH"))
+			type = 4;
 		if (type == 2)
 			printf("bash: %s: command not found\n", cmd->av[0]);
 		else if (type == 4)
