@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 14:42:21 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/11 22:23:47 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/17 06:32:06 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ void	check_echo_flag(char **av, int *i, int *flag)
 			while (av[1][j] != '\0')
 			{
 				if (av[1][j] != 'n')
-				{
-					// (*i)--;
 					return ;
-				}
 				j++;
 			}
 			(*i)++;
@@ -37,24 +34,13 @@ void	check_echo_flag(char **av, int *i, int *flag)
 	}
 }
 
-void	ft_echo(t_state *t, t_cmd *cmd)
+void	ft_echo(t_state *s, t_cmd *cmd)
 {
 	int	i;
 	int	flag;
-	//test
-	// char	*av[] = {"echo", "-nnnnnnnnn", "-n", "-n", "Hello", "World", 0};
-	// int		ac = 6;
-	// //test
-	// char	*av[] = {"echo", "Hello", "World", 0};
-	// int		ac = 3;
-	// test
-	// char	*av[] = {"echo", "-nnnnnna", "Hello", "World", 0};
-	// int		ac = 4;
-	(void)t;
+
 	flag = 0;
 	i = 0;
-
-	// dup2(cmd->fd_out, 1);
 	check_echo_flag(cmd->av, &i, &flag);
 	while (i < cmd->ac)
 	{
@@ -65,4 +51,5 @@ void	ft_echo(t_state *t, t_cmd *cmd)
 	}
 	if (flag == 0)
 		write(1, "\n", 1);
+	s->ret = 0;
 }

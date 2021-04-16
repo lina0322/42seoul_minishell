@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 05:25:20 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 07:08:18 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	is_backslash(t_state *s)
 {
-	int	flag;
-	int	i;
+	int		flag;
+	int		i;
 	char	*str;
 
 	if (s->input == 0)
@@ -42,7 +42,7 @@ int	is_backslash(t_state *s)
 
 void	handle_eof(t_state *s, char *input)
 {
-	if (!input) // 입력값없이 컨트롤D 누른경우
+	if (!input)
 	{
 		printf("exit\n");
 		// 모든 malloc 해제하는 함수 필요할듯
@@ -82,8 +82,6 @@ void	handle_eof(t_state *s, char *input)
 
 void	prompt2(t_state *s)
 {
-	(void)s;
-
 	write(1, "bash", 4);
 	init_term(s);
 	while (1)
@@ -97,4 +95,3 @@ void	prompt2(t_state *s)
 		else
 			continue ;
 	}
-}

@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 05:49:57 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 06:14:05 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,12 @@ void	handle_eof(t_state *s, char *input);
 */
 void	execute(t_state *s, t_cmd *cmd, char **envp);
 void	set_pipe(t_cmd *cmd);
+// int		check_multiline_quote(t_cmd *cmd);
+void	set_pipe(t_cmd *cmd);
+char	**make_new_cmd(t_cmd *cmd, int cnt, char **new);
+void	renewal_cmd(t_cmd *cmd);
+int		check_redirection(t_cmd *cmd);
+void	execute_error(t_state *s, t_cmd *cmd, int type);
 
 /*
 **	term
@@ -281,7 +287,6 @@ void	free_path(t_path *path);
 /*
 **	cmd
 */
-void	execute_cmd(t_state *s, t_cmd *cmd);
 void	make_path(t_cmd *cmd, char *str);
 int		find_command(t_state *s, t_cmd *cmd);
 int		builtin(t_state *s, t_cmd *cmd);

@@ -6,13 +6,11 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 05:50:27 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 06:27:05 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// char *av[] = {"grep", "-al", 0}; //
 
 void	make_path(t_cmd *cmd, char *str)
 {
@@ -21,14 +19,14 @@ void	make_path(t_cmd *cmd, char *str)
 
 	(void)cmd;
 	(void)tmp;
-	tmp = cmd->av[0]; // cmd로 변경해야함
+	tmp = cmd->av[0];
 	tmp2 = ft_strjoin(str, "/");
 	if (!tmp2)
 		return ; //exit
 	cmd->av[0] = ft_strjoin(tmp2, cmd->av[0]);
 	if (!cmd->av[0])
 		return ; //exit
-	printf("%s\n", cmd->av[0]); //test
+	// printf("%s\n", cmd->av[0]); //test
 	free(tmp);
 	free(tmp2);
 }
@@ -98,7 +96,7 @@ void	execute_builtin(t_state *s, t_cmd *cmd)
 		dup2(cmd->fd_in, 0);
 	if (cmd->fd_out != 1)
 		dup2(cmd->fd_out, 1);
-	if (!ft_strcmp(cmd->av[0], "pwd")) // 나중에 input 대신 cmd의 명령어로 수정해야함
+	if (!ft_strcmp(cmd->av[0], "pwd"))
 		ft_pwd(s, cmd);
 	else if (!ft_strcmp(cmd->av[0], "echo"))
 		ft_echo(s, cmd);

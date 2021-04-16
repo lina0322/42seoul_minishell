@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 01:52:08 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/13 07:57:23 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 06:29:37 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ int	ft_cd(t_state *s, t_cmd *cmd)
 		change_dir(s, "~");
 	else if (change_dir(s, cmd->av[1]) == -1)
 	{
-		printf("bash: cd: %s: No such file or directory\n", cmd->av[1]); // test수정 + 리턴 코드 수정
+		printf("bash: cd: %s: No such file or directory\n", cmd->av[1]);
 		s->ret = 1;
 	}
 	else
 	{
 		getcwd(pwd, 999);
 		update_env(s->env_head, "OLDPWD", find_env_val(s->env_head, "PWD"), 1);
-		update_env(s->env_head, "PWD", pwd, 1); // test 는 나중에 수정 + 리턴 코드 수정
+		update_env(s->env_head, "PWD", pwd, 1);
 		s->ret = 0;
 	}
 	return (0);

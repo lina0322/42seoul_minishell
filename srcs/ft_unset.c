@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 15:12:15 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/15 03:44:08 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 06:22:48 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ void	ft_unset(t_state *s, t_cmd *cmd)
 		while (i < cmd->ac)
 		{
 			if (!check_key(cmd->av[i]))
-				printf("bash: unset: `%s': not a valid identifier\n", cmd->av[i]);
+				printf("bash: unset: `%s': not a valid identifier\n",
+					cmd->av[i]);
 			else
 				delete_env(s->env_head, cmd->av[i]);
 			i++;

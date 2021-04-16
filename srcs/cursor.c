@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 06:21:00 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/15 04:22:53 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 06:22:25 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,17 @@ int	get_nbr_len(int n)
 	return (ret);
 }
 
+void	init_set_cursor(char buf[255], int	*read_ret, int *i, int *flag)
+{
+	write(0, "\033[6n", 4);
+	*read_ret = read(0, buf, 254);
+	if (*read_ret < 0)
+		*read_ret = 0;
+	buf[*read_ret] = '\0';
+	*i = 0;
+	*flag = 0;
+}
+
 void	set_cursor(int *col, int *row)
 {
 	int		i;
@@ -32,13 +43,14 @@ void	set_cursor(int *col, int *row)
 	char	buf[255];
 	int		read_ret;
 
-	write(0, "\033[6n", 4);
-	read_ret = read(0, buf, 254);
-	if (read_ret < 0)
-		read_ret = 0;
-	buf[read_ret] = '\0';
-	i = 0;
-	flag = 0;
+	init_set_cursor(buf, &read_ret, &i, &flag);
+	// write(0, "\033[6n", 4);
+	// read_ret = read(0, buf, 254);
+	// if (read_ret < 0)
+	// 	read_ret = 0;
+	// buf[read_ret] = '\0';
+	// i = 0;
+	// flag = 0;
 	while (buf[++i])
 	{
 		if ('0' <= buf[i] && buf[i] <= '9')
