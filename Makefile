@@ -6,13 +6,13 @@
 #    By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/15 17:02:38 by llim              #+#    #+#              #
-#    Updated: 2021/04/14 22:04:39 by dhyeon           ###   ########.fr        #
+#    Updated: 2021/04/17 03:36:23 by dhyeon           ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	minishell
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -g -arch x86_64 -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address#-arch x86_64
 SRCS	=	srcs/main.c\
 			srcs/signal.c \
 			srcs/prompt.c \
@@ -37,7 +37,8 @@ SRCS	=	srcs/main.c\
 			srcs/string_util.c \
 			srcs/term.c \
 			srcs/cursor.c \
-			srcs/history.c
+			srcs/history.c \
+			srcs/press_arrow.c
 
 INCS	=	-I includes -I libft
 OBJS	=	$(SRCS:.c=.o)

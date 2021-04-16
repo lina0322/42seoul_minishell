@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 18:33:51 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/15 02:31:58 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 03:38:19 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	reset_save(t_state *s)
 	}
 	if (s->save_head->flag == 0)
 			delete_save(s->save_head);
+	s->s_flag = 0;
 }
 
 t_save	*push_front_save(char *input, t_save *old_head, int flag)
