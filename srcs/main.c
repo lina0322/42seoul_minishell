@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:26:45 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 03:50:16 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 05:29:37 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,19 @@
 
 int		main(int argc, char **argv, char *envp[])
 {
-	t_state	state;
-
 	(void)argc;
 	(void)argv;
-	init_state(&state);
+	init_state(&g_state);
 	signal(SIGINT, (void *)handle_signal);
 	signal(SIGQUIT, (void *)handle_signal);
-	parse_env(envp, &state);
+	parse_env(envp, &g_state);
 	while (1)
 	{
-		prompt2(&state);
-		tcsetattr(0, TCSANOW, &state.t.save);
-		tokenizer(&state);
-		execute(&state, state.cmd_head, envp);
-		prepare_token_and_cmd(&state);
+		prompt2(&g_state);
+		tcsetattr(0, TCSANOW, &g_state.t.save);
+		tokenizer(&g_state);
+		execute(&g_state, g_state.cmd_head, envp);
+		prepare_token_and_cmd(&g_state);
 	}
 }
 

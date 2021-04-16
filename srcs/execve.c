@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 05:11:32 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 05:11:44 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 05:51:57 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ void	execute_path(t_state *s, t_cmd *cmd, char **envp)
 	(void)s;
 	(void)cmd;
 
+	s->is_fork = 1;
 	pid = fork();
 	if (pid < 0)
 		exit(1);
@@ -221,6 +222,7 @@ void	execute_cmd2(t_state *s, t_cmd *cmd, char **envp)
 	}
 	else // path에 함수가 없는 경우
 		execute_error(s, cmd, 2); // av[0] 으로 수정해야함
+	s->is_fork = 0;
 }
 
 void	close_fd_dup(t_cmd *cmd, int *stin, int *stout)
@@ -230,7 +232,6 @@ void	close_fd_dup(t_cmd *cmd, int *stin, int *stout)
 	close(cmd->pip[1]);
 	if (cmd->next == 0)
 		close(cmd->pip[0]);
-
 	if (cmd->fd_in != 0)
 		close(cmd->fd_in);
 	if (cmd->fd_out != 1)
@@ -260,7 +261,8 @@ void	execute(t_state *s, t_cmd *cmd, char **envp)
 	int		stin;
 	int		stout;
 
-	//syntax error check
+	if (!cmd)
+		return ;
 	if (!check_multiline_quote(cmd))
 		write(1, "error : quote error\n", 21);
 	else if (cmd->type < 0)
@@ -271,13 +273,10 @@ void	execute(t_state *s, t_cmd *cmd, char **envp)
 		while (cur)
 		{
 			pipe(cur->pip);
-			// set_pipe(cmd);
 			stin = dup(0);
 			stout = dup(1);
 			execute_cmd2(s, cur, envp);
 			close_fd_dup(cur, &stin, &stout);
-
-			//close_pipe
 			cur = cur->next;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 06:24:33 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 03:32:09 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 05:23:50 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	test_save(t_state *s)
 void	handle_keycode(t_state *s, int keycode)
 {
 	if (keycode == 4) // ctrl + D
-		handle_eof(s->input);
+		handle_eof(s, s->input);
 	else if (keycode == 127) // backspace
 		put_backspace(s);
 	else if (keycode == 4283163) // up
