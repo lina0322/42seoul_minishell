@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 05:11:32 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/15 01:49:47 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 04:39:23 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,40 +60,54 @@ void	set_pipe(t_cmd *cmd)
 	}
 }
 
-void	renewal_cmd(t_cmd *cmd)
+char	**make_new_cmd(t_cmd *cmd, int cnt, char **new)
 {
-	char	**tmp;
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
+	if (!ft_calloc(cnt + 1, sizeof(char *), (void **)& new))
+		return (0); //exit 처리
 	i = 0;
-	tmp = 0;
-	if (cmd->av[i][0] == '<' || cmd->av[i][0] == '>')
+	j = 0;
+	while (cmd->ac > i)
 	{
-		while (cmd->av[i][0] == '<' || cmd->av[i][0] == '>')
-		{
-			i += 2;
+		if (cmd->av[i][0] == '<' || cmd->av[i][0] == '>')
 			i++;
-		}
-		i--;
-		j = -1;
-		while (i > ++j)
-			free(cmd->av[j]);
-		if (!ft_calloc(cmd->ac - i + 1, sizeof(char *), (void **)& tmp))
-			return ; //exit 처리
-		j = 0;
-		while (i < cmd->ac)
+		else
 		{
-			tmp[j] = cmd->av[i];
-			i++;
+			new[j] = ft_strdup(cmd->av[i]);
+			if (!new[j])
+				return (0); //exit처리
 			j++;
 		}
-		free(cmd->av);
-		cmd->av = tmp;
-		cmd->ac = j;
-		tmp[j] = 0;
-		printf("redirection : %s\n", cmd->av[0]); //test
+		i++;
 	}
+	new[cnt] = 0;
+	return (new);
+}
+
+void	renewal_cmd(t_cmd *cmd)
+{
+	char	**new;
+	int		cnt;
+	int		i;
+
+	i = 0;
+	cnt = 0;
+	while (cmd->ac > i)
+	{
+		if (cmd->av[i][0] == '<' || cmd->av[i][0] == '>')
+			cnt++;
+		i++;
+	}
+	if (cnt == 0)
+		return ;
+	cnt = cmd->ac - (cnt * 2);
+	new = 0;
+	new = make_new_cmd(cmd, cnt, new);
+	free_2d(cmd->av);
+	cmd->av = new;
+	cmd->ac = cnt;
 }
 
 int	check_redirection(t_cmd *cmd)
@@ -189,7 +203,7 @@ void	execute_cmd2(t_state *s, t_cmd *cmd, char **envp)
 
 	if (!check_redirection(cmd)) // file 없거나 에러인 경우
 	{
-		// 에러처리?
+		printf("bash: %s: %s\n", cmd->av[2], strerror(errno));
 	}
 	else if (builtin(s, cmd)) // builtin 들어간경우
 		return ;
