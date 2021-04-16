@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/13 23:48:02 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/17 04:32:14 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_cmd(t_state *state)
 	int		i = 0;
 	char string[2];
 	string[1] = 0;
-	
+
 	while (cmd)
 	{
 		string[0] = '0' + cmd->type;
@@ -28,7 +28,7 @@ void	print_cmd(t_state *state)
 		{
 			tputs(cmd->av[i], 0, ft_putchar);
 			tputs(",", 0, ft_putchar);
-			
+
 			i++;
 		}
 		cmd = cmd->next;
@@ -70,6 +70,7 @@ void	parse_cmd(t_state *state)
 void	make_cmd(t_state *state, t_token *start, int ac, int type)
 {
 	char	**av;
+	char	*tmp;
 	int		i;
 
 	if (!ft_calloc(ac + 1, sizeof(char *), (void **)& av))
@@ -88,7 +89,9 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 		{
 			if (start->type == DOUBLE || start->type == COMMON)
 				check_backslash_and_env(state, start);
-			av[i] = ft_strjoin2(av[i], start->str);
+			tmp = ft_strjoin2(av[i], start->str);
+			free(av[i]);
+			av[i] = tmp;
 		}
 		start = start->next;
 	}
