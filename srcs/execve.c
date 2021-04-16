@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 05:11:32 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 04:39:23 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 05:00:37 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,6 +239,18 @@ void	close_fd_dup(t_cmd *cmd, int *stin, int *stout)
 	close(*stout);
 }
 
+void	handle_syntax_error(t_cmd *cmd)
+{
+	if (cmd->type == ERROR_PIPE)
+		printf("bash: syntax error near unexpected token `|'\n");
+	else if (cmd->type == ERROR_COLON)
+		printf("bash: syntax error near unexpected token `;'\n");
+	else if (cmd->type == ERROR_PIPE2)
+		printf("bash: syntax error near unexpected token `||'\n");
+	else if (cmd->type == ERROR_COLON2)
+		printf("bash: syntax error near unexpected token `;;'\n");
+}
+
 void	execute(t_state *s, t_cmd *cmd, char **envp)
 {
 	t_cmd	*cur;
@@ -248,6 +260,8 @@ void	execute(t_state *s, t_cmd *cmd, char **envp)
 	//syntax error check
 	if (!check_multiline_quote(cmd))
 		write(1, "error : quote error\n", 21);
+	else if (cmd->type < 0)
+		handle_syntax_error(cmd);
 	else
 	{
 		cur = cmd;
