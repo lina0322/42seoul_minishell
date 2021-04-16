@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 03:41:20 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 03:46:37 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,10 @@ typedef struct s_state
 */
 void	init_state(t_state *state);
 void	prepare_token_and_cmd(t_state *state);
+
+/*
+**	free
+*/
 void	free_2d(char **array);
 
 /*

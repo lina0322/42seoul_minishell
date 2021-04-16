@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:29:59 by llim              #+#    #+#             */
-/*   Updated: 2021/04/06 11:44:26 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/17 03:46:09 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@ void	parse_path(t_state *state)
 		add_path_back(&state->path_head, path_list[i]);
 		i++;
 	}
+	free_2d(path_list);
 }
 
 void	add_path_back(t_path **head, char *path_str)
 {
-	t_path *path;
+	t_path	*path;
 
 	if (*head == NULL)
 		*head = create_path(path_str);
@@ -48,7 +49,7 @@ void	add_path_back(t_path **head, char *path_str)
 
 t_path	*create_path(char *path_str)
 {
-	t_path *path;
+	t_path	*path;
 
 	if (!ft_calloc(1, sizeof(t_path), (void *)& path))
 		return (0);

@@ -6,7 +6,7 @@
 #    By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/15 17:02:38 by llim              #+#    #+#              #
-#    Updated: 2021/04/17 03:36:23 by dhyeon           ###   ########seoul.kr   #
+#    Updated: 2021/04/17 03:46:51 by dhyeon           ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ SRCS	=	srcs/main.c\
 			srcs/term.c \
 			srcs/cursor.c \
 			srcs/history.c \
-			srcs/press_arrow.c
+			srcs/press_arrow.c \
+			srcs/free.c
 
 INCS	=	-I includes -I libft
 OBJS	=	$(SRCS:.c=.o)
