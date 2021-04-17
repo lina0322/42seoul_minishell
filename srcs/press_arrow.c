@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 03:32:15 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 20:00:20 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 21:28:39 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,20 @@ void	press_up(t_state *s)
 
 void	press_down(t_state *s)
 {
-	if (s->save_head == 0)
+	if (s->save_head == 0 || s->save_head->flag == 0)
 		return ;
+	if (s->save_head->prev != 0)
+		s->save_head = s->save_head->prev;
 	move_cursor(s);
 	if (s->input)
 		free(s->input);
 	s->input = 0;
-	if (s->save_head->prev == 0)
+	if (s->save_head->flag == 0)
 		return ;
-	write(1, s->save_head->prev->input, ft_strlen(s->save_head->prev->input));
-	s->input = ft_strdup(s->save_head->prev->input);
+	write(1, s->save_head->input, ft_strlen(s->save_head->input));
+	s->input = ft_strdup(s->save_head->input);
+	// write(1, s->save_head->prev->input, ft_strlen(s->save_head->prev->input));
+	// s->input = ft_strdup(s->save_head->prev->input);
 	// if (s->save_head->prev->flag != 0)
-		s->save_head = s->save_head->prev;
+	// 	s->save_head = s->save_head->prev;
 }
