@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 06:24:33 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 05:23:50 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 22:09:01 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,6 @@ void	put_backspace(t_state *s)
 	tputs(tgoto(s->t.cm, col, row), 1, ft_putchar);
 	tputs(s->t.ce, 1, ft_putchar);
 	s->input = delete_last_char(s->input);
-}
-
-void	test_save(t_state *s)
-{
-	t_save *tmp;
-
-	tmp = s->save_head;
-
-	while (tmp->prev != 0)
-		tmp = tmp->prev;
-	printf("\n========================\n");
-	while (tmp)
-	{
-		printf("list : %s\n", tmp->input);
-		tmp = tmp->next;
-	}
-	printf("========================\n");
 }
 
 void	handle_keycode(t_state *s, int keycode)
