@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 16:19:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/17 22:51:19 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/17 23:28:19 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	check_env(t_state *state, t_token *token)
 	int		len;
 	char	*key;
 	char	*value;
+	char	*temp;
 
 	i = 0;
 	while (token->str[i])
@@ -55,18 +56,25 @@ void	check_env(t_state *state, t_token *token)
 		{
 			if (i > 0 && token->str[i - 1] == '\\')
 			{
-				i++;
-				continue ;
+				value = NULL;
+				len = 0;
+				i--;
 			}
-			len = check_key_len(&token->str[i + 1]);
-			key = ft_substr(&token->str[i + 1], 0, len);
-			if (!ft_strcmp(key, "?"))
-				value = ft_itoa(state->ret);
 			else
-				value = ft_strdup(find_env_val(state->env_head, key));
-			token->str = change_str(token->str, i, i + len, value);
+			{
+				len = check_key_len(&token->str[i + 1]);
+				key = ft_substr(&token->str[i + 1], 0, len);
+				if (!ft_strcmp(key, "?"))
+					value = ft_itoa(state->ret);
+				else
+					value = ft_strdup(find_env_val(state->env_head, key));
+				free(key);
+			}
+			temp = change_str(token->str, i, i + len, value);
+			free(token->str);
+			token->str = temp;
+			free(temp);
 			free(value);
-			free(key);
 		}
 		i++;
 	}
