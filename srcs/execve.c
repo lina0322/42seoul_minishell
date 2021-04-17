@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 05:11:32 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 01:22:29 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 01:29:43 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ void	execute_cmd2(t_state *s, t_cmd *cmd, char **envp)
 		printf("bash: %s: %s\n", cmd->av[2], strerror(errno));
 	}
 	else if (cmd->ac == 0)
-		return ;
-	else if (builtin(s, cmd)) // builtin 들어간경우
 		return ;
 	else if (builtin(s, cmd))
 		return ;
@@ -97,6 +95,8 @@ void	handle_syntax_error(t_state *s, t_cmd *cmd)
 		printf("bash: syntax error near unexpected token `||'\n");
 	else if (cmd->type == ERROR_COLON2)
 		printf("bash: syntax error near unexpected token `;;'\n");
+	else if (cmd->type == ERROR_RDIR)
+		printf("bash: syntax error near unexpected token `newline'\n");
 	s->ret = 258;
 }
 
