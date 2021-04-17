@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 06:14:05 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 23:02:49 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,12 +267,11 @@ int		get_next_line(int fd, char **line);
 */
 int		builtin(t_state *state, t_cmd *cmd);
 int		ft_pwd(t_state *s, t_cmd *cmd);
-int		ft_pwd(t_state *state, t_cmd *cmd);
 void	ft_exit(t_state *state, t_cmd *cmd);
 int		ft_cd(t_state *s, t_cmd *cmd);
 void	ft_echo(t_state *t, t_cmd *cmd);
 void	ft_unset(t_state *s, t_cmd *cmd);
-void	ft_export(t_state *state, t_cmd *cmd);
+void	ft_export(t_state *state, t_cmd *cmd, int i);
 
 int		check_key(char *key);
 

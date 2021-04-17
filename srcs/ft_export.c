@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 13:55:05 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 06:24:05 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 23:04:36 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,26 +55,31 @@ int	check_key2(char *key)
 	return (1);
 }
 
-void	ft_export(t_state *s, t_cmd *cmd)
+void	error_export(t_state *s, t_cmd *cmd, int i)
 {
-	int		i;
+	printf("bash: export: `%s': not a valid identifier\n", cmd->av[i]);
+	s->ret = 1;
+}
+
+void	ft_export(t_state *s, t_cmd *cmd, int i)
+{
 	t_env	tmp;
 
+	s->ret = 0;
 	if (cmd->ac == 1)
 		print_export(s->env_head);
 	else
 	{
-		i = 0;
 		while (++i < cmd->ac)
 		{
 			if ((cmd->av[i][0] != '_' && !ft_isalpha(cmd->av[i][0]))
-										|| !check_key2(cmd->av[i]))
-				printf("bash: export: `%s': not a valid identifier\n", cmd->av[i]);
-			else if (ft_strrchr(cmd->av[i], '=') == 0) // = 이 없는경우 (1. key값만 있는경우)
+				|| !check_key2(cmd->av[i]))
+				error_export(s, cmd, i);
+			else if (ft_strrchr(cmd->av[i], '=') == 0)
 				update_env(s->env_head, cmd->av[i], 0, 0);
-			else // = 가 있는 경우
+			else
 			{
-				if (parse_export(&tmp, cmd->av[i]) == 0) // value 값이 없는 경우 value = 0 으로
+				if (parse_export(&tmp, cmd->av[i]) == 0)
 					tmp.value = 0;
 				update_env(s->env_head, tmp.key, tmp.value, 1);
 				free(tmp.key);
