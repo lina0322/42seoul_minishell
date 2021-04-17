@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 16:19:16 by llim              #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/04/17 23:29:45 by llim             ###   ########.fr       */
-=======
-/*   Updated: 2021/04/17 23:24:02 by dhyeon           ###   ########seoul.kr  */
->>>>>>> 35e6f58223cf808a1b754198944c3b7ed6186e07
+/*   Updated: 2021/04/17 23:41:34 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +72,7 @@ void	check_env(t_state *state, t_token *token)
 			}
 			temp = change_str(token->str, i, i + len, value);
 			free(token->str);
-			token->str = temp;
+			token->str = ft_strdup(temp);
 			free(temp);
 			free(value);
 		}
