@@ -6,13 +6,13 @@
 #    By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/15 17:02:38 by llim              #+#    #+#              #
-#    Updated: 2021/04/17 03:46:51 by dhyeon           ###   ########seoul.kr   #
+#    Updated: 2021/04/17 20:22:01 by dhyeon           ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	minishell
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address#-arch x86_64
+CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address -arch x86_64
 SRCS	=	srcs/main.c\
 			srcs/signal.c \
 			srcs/prompt.c \
@@ -34,6 +34,7 @@ SRCS	=	srcs/main.c\
 			srcs/cmd_check.c \
 			srcs/path.c \
 			srcs/execve.c \
+			srcs/execve_util.c \
 			srcs/string_util.c \
 			srcs/term.c \
 			srcs/cursor.c \
