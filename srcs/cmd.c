@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 00:40:46 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 01:09:04 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	make_path(t_cmd *cmd, char *str)
 	cmd->av[0] = ft_strjoin(tmp2, cmd->av[0]);
 	if (!cmd->av[0])
 		exit (1);
-	// printf("%s\n", cmd->av[0]); //test
 	free(tmp);
 	free(tmp2);
 }
@@ -61,7 +60,7 @@ int	find_simple_cmd(t_cmd *cmd, int *err)
 	}
 }
 
-int	find_command(t_state *s, t_cmd *cmd) // 찾으면 1 못찾으면 0
+int	find_command(t_state *s, t_cmd *cmd)
 {
 	DIR				*dir_ptr;
 	struct dirent	*file;
@@ -77,9 +76,10 @@ int	find_command(t_state *s, t_cmd *cmd) // 찾으면 1 못찾으면 0
 			file = readdir(dir_ptr);
 			if (file == 0)
 				break ;
-			else if (!ft_strcmp(file->d_name, ".") || !ft_strcmp(file->d_name, ".."))
+			else if (!ft_strcmp(file->d_name, ".")
+					|| !ft_strcmp(file->d_name, ".."))
 				continue ;
-			else if (!ft_strcmp(cmd->av[0], file->d_name)) // input을 나중에 cmd로 변경해야함
+			else if (!ft_strcmp(cmd->av[0], file->d_name))
 				return (find_success_cmd(s, cmd, p->path, dir_ptr));
 		}
 		p = p->next;
@@ -128,7 +128,6 @@ void	set_fork_builtin(t_state *s, t_cmd *cmd)
 	else
 	{
 		close(cmd->pip[1]);
-		// close(cmd->pip[0]);
 		waitpid(pid, &status, 0);
 		if (WIFEXITED(status))
 			s->ret = WEXITSTATUS(status);

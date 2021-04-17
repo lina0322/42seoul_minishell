@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 05:11:32 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 06:15:56 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 01:16:31 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,25 @@ void	execute_cmd2(t_state *s, t_cmd *cmd, char **envp)
 {
 	int	err;
 
-	if (!check_redirection(cmd)) // file 없거나 에러인 경우
+	if (!check_redirection(cmd))
 	{
 		printf("bash: %s: %s\n", cmd->av[2], strerror(errno));
 	}
-	else if (builtin(s, cmd)) // builtin 들어간경우
+	else if (cmd->ac == 0)
 		return ;
-	else if (find_command(s, cmd)) // path 함수인경우
+	else if (builtin(s, cmd))
+		return ;
+	else if (find_command(s, cmd))
 		execute_path(s, cmd, envp);
 	else if (cmd->av[0][0] == '/')
 	{
-		if (find_simple_cmd(cmd, &err))// path함수인 경우
+		if (find_simple_cmd(cmd, &err))
 			execute_path(s, cmd, envp);
 		else
 			execute_error(s, cmd, err);
 	}
-	else // path에 함수가 없는 경우
-		execute_error(s, cmd, 2); // av[0] 으로 수정해야함
+	else
+		execute_error(s, cmd, 2);
 	s->is_fork = 0;
 }
 

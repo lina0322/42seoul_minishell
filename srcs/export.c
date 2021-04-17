@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 21:28:42 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 00:42:25 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 01:10:15 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_export(t_env *env_head)
 	while (env)
 	{
 		env_list[i] = make_env_string(env->key,
-							env->value, env->has_equal);
+						env->value, env->has_equal);
 		env = env->next;
 		i++;
 	}
@@ -41,7 +41,7 @@ void	print_export(t_env *env_head)
 
 void	print_one_export(t_env *head, char *key)
 {
-	t_env *env;
+	t_env	*env;
 
 	env = find_env(head, key);
 	if (env)
@@ -50,7 +50,7 @@ void	print_one_export(t_env *head, char *key)
 
 void	update_env(t_env *head, char *key, char *value, int has_equal)
 {
-	t_env *env;
+	t_env	*env;
 
 	env = find_env(head, key);
 	if (env == NULL)

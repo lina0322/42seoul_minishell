@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:38:22 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 00:41:34 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 01:07:31 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	parse_env(char **envp, t_state *state)
 
 void	add_env_back(t_env **head, char *key, char *value, int has_equal)
 {
-	t_env *env;
+	t_env	*env;
 
 	if (*head == NULL)
 		*head = create_env(key, value, has_equal);
@@ -58,7 +58,7 @@ void	add_env_back(t_env **head, char *key, char *value, int has_equal)
 
 t_env	*create_env(char *key, char *value, int has_equal)
 {
-	t_env *env;
+	t_env	*env;
 
 	if (!ft_calloc(1, sizeof(t_env), (void *)& env))
 		exit (1);

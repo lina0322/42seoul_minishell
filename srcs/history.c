@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 18:33:51 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 00:44:22 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 01:01:34 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	reset_save(t_state *s)
 	tmp = s->save_head->next;
 	if (s->save_head->flag == 0)
 	{
-			delete_save(s->save_head);
-			s->save_head = tmp;
+		delete_save(s->save_head);
+		s->save_head = tmp;
 	}
 	s->s_flag = 0;
 }
@@ -69,5 +69,4 @@ void	save_history(t_state *s)
 	{
 		s->save_head = push_front_save(s->input, s->save_head, 1);
 	}
-	// printf("save : %s\n", s->save_head->input);
 }

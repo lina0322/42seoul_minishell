@@ -6,25 +6,11 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 06:10:12 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 00:41:46 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 01:07:16 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// int	check_multiline_quote(t_cmd *cmd) // ===>나중에 없애도 될 듯
-// {
-// 	t_cmd	*tmp;
-
-// 	tmp = cmd;
-// 	while (tmp)
-// 	{
-// 		if (tmp->type == -1)
-// 			return (0);
-// 		tmp = tmp->next;
-// 	}
-// 	return (1);
-// }
 
 void	set_pipe(t_cmd *cmd)
 {
@@ -104,17 +90,19 @@ int	check_redirection(t_cmd *cmd)
 	{
 		if (cmd->av[i][0] == '>')
 		{
-			if (cmd->av[i][1] == '>') // >> 인 경우
-				cmd->fd_out = open(cmd->av[i + 1], O_WRONLY | O_APPEND | O_CREAT, 0644);
-			else // > 인 경우
-				cmd->fd_out = open(cmd->av[i + 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);
+			if (cmd->av[i][1] == '>')
+				cmd->fd_out = open(cmd->av[i + 1], O_WRONLY
+						| O_APPEND | O_CREAT, 0644);
+			else
+				cmd->fd_out = open(cmd->av[i + 1], O_WRONLY
+						| O_TRUNC | O_CREAT, 0644);
 		}
 		if (cmd->av[i][0] == '<')
 			cmd->fd_in = open(cmd->av[i + 1], O_RDONLY);
 		i++;
 	}
 	if (cmd->fd_out == -1 || cmd->fd_in == -1)
-		return (0); // error message 처리, errno에 상세내용이 저장됨
+		return (0);
 	renewal_cmd(cmd);
 	return (1);
 }

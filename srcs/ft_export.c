@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 13:55:05 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 00:43:20 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 01:02:11 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	parse_export(t_env *tmp, char *str)
 {
 	int	klen;
-	int vlen;
+	int	vlen;
 	int	i;
 
 	klen = 0;
