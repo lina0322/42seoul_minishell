@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   token_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:41:40 by llim              #+#    #+#             */
-/*   Updated: 2021/04/17 20:03:04 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 00:59:46 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		is_operator(char *c, int i)
+int	is_operator(char *c, int i)
 {
 	if (c[i] == '\'')
 		return (SINGLE);
@@ -37,7 +37,7 @@ int		is_operator(char *c, int i)
 	return (COMMON);
 }
 
-int		get_len(char *input, int i)
+int	get_len(char *input, int i)
 {
 	int	len;
 
@@ -52,7 +52,7 @@ int		get_len(char *input, int i)
 	return (len);
 }
 
-int		find_end(char *input, int type, int i)
+int	find_end(char *input, int type, int i)
 {
 	int	len;
 
@@ -74,8 +74,8 @@ int		find_end(char *input, int type, int i)
 
 void	free_token(t_token *token)
 {
-	t_token *tmp;
-	t_token *next;
+	t_token	*tmp;
+	t_token	*next;
 
 	tmp = token;
 	while (tmp)

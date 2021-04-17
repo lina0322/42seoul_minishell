@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 06:24:33 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 22:09:01 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 00:58:29 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	put_backspace(t_state *s)
 	int	row;
 
 	set_cursor(&col, &row);
-	// printf("col : %d\nstart : %d\n", col, s->start.col);
-	// printf("col : %d\nrow : %d\ninput : %s\n", s->start.col, s->start.row, s->input);
 	if (!s->input || (s->start.row >= row && s->start.col >= col))
 		return ;
 	col--;
@@ -48,18 +46,18 @@ void	put_backspace(t_state *s)
 
 void	handle_keycode(t_state *s, int keycode)
 {
-	if (keycode == 4) // ctrl + D
+	if (keycode == 4)
 		handle_eof(s, s->input);
-	else if (keycode == 127) // backspace
+	else if (keycode == 127)
 		put_backspace(s);
-	else if (keycode == 4283163) // up
+	else if (keycode == 4283163)
 		press_up(s);
-	else if (keycode == 4348699) // down
+	else if (keycode == 4348699)
 		press_down(s);
-	else // 문자 붙이기
+	else
 	{
 		if (ft_isprint((char)keycode))
-			print_save_char(s, (char)keycode);// input에 저장후 출력, 커서위치 변경
+			print_save_char(s, (char)keycode);
 	}
 }
 

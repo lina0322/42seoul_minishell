@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 23:52:39 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 23:05:59 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 01:01:57 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_pwd(t_state *s, t_cmd *cmd)
 	(void)cmd;
 	(void)s;
 	if (!getcwd(buf, 999))
-		return (-1); //에러처리
+		return (-1);
 	else
 	{
 		printf("%s\n", buf);

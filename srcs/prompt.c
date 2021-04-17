@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 19:42:32 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 01:00:40 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	is_backslash(t_state *s)
 		flag *= -1;
 		i--;
 	}
-	if (flag == 1) // 마지막 백슬래시 지워주는 함수 추가
+	if (flag == 1)
 	{
 		s->input = delete_last_char(str);
 		return (1);
@@ -45,40 +45,10 @@ void	handle_eof(t_state *s, char *input)
 	if (!input)
 	{
 		printf("exit\n");
-		// 모든 malloc 해제하는 함수 필요할듯
 		tcsetattr(STDIN_FILENO, TCSANOW, &s->t.save);
 		exit(1);
 	}
 }
-
-// void	prompt(t_state *state)
-// {
-// 	int		gnl; //gnl return
-// 	int		flag; //추가 입력인지 체크하는 flag
-// 	char	*input = 0;
-
-// 	flag = 0;
-// 	write(1, "bash", 4);
-// 	while (1)
-// 	{
-// 		if (!flag)
-// 			write(1, "> ", 2);
-// 		gnl = get_next_line(0, &input);
-// 		state->input = ft_strjoin2(state->input, input);
-// 		// if (is_backslash(state))
-// 		// {
-// 		// 	state->input[ft_strlen(state->input) - 1] = '\0';
-// 		// 	flag = 0;
-// 		// }
-// 		// if (gnl == 0) // 컨트롤 + D 입력경우 eof
-// 		// 	handle_eof(state->input); //후에 bash나오게 수정
-// 		// else
-// 		// {
-// 		// 	state->input = input;
-// 		// 	break ;
-// 		// }
-// 	}
-// }
 
 void	prompt2(t_state *s)
 {

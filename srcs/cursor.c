@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 06:21:00 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 06:22:25 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 01:08:00 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,6 @@ void	set_cursor(int *col, int *row)
 	int		read_ret;
 
 	init_set_cursor(buf, &read_ret, &i, &flag);
-	// write(0, "\033[6n", 4);
-	// read_ret = read(0, buf, 254);
-	// if (read_ret < 0)
-	// 	read_ret = 0;
-	// buf[read_ret] = '\0';
-	// i = 0;
-	// flag = 0;
 	while (buf[++i])
 	{
 		if ('0' <= buf[i] && buf[i] <= '9')
@@ -70,7 +63,7 @@ void	set_cursor(int *col, int *row)
 
 void	set_cursor_win(t_state *s)
 {
-	struct winsize w;
+	struct winsize	w;
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
 	s->max.col = w.ws_col;

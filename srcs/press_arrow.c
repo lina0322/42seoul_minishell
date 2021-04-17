@@ -6,28 +6,11 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 03:32:15 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 22:46:52 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 01:00:57 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	test_save(t_state *s)
-{
-	t_save *tmp;
-
-	tmp = s->save_head;
-
-	while (tmp->prev != 0)
-		tmp = tmp->prev;
-	printf("\n========================\n");
-	while (tmp)
-	{
-		printf("list : %s flag : %d next : %p prev : %p\n", tmp->input, tmp->flag, tmp->next, tmp->prev);
-		tmp = tmp->next;
-	}
-	printf("========================\n");
-}
 
 void	move_cursor(t_state *s)
 {
