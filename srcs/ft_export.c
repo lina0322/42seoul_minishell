@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 13:55:05 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 23:04:36 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 00:43:20 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	parse_export(t_env *tmp, char *str)
 	while (str[klen] != '=')
 		klen++;
 	if (!ft_calloc(sizeof(char), klen + 1, (void *)& tmp->key))
-		return (0); // 말록실패는 exit처리
+		exit (1);
 	i = -1;
 	while (++i < klen)
 		tmp->key[i] = str[i];
@@ -33,7 +33,7 @@ int	parse_export(t_env *tmp, char *str)
 	while (str[klen + 1 + vlen] != '\0')
 		vlen++;
 	if (!ft_calloc(sizeof(char), vlen + 1, (void *)& tmp->value))
-		return (0);
+		exit (1);
 	i = -1;
 	while (++i < vlen)
 		tmp->value[i] = str[i + klen + 1];

@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 23:02:29 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 00:40:46 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	make_path(t_cmd *cmd, char *str)
 	tmp = cmd->av[0];
 	tmp2 = ft_strjoin(str, "/");
 	if (!tmp2)
-		return ; //exit
+		exit (1);
 	cmd->av[0] = ft_strjoin(tmp2, cmd->av[0]);
 	if (!cmd->av[0])
-		return ; //exit
+		exit (1);
 	// printf("%s\n", cmd->av[0]); //test
 	free(tmp);
 	free(tmp2);

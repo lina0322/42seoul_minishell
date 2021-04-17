@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 00:23:25 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 00:53:17 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_token(t_state *state) 
+void	print_token(t_state *state)
 {
 	t_token *token;
 
@@ -85,7 +85,7 @@ int		make_token(t_state *state, int count, int i, int type)
 	int		j;
 
 	if (!ft_calloc(count + 1, sizeof(char), (void *)& token_str))
-		return (0);
+		exit (1);
 	j = 0;
 	while (j < count)
 		token_str[j++] = state->input[i++];
@@ -187,7 +187,7 @@ t_token	*create_token(char *str, int type)
 	t_token *token;
 
 	if (!ft_calloc(1, sizeof(t_token), (void *)& token))
-		return (0);
+		exit (1);
 	token->str = ft_strdup(str);
 	token->type = type;
 	token->next = 0;

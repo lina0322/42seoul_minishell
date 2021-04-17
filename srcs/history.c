@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 18:33:51 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 21:23:24 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 00:44:22 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_save	*push_front_save(char *input, t_save *old_head, int flag)
 
 	new = 0;
 	if (!ft_calloc(1, sizeof(t_save), (void *)& new))
-		return (0); //exit
+		exit (1);
 	new->input = ft_strdup(input);
 	new->prev = 0;
 	new->next = old_head;

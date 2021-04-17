@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/17 04:32:14 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 00:49:54 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 	int		i;
 
 	if (!ft_calloc(ac + 1, sizeof(char *), (void **)& av))
-		return ;
+		exit (1);
 	i = ac + 1;
 	while (i > 0)
 		av[--i] = 0;
@@ -124,7 +124,7 @@ t_cmd	*create_cmd(char **av, int ac, int type, t_cmd *prev)
 	if (av == NULL)
 		return (NULL);
 	if (!ft_calloc(1, sizeof(t_cmd), (void *)& cmd))
-		return (NULL);
+		exit (1);
 	cmd->av = av;
 	cmd->ac = ac;
 	cmd->type = type;

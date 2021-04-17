@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 06:10:12 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 06:29:04 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 00:41:46 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	**make_new_cmd(t_cmd *cmd, int cnt, char **new)
 	int	j;
 
 	if (!ft_calloc(cnt + 1, sizeof(char *), (void **)& new))
-		return (0); //exit 처리
+		exit (1);
 	i = 0;
 	j = 0;
 	while (cmd->ac > i)
@@ -60,7 +60,7 @@ char	**make_new_cmd(t_cmd *cmd, int cnt, char **new)
 		{
 			new[j] = ft_strdup(cmd->av[i]);
 			if (!new[j])
-				return (0); //exit처리
+				exit (1);
 			j++;
 		}
 		i++;

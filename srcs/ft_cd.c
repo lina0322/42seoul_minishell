@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 01:52:08 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 06:29:37 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 00:42:50 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	change_dir(t_state *s, char *path)
 		buf = ft_strdup(find_env_val(s->env_head, "OLDPWD"));
 	else
 		buf = ft_strdup(path);
+	if (!buf)
+		exit (1);
 	ret = chdir(buf);
 	free(buf);
 	return (ret);

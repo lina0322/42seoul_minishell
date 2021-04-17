@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 08:12:58 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/24 15:20:27 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 00:39:22 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	**ft_all_free(char **res)
 		i++;
 	}
 	free(res);
-	return (0);
+	exit (1);
 }
 
 char	**ft_put_str(char **res, char const *s, char c)
@@ -100,7 +100,7 @@ char	**ft_split(char const *s, char c)
 		return (0);
 	n = ft_str_cnt(s, c);
 	if (!ft_calloc(sizeof(char **), n + 1, (void **)& res))
-		return (0);
+		exit (1);
 	res = ft_put_str(res, s, c);
 	if (res == 0)
 		return (0);

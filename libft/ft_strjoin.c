@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 06:24:06 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/13 00:15:46 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/18 00:46:19 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (0);
 	len = (ft_strlen(s1)) + (ft_strlen(s2));
 	if (!ft_calloc(sizeof(char *), len + 1, (void *)& res))
-		return (0);
+		exit (1);
 	i = 0;
 	while (*s1)
 		res[i++] = *s1++;

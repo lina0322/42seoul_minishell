@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 09:53:35 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/13 00:01:54 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/18 00:46:08 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*ft_itoa(int n)
 	if (n == 0)
 		i = 1;
 	if (!ft_calloc(sizeof(char *), i + 1, (void *)& res))
-		return (0);
+		exit (1);
 	res = ft_to_num(res, n, (i - 1));
 	res[i] = '\0';
 	return (res);
