@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/04/15 01:13:55 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 00:23:25 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	print_token(t_state *state) 
+{
+	t_token *token;
+
+	token = state->token_head;
+	while (token)
+	{
+		printf("%s, %i\n", token->str, token->type);
+		token = token->next;
+	}
+}
 
 void	tokenizer(t_state *state)
 {
@@ -36,7 +48,7 @@ void	tokenizer(t_state *state)
 			}
 		i = make_token(state, count, i, type);
 	}
-	// print_token(state);
+	print_token(state);
 	check_token_error(state);
 }
 
