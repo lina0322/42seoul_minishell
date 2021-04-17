@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 16:19:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/17 22:51:19 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/17 23:24:02 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,6 @@ char    *change_str(char *origin, int start, int end, char *insert)
     result = ft_strjoin2(front_insert, back);
     free(front);
     free(back);
+	free(front_insert);
     return (result);
 }
