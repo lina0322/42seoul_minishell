@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 16:19:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/13 13:45:00 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/17 22:51:19 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	check_env(t_state *state, t_token *token)
 	int		i;
 	int		len;
 	char	*key;
+	char	*value;
 
 	i = 0;
 	while (token->str[i])
@@ -60,9 +61,11 @@ void	check_env(t_state *state, t_token *token)
 			len = check_key_len(&token->str[i + 1]);
 			key = ft_substr(&token->str[i + 1], 0, len);
 			if (!ft_strcmp(key, "?"))
-				i++;
+				value = ft_itoa(state->ret);
 			else
-				change_str_to_env(state, token, key, i);
+				value = ft_strdup(find_env_val(state->env_head, key));
+			token->str = change_str(token->str, i, i + len, value);
+			free(value);
 			free(key);
 		}
 		i++;
@@ -83,23 +86,18 @@ int		check_key_len(char *str)
 	return (len);
 }
 
-void	change_str_to_env(t_state *state, t_token *token, char *key, int i)
+char    *change_str(char *origin, int start, int end, char *insert)
 {
-	char	*value;
-	char	*front;
-	char	*front_value;
-	char	*back;
-	int		len;
+    char    *result;
+    char    *front;
+    char    *front_insert;
+    char    *back;
 
-	len = check_key_len(&token->str[i + 1]);
-	value = ft_strdup(find_env_val(state->env_head, key));
-	front = ft_substr(token->str, 0, i);
-	front_value = ft_strjoin2(front, value);
-	back = ft_substr(token->str, i + len + 1, ft_strlen(token->str) - len);
-	free(token->str);
-	token->str = ft_strjoin2(front_value, back);
-	free(value);
-	free(front);
-	free(front_value);
-	free(back);
+    front = ft_substr(origin, 0, start);
+    front_insert = ft_strjoin2(front, insert);
+    back = ft_substr(origin, end + 1, ft_strlen(origin) - (end - start));
+    result = ft_strjoin2(front_insert, back);
+    free(front);
+    free(back);
+    return (result);
 }

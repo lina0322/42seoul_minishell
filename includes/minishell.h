@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 23:02:49 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 23:16:26 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -305,6 +305,6 @@ void	check_backslash_and_env(t_state *state, t_token *start);
 void	check_backslash(t_token *token);
 void	check_env(t_state *state, t_token *token);
 int		check_key_len(char *str);
-void	change_str_to_env(t_state *state, t_token *token, char *key, int i);
+char    *change_str(char *origin, int start, int end, char *insert);
 
 #endif
