@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 07:08:18 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 19:42:32 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	is_backslash(t_state *s)
 	int		i;
 	char	*str;
 
-	if (s->input == 0)
+	if (s->input == 0 || ft_strlen(s->input) == 0)
 		return (0);
 	str = s->input;
 	flag = -1;
@@ -95,3 +95,4 @@ void	prompt2(t_state *s)
 		else
 			continue ;
 	}
+}

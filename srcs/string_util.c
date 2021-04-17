@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 06:22:35 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/14 22:05:28 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/17 20:03:52 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*delete_last_char(char *str)
 	if (str == 0)
 		return (0);
 	len = ft_strlen(str);
-	if (!ft_calloc(len, sizeof(char *), (void *)& tmp))
+	if (!ft_calloc(len, sizeof(char), (void *)& tmp))
 		return (0); //exit 처리
 	i = 0;
 	while (str[i + 1])
@@ -67,7 +67,7 @@ char	*delete_last_char(char *str)
 		tmp[i] = str[i];
 		i++;
 	}
-	tmp[len] = '\0';
+	tmp[len - 1] = '\0';
 	free(str);
 	str = tmp;
 	return (str);

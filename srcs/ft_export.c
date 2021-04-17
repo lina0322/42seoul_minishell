@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 13:55:05 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/15 03:35:01 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 06:24:05 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ int	check_key2(char *key)
 
 void	ft_export(t_state *s, t_cmd *cmd)
 {
-	int	i;
-	t_env tmp;
+	int		i;
+	t_env	tmp;
 
-	if (cmd->ac == 1) // cmd->ac
+	if (cmd->ac == 1)
 		print_export(s->env_head);
 	else
 	{
-		i = 1;
-		while (i < cmd->ac)
+		i = 0;
+		while (++i < cmd->ac)
 		{
 			if ((cmd->av[i][0] != '_' && !ft_isalpha(cmd->av[i][0]))
 										|| !check_key2(cmd->av[i]))
@@ -80,7 +80,6 @@ void	ft_export(t_state *s, t_cmd *cmd)
 				free(tmp.key);
 				free(tmp.value);
 			}
-			i++;
 		}
 	}
 }

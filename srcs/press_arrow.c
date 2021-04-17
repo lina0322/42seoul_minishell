@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 03:32:15 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 06:25:23 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 20:00:20 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ void	press_down(t_state *s)
 		return ;
 	write(1, s->save_head->prev->input, ft_strlen(s->save_head->prev->input));
 	s->input = ft_strdup(s->save_head->prev->input);
-	// if (s->save_head->prev->pre != 0)
+	// if (s->save_head->prev->flag != 0)
 		s->save_head = s->save_head->prev;
 }
