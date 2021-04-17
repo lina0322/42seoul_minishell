@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 00:53:17 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 01:04:14 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,11 @@ void	check_token_error(t_state *state)
 			free_token(state->token_head);
 			// print_cmd2(state);
 			return;
+		}
+		else if (token->type >= 4 && token->type <= 6)
+		{
+			if (!token->next || token->next->type == SEMICOLON || token->next->type == PIPE)
+				make_cmd(state, token, 1, ERROR_RDIR);
 		}
 		token = token->next;
 	}

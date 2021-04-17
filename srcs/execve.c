@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 05:11:32 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 06:15:56 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 01:18:42 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	execute_cmd2(t_state *s, t_cmd *cmd, char **envp)
 	{
 		printf("bash: %s: %s\n", cmd->av[2], strerror(errno));
 	}
+	else if (cmd->ac == 0)
+		return ;
 	else if (builtin(s, cmd)) // builtin 들어간경우
 		return ;
 	else if (find_command(s, cmd)) // path 함수인경우

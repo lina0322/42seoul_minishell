@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 00:07:13 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 01:03:51 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@
 # define GNL_EOF 0
 # define GNL_ERROR -1
 
-# define ERROR_NULL -6
+# define ERROR_NULL -7
+# define ERROR_RDIR -6
 # define ERROR_COLON2 -5
 # define ERROR_PIPE2 -4
 # define ERROR_COLON -3
