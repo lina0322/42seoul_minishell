@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 06:22:35 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 20:03:52 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 22:52:07 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ char	*delete_last_char(char *str)
 	int		len;
 	int		i;
 
-	// printf("ee\n");
 	if (str == 0)
 		return (0);
 	len = ft_strlen(str);
@@ -69,6 +68,11 @@ char	*delete_last_char(char *str)
 	}
 	tmp[len - 1] = '\0';
 	free(str);
+	if (ft_strlen(tmp) == 0)
+	{
+		free(tmp);
+		tmp = 0;
+	}
 	str = tmp;
 	return (str);
 }

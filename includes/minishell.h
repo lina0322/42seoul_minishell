@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 22:51:29 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/17 23:16:26 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,12 +267,11 @@ int		get_next_line(int fd, char **line);
 */
 int		builtin(t_state *state, t_cmd *cmd);
 int		ft_pwd(t_state *s, t_cmd *cmd);
-int		ft_pwd(t_state *state, t_cmd *cmd);
 void	ft_exit(t_state *state, t_cmd *cmd);
 int		ft_cd(t_state *s, t_cmd *cmd);
 void	ft_echo(t_state *t, t_cmd *cmd);
 void	ft_unset(t_state *s, t_cmd *cmd);
-void	ft_export(t_state *state, t_cmd *cmd);
+void	ft_export(t_state *state, t_cmd *cmd, int i);
 
 int		check_key(char *key);
 

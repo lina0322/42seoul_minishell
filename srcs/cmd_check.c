@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 16:19:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/17 23:28:19 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/17 23:29:45 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,6 @@ char    *change_str(char *origin, int start, int end, char *insert)
     result = ft_strjoin2(front_insert, back);
     free(front);
     free(back);
+	free(front_insert);
     return (result);
 }

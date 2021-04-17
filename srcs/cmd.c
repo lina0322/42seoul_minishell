@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 06:27:05 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 23:02:29 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	execute_builtin(t_state *s, t_cmd *cmd)
 	else if (!ft_strcmp(cmd->av[0], "env"))
 		print_env_all(s->env_head);
 	else if (!ft_strcmp(cmd->av[0], "export"))
-		ft_export(s, cmd);
+		ft_export(s, cmd, 0);
 	else if (!ft_strcmp(cmd->av[0], "unset"))
 		ft_unset(s, cmd);
 	else if (!ft_strcmp(cmd->av[0], "exit"))
