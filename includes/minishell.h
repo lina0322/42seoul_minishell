@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 06:14:05 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/17 22:51:29 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -306,6 +306,6 @@ void	check_backslash_and_env(t_state *state, t_token *start);
 void	check_backslash(t_token *token);
 void	check_env(t_state *state, t_token *token);
 int		check_key_len(char *str);
-void	change_str_to_env(t_state *state, t_token *token, char *key, int i);
+char    *change_str(char *origin, int start, int end, char *insert);
 
 #endif
