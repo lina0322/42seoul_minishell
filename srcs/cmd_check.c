@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 16:19:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 01:09:34 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 01:26:18 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,5 +171,6 @@ char	*removed_space(char *str)
 		free(temp2);
 		i++;
 	}
+	free_2d(strs);
 	return result;
 }
