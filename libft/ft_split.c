@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 08:12:58 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 13:10:08 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 19:17:39 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	**ft_put_str(char **res, char const *s, char c)
 		if (s[k] != c)
 		{
 			len = ft_get_len(s, c, k);
-			if (!ft_calloc(sizeof(char *), len + 1, (void *)& res[i]))
+			if (!ft_calloc(sizeof(char), len + 1, (void *)& res[i]))
 				return (ft_all_free(res));
 			j = 0;
 			while (j < len)
@@ -99,7 +99,7 @@ char	**ft_split(char const *s, char c)
 	if (s == 0)
 		return (0);
 	n = ft_str_cnt(s, c);
-	if (!ft_calloc(sizeof(char **), n + 1, (void **)& res))
+	if (!ft_calloc(sizeof(char *), n + 1, (void **)& res))
 		exit(1);
 	res = ft_put_str(res, s, c);
 	if (res == 0)

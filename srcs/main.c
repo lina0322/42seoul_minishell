@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:26:45 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 13:00:52 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 19:01:52 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		main(int argc, char **argv, char *envp[])
 {
 	(void)argc;
 	(void)argv;
+	print_mini();
 	init_state(&g_state);
 	signal(SIGINT, (void *)handle_signal);
 	signal(SIGQUIT, (void *)handle_signal);

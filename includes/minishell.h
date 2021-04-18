@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 15:53:39 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 19:03:19 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,6 @@ void				handle_signal(int signo);
 /*
 **	prompt
 */
-// void	prompt(t_state *state);
 void				prompt2(t_state *state);
 int					is_backslash(t_state *s);
 void				handle_eof(t_state *s, char *input);
@@ -174,7 +173,6 @@ void				handle_eof(t_state *s, char *input);
 */
 void				execute(t_state *s, t_cmd *cmd, char **envp);
 void				set_pipe(t_cmd *cmd);
-// int		check_multiline_quote(t_cmd *cmd);
 void				set_pipe(t_cmd *cmd);
 char				**make_new_cmd(t_cmd *cmd, int cnt, char **new);
 void				renewal_cmd(t_cmd *cmd);
@@ -189,6 +187,9 @@ void				handle_keycode(t_state *s, int keycode);
 int					term_loop(t_state *s);
 void				put_backspace(t_state *s);
 
+/*
+**	history
+*/
 void				save_history(t_state *s);
 t_save				*push_front_save(char *input, t_save *old_head, int flag);
 void				reset_save(t_state *s);
@@ -201,6 +202,7 @@ void				press_down(t_state *s);
 int					get_nbr_len(int n);
 void				set_cursor(int *col, int *row);
 void				set_cursor_win(t_state *s);
+
 /*
 **	string_util
 */
@@ -208,6 +210,7 @@ int					ft_putchar(int c);
 char				*ft_strcjoin(char *str, char c);
 void				print_save_char(t_state *s, char c);
 char				*delete_last_char(char *str);
+void				print_mini(void);
 
 /*
 **	tokenizer
@@ -217,6 +220,7 @@ int					make_token(t_state *state, int count, int i, int type);
 void				add_token_back(t_token **head, char *str, int type);
 char				*trim_str(char *str, int type);
 int					find_cur_type(t_token **head, int *has_space);
+
 /*
 **	token_check
 */
@@ -244,6 +248,7 @@ void				parse_env(char **envp, t_state *state);
 void				add_env_back(t_env **head, char *key,
 								char *value, int has_equal);
 t_env				*create_env(char *key, char *value, int has_equal);
+
 /*
 **	env_util
 */
@@ -284,7 +289,6 @@ int					ft_cd(t_state *s, t_cmd *cmd);
 void				ft_echo(t_state *t, t_cmd *cmd);
 void				ft_unset(t_state *s, t_cmd *cmd);
 void				ft_export(t_state *state, t_cmd *cmd, int i);
-
 int					check_key(char *key);
 
 /*
@@ -306,6 +310,7 @@ int					find_command(t_state *s, t_cmd *cmd);
 void				execute_builtin(t_state *s, t_cmd *cmd);
 void				set_fork_builtin(t_state *s, t_cmd *cmd);
 int					builtin(t_state *s, t_cmd *cmd);
+
 /*
 **	cmd_parse
 */
@@ -314,6 +319,7 @@ void				make_cmd(t_state *state, t_token *start, int ac, int type);
 char				*make_av(t_state *state, t_token *start, char *str);
 void				add_cmd_back(t_cmd **head, char **av, int type);
 t_cmd				*create_cmd(char **av, int ac, int type, t_cmd *prev);
+
 /*
 **	cmd_check
 */
