@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 06:22:35 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 19:36:59 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/18 19:39:23 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*delete_last_char(char *str)
 
 void	print_mini(void)
 {
-	int 	fd;
+	int		fd;
 	char	*line;
 
 	fd = open("jordy.txt", O_RDONLY);

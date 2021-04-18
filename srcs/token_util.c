@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:41:40 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 19:37:08 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/18 19:39:43 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,20 +105,4 @@ t_token	*create_token(char *str, int type)
 	token->type = type;
 	token->next = 0;
 	return (token);
-}
-
-void	free_token(t_token *token)
-{
-	t_token	*tmp;
-	t_token	*next;
-
-	tmp = token;
-	while (tmp)
-	{
-		if (tmp->str)
-			free(tmp->str);
-		next = tmp->next;
-		free(tmp);
-		tmp = next;
-	}
 }
