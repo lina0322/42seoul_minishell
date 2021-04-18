@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 13:49:54 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 14:03:22 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,177 +143,177 @@ typedef struct		s_state
 	t_keypos		start;
 }					t_state;
 
-t_state	g_state;
+t_state				g_state;
 
 /*
 **	main
 */
-void	init_state(t_state *state);
-void	prepare_token_and_cmd(t_state *state);
+void				init_state(t_state *state);
+void				prepare_token_and_cmd(t_state *state);
 
 /*
 **	free
 */
-void	free_2d(char **array);
+void				free_2d(char **array);
 
 /*
 **	signal
 */
-void	handle_signal(int signo);
+void				handle_signal(int signo);
 
 /*
 **	prompt
 */
 // void	prompt(t_state *state);
-void	prompt2(t_state *state);
-int		is_backslash(t_state *s);
-void	handle_eof(t_state *s, char *input);
+void				prompt2(t_state *state);
+int					is_backslash(t_state *s);
+void				handle_eof(t_state *s, char *input);
 
 /*
 **	execute
 */
-void	execute(t_state *s, t_cmd *cmd, char **envp);
-void	set_pipe(t_cmd *cmd);
+void				execute(t_state *s, t_cmd *cmd, char **envp);
+void				set_pipe(t_cmd *cmd);
 // int		check_multiline_quote(t_cmd *cmd);
-void	set_pipe(t_cmd *cmd);
-char	**make_new_cmd(t_cmd *cmd, int cnt, char **new);
-void	renewal_cmd(t_cmd *cmd);
-int		check_redirection(t_cmd *cmd);
-void	execute_error(t_state *s, t_cmd *cmd, int type);
+void				set_pipe(t_cmd *cmd);
+char				**make_new_cmd(t_cmd *cmd, int cnt, char **new);
+void				renewal_cmd(t_cmd *cmd);
+int					check_redirection(t_cmd *cmd);
+void				execute_error(t_state *s, t_cmd *cmd, int type);
 
 /*
 **	term
 */
-void	init_term(t_state *s);
-void	handle_keycode(t_state *s, int keycode);
-int		term_loop(t_state *s);
-void	put_backspace(t_state *s);
+void				init_term(t_state *s);
+void				handle_keycode(t_state *s, int keycode);
+int					term_loop(t_state *s);
+void				put_backspace(t_state *s);
 
-void	save_history(t_state *s);
-t_save	*push_front_save(char *input, t_save *old_head, int flag);
-void	reset_save(t_state *s);
-void	press_up(t_state *s);
-void	press_down(t_state *s);
+void				save_history(t_state *s);
+t_save				*push_front_save(char *input, t_save *old_head, int flag);
+void				reset_save(t_state *s);
+void				press_up(t_state *s);
+void				press_down(t_state *s);
 
 /*
 **	cursor
 */
-int		get_nbr_len(int n);
-void	set_cursor(int *col, int *row);
-void	set_cursor_win(t_state *s);
+int					get_nbr_len(int n);
+void				set_cursor(int *col, int *row);
+void				set_cursor_win(t_state *s);
 /*
 **	string_util
 */
-int		ft_putchar(int c);
-char	*ft_strcjoin(char *str, char c);
-void	print_save_char(t_state *s, char c);
-char	*delete_last_char(char *str);
+int					ft_putchar(int c);
+char				*ft_strcjoin(char *str, char c);
+void				print_save_char(t_state *s, char c);
+char				*delete_last_char(char *str);
 
 /*
 **	tokenizer
 */
-void	tokenizer(t_state *state);
-int		make_token(t_state *state, int count, int i, int type);
-void	add_token_back(t_token **head, char *str, int type);
-char	*trim_str(char *str, int type);
-int		find_cur_type(t_token **head, int *has_space);
+void				tokenizer(t_state *state);
+int					make_token(t_state *state, int count, int i, int type);
+void				add_token_back(t_token **head, char *str, int type);
+char				*trim_str(char *str, int type);
+int					find_cur_type(t_token **head, int *has_space);
 /*
 **	token_check
 */
-int		check_syntax_error(int cur_type, int next_type, int has_space);
-int		check_deep_syntax_error(int cur_type, int next_type, int has_space);
-void	check_token_error(t_state *state);
-void	return_quote_error(t_state *state, t_token *token);
+int					check_syntax_error(int cur_type, int next_type, int has_space);
+int					check_deep_syntax_error(int cur_type, int next_type, int has_space);
+void				check_token_error(t_state *state);
+void				return_quote_error(t_state *state, t_token *token);
 /*
 **	token_util
 */
-int		is_operator(char *c, int i);
-int		get_len(char *input, int i);
-int		find_end(char *input, int type, int i);
-t_token	*create_token(char *str, int type);
-void	free_token(t_token *token);
+int					is_operator(char *c, int i);
+int					get_len(char *input, int i);
+int					find_end(char *input, int type, int i);
+t_token				*create_token(char *str, int type);
+void				free_token(t_token *token);
 
 /*
 **	env
 */
-void	parse_env(char **envp, t_state *state);
-void	add_env_back(t_env **head, char *key, char *value, int has_equal);
-t_env	*create_env(char *key, char *value, int has_equal);
+void				parse_env(char **envp, t_state *state);
+void				add_env_back(t_env **head, char *key, char *value, int has_equal);
+t_env				*create_env(char *key, char *value, int has_equal);
 /*
 **	env_util
 */
-int		ft_strcmp(char *s1, char *s2);
-void	print_env_all(t_env *head);
-t_env	*find_env(t_env *head, char *key);
-char	*find_env_val(t_env *head, char *key);
-void	free_env(t_env *env);
+int					ft_strcmp(char *s1, char *s2);
+void				print_env_all(t_env *head);
+t_env				*find_env(t_env *head, char *key);
+char				*find_env_val(t_env *head, char *key);
+void				free_env(t_env *env);
 
 /*
 **	export
 */
-void	print_export(t_env *env);
-void	print_one_export(t_env *head, char *key);
-void	update_env(t_env *head, char *key, char *value, int has_equal);
+void				print_export(t_env *env);
+void				print_one_export(t_env *head, char *key);
+void				update_env(t_env *head, char *key, char *value, int has_equal);
 /*
 **	export_util
 */
-char	*make_env_string(char *key, char *value, int has_equal);
-int		check_len(char *key, char *value, int has_equal);
-int		check_env_length(t_env *env);
-void	sorted_list(char **list, int size);
+char				*make_env_string(char *key, char *value, int has_equal);
+int					check_len(char *key, char *value, int has_equal);
+int					check_env_length(t_env *env);
+void				sorted_list(char **list, int size);
 
 /*
 **	GNL
 */
-char	*ft_strjoin2(char *s1, char *s2);
-int		get_next_line(int fd, char **line);
+char				*ft_strjoin2(char *s1, char *s2);
+int					get_next_line(int fd, char **line);
 
 /*
 **	builtin
 */
-int		builtin(t_state *state, t_cmd *cmd);
-int		ft_pwd(t_state *s, t_cmd *cmd);
-void	ft_exit(t_state *state, t_cmd *cmd);
-int		ft_cd(t_state *s, t_cmd *cmd);
-void	ft_echo(t_state *t, t_cmd *cmd);
-void	ft_unset(t_state *s, t_cmd *cmd);
-void	ft_export(t_state *state, t_cmd *cmd, int i);
+int					builtin(t_state *state, t_cmd *cmd);
+int					ft_pwd(t_state *s, t_cmd *cmd);
+void				ft_exit(t_state *state, t_cmd *cmd);
+int					ft_cd(t_state *s, t_cmd *cmd);
+void				ft_echo(t_state *t, t_cmd *cmd);
+void				ft_unset(t_state *s, t_cmd *cmd);
+void				ft_export(t_state *state, t_cmd *cmd, int i);
 
-int		check_key(char *key);
+int					check_key(char *key);
 
 /*
 **	path
 */
-void	parse_path(t_state *state);
-void	add_path_back(t_path **head, char *path_str);
-t_path	*create_path(char *path_str);
-void	free_path(t_path *path);
+void				parse_path(t_state *state);
+void				add_path_back(t_path **head, char *path_str);
+t_path				*create_path(char *path_str);
+void				free_path(t_path *path);
 
 /*
 **	cmd
 */
-void	make_path(t_cmd *cmd, char *str);
-int		find_command(t_state *s, t_cmd *cmd);
-int		builtin(t_state *s, t_cmd *cmd);
-int		find_simple_cmd(t_cmd *cmd, int *err);
+void				make_path(t_cmd *cmd, char *str);
+int					find_command(t_state *s, t_cmd *cmd);
+int					builtin(t_state *s, t_cmd *cmd);
+int					find_simple_cmd(t_cmd *cmd, int *err);
 /*
 **	cmd_parse
 */
-void	parse_cmd(t_state *state, int ac);
-void	make_cmd(t_state *state, t_token *start, int ac, int type);
-void	add_cmd_back(t_cmd **head, char **av, int type);
-t_cmd	*create_cmd(char **av, int ac, int type, t_cmd *prev);
-void	free_cmd(t_cmd *cmd);
-char	*make_av(t_state *state, t_token *start, char *av);
+void				parse_cmd(t_state *state, int ac);
+void				make_cmd(t_state *state, t_token *start, int ac, int type);
+void				add_cmd_back(t_cmd **head, char **av, int type);
+t_cmd				*create_cmd(char **av, int ac, int type, t_cmd *prev);
+void				free_cmd(t_cmd *cmd);
+char				*make_av(t_state *state, t_token *start, char *av);
 /*
 **	cmd_check
 */
-void	check_backslash_and_env(t_state *state, t_token *start);
-void	check_backslash(t_token *token);
-void	check_env(t_state *state, t_token *token);
-int		check_key_len(char *str);
-char	*changed_str(char *origin, int start, int end, char *insert);
-void	check_env_space(t_state *state);
-char	*removed_space(char *str);
+void				check_backslash_and_env(t_state *state, t_token *start);
+void				check_backslash(t_token *token);
+void				check_env(t_state *state, t_token *token);
+int					check_key_len(char *str);
+char				*changed_str(char *origin, int start, int end, char *insert);
+void				check_env_space(t_state *state);
+char				*removed_space(char *str);
 
 #endif
