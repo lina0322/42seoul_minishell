@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:41:40 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 11:27:30 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 13:49:11 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,18 @@ int		find_end(char *input, int type, int i)
 		i++;
 	}
 	return (ERROR);
+}
+
+t_token	*create_token(char *str, int type)
+{
+	t_token *token;
+
+	if (!ft_calloc(1, sizeof(t_token), (void *)& token))
+		exit(1);
+	token->str = ft_strdup(str);
+	token->type = type;
+	token->next = 0;
+	return (token);
 }
 
 void	free_token(t_token *token)

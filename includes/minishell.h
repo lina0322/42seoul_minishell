@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 13:41:42 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 13:49:54 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,21 +215,23 @@ char	*delete_last_char(char *str);
 void	tokenizer(t_state *state);
 int		make_token(t_state *state, int count, int i, int type);
 void	add_token_back(t_token **head, char *str, int type);
-t_token	*create_token(char *str, int type);
+char	*trim_str(char *str, int type);
+int		find_cur_type(t_token **head, int *has_space);
+/*
+**	token_check
+*/
+int		check_syntax_error(int cur_type, int next_type, int has_space);
+int		check_deep_syntax_error(int cur_type, int next_type, int has_space);
 void	check_token_error(t_state *state);
 void	return_quote_error(t_state *state, t_token *token);
-char	*trim_str(char *str, int type);
-int		check_deep_syntax_error(int cur_type, int next_type, int has_space);
-
 /*
 **	token_util
 */
 int		is_operator(char *c, int i);
 int		get_len(char *input, int i);
 int		find_end(char *input, int type, int i);
+t_token	*create_token(char *str, int type);
 void	free_token(t_token *token);
-int		check_syntax_error(int cur_type, int next_type, int has_space);
-int		find_cur_type(t_token **head, int *has_space);
 
 /*
 **	env
