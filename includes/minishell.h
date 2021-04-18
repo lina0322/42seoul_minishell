@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 14:42:29 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 14:48:58 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,7 +297,8 @@ void				make_path(t_cmd *cmd, char *str);
 /*
 **	cmd
 */
-int					find_success_cmd(t_state *s, t_cmd *cmd, char *path, DIR *dir_ptr);
+int					find_success_cmd(t_state *s, t_cmd *cmd,
+									char *path, DIR *dir_ptr);
 int					find_simple_cmd(t_cmd *cmd, int *err);
 int					find_command(t_state *s, t_cmd *cmd);
 void				execute_builtin(t_state *s, t_cmd *cmd);
@@ -317,7 +318,8 @@ t_cmd				*create_cmd(char **av, int ac, int type, t_cmd *prev);
 void				check_backslash_and_env(t_state *state, t_token *start);
 void				check_backslash(t_token *token);
 void				check_dollar_sign(t_state *state, t_token *token);
-char				*check_env(t_state *state, t_token *token, char *value, int *i);
+char				*check_env(t_state *state, t_token *token,
+								char *value, int *i);
 char				*changed_str(char *origin, int start,
 								int end, char *insert);
 

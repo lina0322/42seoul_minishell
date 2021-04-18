@@ -6,12 +6,11 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 16:19:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 14:42:11 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 14:45:37 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 void	free_cmd(t_cmd *cmd)
 {
@@ -28,7 +27,6 @@ void	free_cmd(t_cmd *cmd)
 		tmp = next;
 	}
 }
-
 
 void	check_env_space(t_state *state)
 {
