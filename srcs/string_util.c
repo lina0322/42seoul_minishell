@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 06:22:35 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 19:08:20 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 19:25:04 by dhyeon           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	print_mini(void)
 	int 	fd;
 	char	*line;
 
-	fd = open("test3.txt", O_RDONLY);
+	fd = open("jordy.txt", O_RDONLY);
 	while (get_next_line(fd, &line) > 0)
 	{
 		printf("%s\n", line);
