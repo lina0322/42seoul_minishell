@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 14:03:22 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 14:08:48 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,8 +220,10 @@ int					find_cur_type(t_token **head, int *has_space);
 /*
 **	token_check
 */
-int					check_syntax_error(int cur_type, int next_type, int has_space);
-int					check_deep_syntax_error(int cur_type, int next_type, int has_space);
+int					check_syntax_error(int cur_type,
+											int next_type, int has_space);
+int					check_deep_syntax_error(int cur_type,
+											int next_type, int has_space);
 void				check_token_error(t_state *state);
 void				return_quote_error(t_state *state, t_token *token);
 /*
@@ -237,7 +239,8 @@ void				free_token(t_token *token);
 **	env
 */
 void				parse_env(char **envp, t_state *state);
-void				add_env_back(t_env **head, char *key, char *value, int has_equal);
+void				add_env_back(t_env **head, char *key,
+								char *value, int has_equal);
 t_env				*create_env(char *key, char *value, int has_equal);
 /*
 **	env_util
@@ -253,7 +256,8 @@ void				free_env(t_env *env);
 */
 void				print_export(t_env *env);
 void				print_one_export(t_env *head, char *key);
-void				update_env(t_env *head, char *key, char *value, int has_equal);
+void				update_env(t_env *head, char *key,
+								char *value, int has_equal);
 /*
 **	export_util
 */
@@ -312,7 +316,8 @@ void				check_backslash_and_env(t_state *state, t_token *start);
 void				check_backslash(t_token *token);
 void				check_env(t_state *state, t_token *token);
 int					check_key_len(char *str);
-char				*changed_str(char *origin, int start, int end, char *insert);
+char				*changed_str(char *origin, int start,
+								int end, char *insert);
 void				check_env_space(t_state *state);
 char				*removed_space(char *str);
 
