@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: llim <llim@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/15 17:02:38 by llim              #+#    #+#              #
-#    Updated: 2021/04/18 19:35:27 by dhyeon           ###   ########.fr        #
+#    Updated: 2021/04/18 20:59:13 by llim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	minishell
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address #-arch x86_64
+CFLAGS	=	-Wall -Wextra -Werror
 SRCS	=	srcs/main.c\
 			srcs/signal.c \
 			srcs/prompt.c \

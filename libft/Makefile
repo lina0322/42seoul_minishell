@@ -6,14 +6,14 @@
 #    By: llim <llim@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/01 23:08:08 by dhyeon            #+#    #+#              #
-#    Updated: 2021/04/08 23:38:51 by llim             ###   ########.fr        #
+#    Updated: 2021/04/18 20:59:05 by llim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -arch x86_64
+CFLAGS = -Wall -Wextra -Werror
 
 FILES = ft_memset \
 		ft_bzero \
