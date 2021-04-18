@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 19:41:15 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/18 20:42:00 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,8 +315,8 @@ int					builtin(t_state *s, t_cmd *cmd);
 **	cmd_parse
 */
 void				parse_cmd(t_state *state, int ac);
-void				make_cmd(t_state *state, t_token *start, int ac, int type);
-char				*make_av(t_state *state, t_token *start, char *str);
+void				make_cmd(t_token *start, int ac, int type, int i);
+char 				**make_empty_av(int ac);
 void				add_cmd_back(t_cmd **head, char **av, int type);
 t_cmd				*create_cmd(char **av, int ac, int type, t_cmd *prev);
 

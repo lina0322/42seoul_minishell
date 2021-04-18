@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 15:46:12 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 20:46:23 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	check_token_error(t_state *state)
 			if (!token->next || token->next->type == SEMICOLON ||
 			token->next->type == PIPE)
 			{
-				make_cmd(state, token, 1, ERROR_RDIR);
+				make_cmd(token, 1, ERROR_RDIR, 0);
 				free_token(state->token_head);
 				return ;
 			}
@@ -92,6 +92,6 @@ void	return_quote_error(t_state *state, t_token *token)
 		if (token->next->type <= ERROR_PIPE2)
 			type = token->next->type;
 	}
-	make_cmd(state, token, 1, type);
+	make_cmd(token, 1, type, 0);
 	free_token(state->token_head);
 }

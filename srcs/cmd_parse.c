@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 20:32:13 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 20:48:14 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	parse_cmd(t_state *state, int ac)
 		{
 			if (token->type == SPACE || token->type >= PIPE)
 				ac--;
-			make_cmd(state, start, ac, type);
+			make_cmd(start, ac, type, 0);
 			if (token->type >= PIPE)
 				type = token->type;
 			ac = 0;
@@ -62,21 +62,16 @@ void	parse_cmd(t_state *state, int ac)
 			ac--;
 		token = token->next;
 	}
-	print_cmd(state);
+//	print_cmd(state);
 }
 
-void	make_cmd(t_state *state, t_token *start, int ac, int type)
+void	make_cmd(t_token *start, int ac, int type, int i)
 {
 	char	**av;
 	char	*tmp;
-	int		i;
 	int		prev_type;
 
-	if (!ft_calloc(ac + 1, sizeof(char *), (void **)&av))
-		exit(1);
-	i = ac + 1;
-	while (i > 0)
-		av[--i] = 0;
+	av = make_empty_av(ac);
 	prev_type = start->type;
 	while (start && i < ac && start->type != PIPE && start->type != SEMICOLON)
 	{
@@ -84,10 +79,11 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 			i++;
 		else
 		{
-			if ((start->type >= 4 && start->type <= 6 && av[i]) || (prev_type >= 4 && prev_type <= 6))
+			if ((start->type >= 4 && start->type <= 6 && av[i])
+			|| (prev_type >= 4 && prev_type <= 6))
 				i++;
-			if (start->type == DOUBLE || start->type == COMMON)
-				check_backslash_and_env(state, start);
+			else if (start->type == DOUBLE || start->type == COMMON)
+				check_backslash_and_env(&g_state, start);
 			tmp = ft_strjoin2(av[i], start->str);
 			free(av[i]);
 			av[i] = tmp;
@@ -95,7 +91,20 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 		prev_type = start->type;
 		start = start->next;
 	}
-	add_cmd_back(&state->cmd_head, av, type);
+	add_cmd_back(&g_state.cmd_head, av, type);
+}
+
+char 	**make_empty_av(int ac)
+{
+	int		i;
+	char	**av;
+
+	i = 0;
+	if (!ft_calloc(ac + 1, sizeof(char *), (void **)&av))
+		exit(1);
+	while (i < ac)
+		av[i++] = 0;
+	return (av);
 }
 
 void	add_cmd_back(t_cmd **head, char **av, int type)
