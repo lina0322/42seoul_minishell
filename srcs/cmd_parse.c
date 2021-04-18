@@ -3,14 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 19:36:00 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/18 20:32:13 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+///for test
+ void	print_cmd(t_state *state)
+ {
+ 	t_cmd	*cmd = state->cmd_head;
+ 	int		i = 0;
+ 	char string[2];
+ 	string[1] = 0;
+
+ 	while (cmd)
+ 	{
+ 		string[0] = '0' + cmd->type;
+ 		tputs(string, 0, ft_putchar);
+ 		while (i < cmd->ac)
+ 		{
+ 			tputs(cmd->av[i], 0, ft_putchar);
+ 			tputs(",", 0, ft_putchar);
+
+ 			i++;
+ 		}
+ 		cmd = cmd->next;
+ 		tputs("\n", 0, ft_putchar);
+ 	}
+ }
 
 void	parse_cmd(t_state *state, int ac)
 {
@@ -38,6 +62,7 @@ void	parse_cmd(t_state *state, int ac)
 			ac--;
 		token = token->next;
 	}
+	print_cmd(state);
 }
 
 void	make_cmd(t_state *state, t_token *start, int ac, int type)
@@ -45,38 +70,32 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 	char	**av;
 	char	*tmp;
 	int		i;
+	int		prev_type;
 
 	if (!ft_calloc(ac + 1, sizeof(char *), (void **)&av))
 		exit(1);
 	i = ac + 1;
 	while (i > 0)
 		av[--i] = 0;
+	prev_type = start->type;
 	while (start && i < ac && start->type != PIPE && start->type != SEMICOLON)
 	{
-		if (start->type == SPACE)
-		{
-			if (av[i])
-				i++;
-		}
+		if (start->type == SPACE && av[i])
+			i++;
 		else
 		{
-			tmp = make_av(state, start, av[i]);
+			if ((start->type >= 4 && start->type <= 6 && av[i]) || (prev_type >= 4 && prev_type <= 6))
+				i++;
+			if (start->type == DOUBLE || start->type == COMMON)
+				check_backslash_and_env(state, start);
+			tmp = ft_strjoin2(av[i], start->str);
 			free(av[i]);
 			av[i] = tmp;
 		}
+		prev_type = start->type;
 		start = start->next;
 	}
 	add_cmd_back(&state->cmd_head, av, type);
-}
-
-char	*make_av(t_state *state, t_token *start, char *str)
-{
-	char	*tmp;
-
-	if (start->type == DOUBLE || start->type == COMMON)
-		check_backslash_and_env(state, start);
-	tmp = ft_strjoin2(str, start->str);
-	return (tmp);
 }
 
 void	add_cmd_back(t_cmd **head, char **av, int type)
