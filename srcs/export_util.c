@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_util.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 16:35:56 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 00:42:15 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 13:01:38 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*make_env_string(char *key, char *value, int has_equal)
 
 	len = check_len(key, value, has_equal);
 	if (!ft_calloc(len, sizeof(char), (void *)& result))
-		exit (1);
+		exit(1);
 	i = 0;
 	j = 0;
 	while (key[i])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   term.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 06:24:33 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 00:58:29 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 13:03:47 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	handle_keycode(t_state *s, int keycode)
 	}
 }
 
-int	term_loop(t_state *s)
+int		term_loop(t_state *s)
 {
 	int	c;
 

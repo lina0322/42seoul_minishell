@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 01:09:04 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 12:57:32 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void	make_path(t_cmd *cmd, char *str)
 	tmp = cmd->av[0];
 	tmp2 = ft_strjoin(str, "/");
 	if (!tmp2)
-		exit (1);
+		exit(1);
 	cmd->av[0] = ft_strjoin(tmp2, cmd->av[0]);
 	if (!cmd->av[0])
-		exit (1);
+		exit(1);
 	free(tmp);
 	free(tmp2);
 }
 
-int	find_success_cmd(t_state *s, t_cmd *cmd, char *path, DIR *dir_ptr)
+int		find_success_cmd(t_state *s, t_cmd *cmd, char *path, DIR *dir_ptr)
 {
 	make_path(cmd, path);
 	closedir(dir_ptr);
@@ -39,7 +39,7 @@ int	find_success_cmd(t_state *s, t_cmd *cmd, char *path, DIR *dir_ptr)
 	return (1);
 }
 
-int	find_simple_cmd(t_cmd *cmd, int *err)
+int		find_simple_cmd(t_cmd *cmd, int *err)
 {
 	struct stat	buf;
 
@@ -60,7 +60,7 @@ int	find_simple_cmd(t_cmd *cmd, int *err)
 	}
 }
 
-int	find_command(t_state *s, t_cmd *cmd)
+int		find_command(t_state *s, t_cmd *cmd)
 {
 	DIR				*dir_ptr;
 	struct dirent	*file;
@@ -134,7 +134,7 @@ void	set_fork_builtin(t_state *s, t_cmd *cmd)
 	}
 }
 
-int	builtin(t_state *s, t_cmd *cmd)
+int		builtin(t_state *s, t_cmd *cmd)
 {
 	if (!ft_strcmp(cmd->av[0], "pwd") || !ft_strcmp(cmd->av[0], "echo")
 		|| !ft_strcmp(cmd->av[0], "env"))

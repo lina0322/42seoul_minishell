@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 15:12:15 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/17 23:09:04 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 13:01:47 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	delete_env(t_env *head, char *key)
 	}
 }
 
-int	check_key(char *key)
+int		check_key(char *key)
 {
 	int	i;
 

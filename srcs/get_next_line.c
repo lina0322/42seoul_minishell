@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 04:34:29 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 00:50:06 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 13:03:02 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_strjoin2(char *s1, char *s2)
 	}
 	len = (ft_strlen(s1)) + (ft_strlen(s2));
 	if (!ft_calloc(sizeof(char *), len + 1, (void *)& res))
-		exit (1);
+		exit(1);
 	i = 0;
 	while (*s1)
 		res[i++] = *s1++;
@@ -94,7 +94,7 @@ int		get_next_line(int fd, char **line)
 	if (fd < 0 || line == 0 || BUFFER_SIZE <= 0)
 		return (GNL_ERROR);
 	if (!ft_calloc(sizeof(char *), BUFFER_SIZE + 1, (void *)& buf))
-		exit (1);
+		exit(1);
 	while ((get_index(back[fd]) == -1)
 		&& ((gnl_read = read(fd, buf, BUFFER_SIZE)) > 0))
 	{

@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 16:19:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 01:26:18 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 13:00:13 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+//todo: check_env_space, check_env, 함수 두개 이동
 
 void	check_backslash_and_env(t_state *state, t_token *start)
 {
@@ -79,7 +81,7 @@ void	check_env(t_state *state, t_token *token)
 			free(value);
 		}
 		if (!token->str || !token->str[i])
-			break;
+			break ;
 		i++;
 	}
 }
@@ -98,26 +100,26 @@ int		check_key_len(char *str)
 	return (len);
 }
 
-char    *changed_str(char *origin, int start, int end, char *insert)
+char	*changed_str(char *origin, int start, int end, char *insert)
 {
-    char    *result;
-    char    *front;
-    char    *front_insert;
-    char    *back;
+	char	*result;
+	char	*front;
+	char	*front_insert;
+	char	*back;
 
-    front = ft_substr(origin, 0, start);
-    front_insert = ft_strjoin2(front, insert);
-    back = ft_substr(origin, end + 1, ft_strlen(origin) - (end - start));
-    result = ft_strjoin2(front_insert, back);
-    free(front);
-    free(back);
+	front = ft_substr(origin, 0, start);
+	front_insert = ft_strjoin2(front, insert);
+	back = ft_substr(origin, end + 1, ft_strlen(origin) - (end - start));
+	result = ft_strjoin2(front_insert, back);
+	free(front);
+	free(back);
 	free(front_insert);
-    return (result);
+	return (result);
 }
 
 void	check_env_space(t_state *state)
 {
-	t_token *token;
+	t_token	*token;
 	char	*temp;
 
 	token = state->token_head;
@@ -172,5 +174,5 @@ char	*removed_space(char *str)
 		i++;
 	}
 	free_2d(strs);
-	return result;
+	return (result);
 }

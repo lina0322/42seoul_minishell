@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 01:52:08 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 01:02:53 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 13:00:26 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	change_dir(t_state *s, char *path)
 	else
 		buf = ft_strdup(path);
 	if (!buf)
-		exit (1);
+		exit(1);
 	ret = chdir(buf);
 	free(buf);
 	return (ret);

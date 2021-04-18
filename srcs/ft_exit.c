@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 01:39:54 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 01:02:36 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 13:01:55 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	is_num_str(char *str)
+int		is_num_str(char *str)
 {
 	int	i;
 

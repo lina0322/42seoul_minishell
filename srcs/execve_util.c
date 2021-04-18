@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve_util.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 06:10:12 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 01:07:16 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 12:58:42 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	**make_new_cmd(t_cmd *cmd, int cnt, char **new)
 	int	j;
 
 	if (!ft_calloc(cnt + 1, sizeof(char *), (void **)& new))
-		exit (1);
+		exit(1);
 	i = 0;
 	j = 0;
 	while (cmd->ac > i)
@@ -46,7 +46,7 @@ char	**make_new_cmd(t_cmd *cmd, int cnt, char **new)
 		{
 			new[j] = ft_strdup(cmd->av[i]);
 			if (!new[j])
-				exit (1);
+				exit(1);
 			j++;
 		}
 		i++;
@@ -79,7 +79,7 @@ void	renewal_cmd(t_cmd *cmd)
 	cmd->ac = cnt;
 }
 
-int	check_redirection(t_cmd *cmd)
+int		check_redirection(t_cmd *cmd)
 {
 	int	i;
 

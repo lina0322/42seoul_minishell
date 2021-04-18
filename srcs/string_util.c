@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   string_util.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 06:22:35 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 00:57:19 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 13:02:46 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_putchar(int c)
+int		ft_putchar(int c)
 {
 	return (write(1, &c, 1));
 }
@@ -25,14 +25,14 @@ char	*ft_strcjoin(char *str, char c)
 	if (!str)
 	{
 		if (!ft_calloc(2, sizeof(char), (void *)& ret))
-			exit (1);
+			exit(1);
 		ret[0] = c;
 		ret[1] = '\0';
 	}
 	else
 	{
 		if (!ft_calloc(ft_strlen(str) + 2, sizeof(char), (void *)& ret))
-			exit (1);
+			exit(1);
 		i = -1;
 		while (str[++i])
 			ret[i] = str[i];
@@ -59,7 +59,7 @@ char	*delete_last_char(char *str)
 		return (0);
 	len = ft_strlen(str);
 	if (!ft_calloc(len, sizeof(char), (void *)& tmp))
-		exit (1);
+		exit(1);
 	i = 0;
 	while (str[i + 1])
 	{

@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 01:03:51 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 13:05:44 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@
 # define IS_DIR 3
 # define NO_F_OR_D 4
 
-typedef struct s_path
+typedef struct		s_path
 {
 	char			*path;
 	struct s_path	*next;
 }					t_path;
 
-typedef struct s_term
+typedef struct		s_term
 {
 	struct termios	term;
 	struct termios	save;
@@ -85,7 +85,7 @@ typedef struct s_term
 	char			*ce;
 }					t_term;
 
-typedef struct s_cmd
+typedef struct		s_cmd
 {
 	char			**av;
 	int				ac;
@@ -97,7 +97,7 @@ typedef struct s_cmd
 	struct s_cmd	*prev;
 }					t_cmd;
 
-typedef struct s_env
+typedef struct		s_env
 {
 	char			*key;
 	char			*value;
@@ -105,20 +105,20 @@ typedef struct s_env
 	struct s_env	*next;
 }					t_env;
 
-typedef struct s_token
+typedef struct		s_token
 {
 	char			*str;
 	int				type;
 	struct s_token	*next;
 }					t_token;
 
-typedef struct s_keypos
+typedef struct		s_keypos
 {
 	int				col;
 	int				row;
 }					t_keypos;
 
-typedef struct s_save
+typedef struct		s_save
 {
 	char			*input;
 	int				flag;
@@ -126,7 +126,7 @@ typedef struct s_save
 	struct s_save	*next;
 }					t_save;
 
-typedef struct s_state
+typedef struct		s_state
 {
 	t_token			*token_head;
 	t_env			*env_head;
@@ -306,7 +306,7 @@ void	check_backslash_and_env(t_state *state, t_token *start);
 void	check_backslash(t_token *token);
 void	check_env(t_state *state, t_token *token);
 int		check_key_len(char *str);
-char    *changed_str(char *origin, int start, int end, char *insert);
+char	*changed_str(char *origin, int start, int end, char *insert);
 void	check_env_space(t_state *state);
 char	*removed_space(char *str);
 

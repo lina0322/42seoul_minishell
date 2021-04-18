@@ -6,13 +6,13 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 11:27:05 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 13:03:29 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// todo: check_token_error, add_token_back, check_syntax_error
+// todo: check_token_error, add_token_back, check_syntax_error, 함수 두개 이동
 
 void	tokenizer(t_state *state)
 {
@@ -64,7 +64,7 @@ void	check_token_error(t_state *state)
 		}
 		else if (token->type >= 4 && token->type <= 6)
 		{
-			if (!token->next || token->next->type == SEMICOLON || 
+			if (!token->next || token->next->type == SEMICOLON ||
 			token->next->type == PIPE)
 				make_cmd(state, token, 1, ERROR_RDIR);
 		}

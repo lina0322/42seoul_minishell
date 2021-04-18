@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 13:55:05 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 01:02:11 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 13:01:26 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	parse_export(t_env *tmp, char *str)
 	while (str[klen] != '=')
 		klen++;
 	if (!ft_calloc(sizeof(char), klen + 1, (void *)& tmp->key))
-		exit (1);
+		exit(1);
 	i = -1;
 	while (++i < klen)
 		tmp->key[i] = str[i];
@@ -33,7 +33,7 @@ int	parse_export(t_env *tmp, char *str)
 	while (str[klen + 1 + vlen] != '\0')
 		vlen++;
 	if (!ft_calloc(sizeof(char), vlen + 1, (void *)& tmp->value))
-		exit (1);
+		exit(1);
 	i = -1;
 	while (++i < vlen)
 		tmp->value[i] = str[i + klen + 1];

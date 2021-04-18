@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cursor.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 06:21:00 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 01:08:00 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 12:54:05 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	get_nbr_len(int n)
+int		get_nbr_len(int n)
 {
 	int	ret;
 
@@ -25,7 +25,7 @@ int	get_nbr_len(int n)
 	return (ret);
 }
 
-void	init_set_cursor(char buf[255], int	*read_ret, int *i, int *flag)
+void	init_set_cursor(char buf[255], int *read_ret, int *i, int *flag)
 {
 	write(0, "\033[6n", 4);
 	*read_ret = read(0, buf, 254);
