@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 14:48:58 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 15:53:39 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,12 +226,14 @@ int					check_deep_syntax_error(int cur_type,
 											int next_type, int has_space);
 void				check_token_error(t_state *state);
 void				return_quote_error(t_state *state, t_token *token);
+int					check_backslash_count(char *input, int i);
+
 /*
 **	token_util
 */
 int					is_operator(char *c, int i);
 int					get_len(char *input, int i);
-int					find_end(char *input, int type, int i);
+int					find_end(t_state *state, int type, int i);
 t_token				*create_token(char *str, int type);
 void				free_token(t_token *token);
 

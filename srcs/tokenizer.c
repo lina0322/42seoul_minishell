@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 13:53:37 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 15:34:10 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	tokenizer(t_state *state)
 		else if (type == DOUBLERIGHT || type == BACKSLASH)
 			count = 2;
 		else if (type == SINGLE || type == DOUBLE)
-			if (!(count = find_end(state->input, type, ++i)))
+			if (!(count = find_end(state, type, ++i)))
 			{
 				i = make_token(state, 1, i - 1, ERROR_QUOTE);
 				break ;

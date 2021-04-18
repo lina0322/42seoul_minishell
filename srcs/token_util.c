@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:41:40 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 13:49:11 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 15:56:04 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,13 @@ int		get_len(char *input, int i)
 	return (len);
 }
 
-int		find_end(char *input, int type, int i)
+int		find_end(t_state *state, int type, int i)
 {
-	int	len;
+	int		len;
+	char	*input;
 
 	len = 1;
+	input = state->input;
 	while (input[i])
 	{
 		if (type == SINGLE && input[i] == '\'')
@@ -65,11 +67,32 @@ int		find_end(char *input, int type, int i)
 		{
 			if (input[i - 1] != '\\')
 				return (len);
+			else if (i >= 2)
+			{
+				if (!(check_backslash_count(input, i) % 2))
+					return (len);
+			}
 		}
 		len++;
 		i++;
 	}
 	return (ERROR);
+}
+
+int		check_backslash_count(char *input, int i)
+{
+	int	count;
+
+	count = 0;
+	i--;
+	while (i >= 0)
+	{
+		if (input[i] != '\\')
+			break ;
+		i--;
+		count++;
+	}
+	return (count);
 }
 
 t_token	*create_token(char *str, int type)
