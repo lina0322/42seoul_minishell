@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 16:19:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 19:35:56 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/18 20:05:04 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ char	*check_env(t_state *state, t_token *token, char *value, int *i)
 {
 	int		len;
 	char	*key;
+	char	*temp;
 
 	len = 0;
 	if (*i > 0 && token->str[*i - 1] == '\\')
@@ -82,7 +83,11 @@ char	*check_env(t_state *state, t_token *token, char *value, int *i)
 		len = check_key_len(&token->str[*i + 1]);
 		key = ft_substr(&token->str[*i + 1], 0, len);
 		if (!ft_strcmp(key, "?"))
-			value = ft_itoa(state->ret);
+		{
+			temp = ft_itoa(state->ret);
+			value = ft_strdup(temp);
+			free(temp);
+		}
 		else
 			value = ft_strdup(find_env_val(state->env_head, key));
 		free(key);
