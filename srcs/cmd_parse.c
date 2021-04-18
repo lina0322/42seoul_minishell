@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 20:54:04 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 21:16:57 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,11 @@ void	make_cmd(t_token *start, int ac, int type, int i)
 	prev_type = start->type;
 	while (start && i < ac && start->type != PIPE && start->type != SEMICOLON)
 	{
-		if (start->type == SPACE && av[i])
-			i++;
+		if (start->type == SPACE)
+ 		{
+ 			if (av[i])
+ 				i++;
+ 		}
 		else
 		{
 			if ((start->type >= 4 && start->type <= 6 && av[i])
