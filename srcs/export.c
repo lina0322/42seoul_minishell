@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 21:28:42 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 13:01:07 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 19:36:21 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_export(t_env *env_head)
 
 	env = env_head;
 	len = check_env_length(env_head);
-	if (!ft_calloc(len + 1, sizeof(char *), (void **)& env_list))
+	if (!ft_calloc(len + 1, sizeof(char *), (void **)&env_list))
 		exit(1);
 	env_list[len] = 0;
 	i = 0;

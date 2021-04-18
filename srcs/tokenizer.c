@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 15:34:10 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 19:37:10 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		make_token(t_state *state, int count, int i, int type)
 	char	*token_str;
 	int		j;
 
-	if (!ft_calloc(count + 1, sizeof(char), (void *)& token_str))
+	if (!ft_calloc(count + 1, sizeof(char), (void *)&token_str))
 		exit(1);
 	j = 0;
 	while (j < count)

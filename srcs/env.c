@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:38:22 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 13:09:00 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 19:31:59 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_env	*create_env(char *key, char *value, int has_equal)
 {
 	t_env	*env;
 
-	if (!ft_calloc(1, sizeof(t_env), (void *)& env))
+	if (!ft_calloc(1, sizeof(t_env), (void *)&env))
 		exit(1);
 	env->key = ft_strdup(key);
 	env->has_equal = has_equal;

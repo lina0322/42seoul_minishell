@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 06:31:30 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 19:17:50 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 19:37:32 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (i >= s_len)
 		return (ft_strdup(""));
 	size = (s_len - i) + 1;
-	if (!ft_calloc(sizeof(char), size + 1, (void *)& res))
+	if (!ft_calloc(sizeof(char), size + 1, (void *)&res))
 		return (0);
 	ft_strlcpy(res, s1 + i, (size + 1));
 	return (res);

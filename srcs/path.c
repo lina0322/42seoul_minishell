@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:29:59 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 14:37:25 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 19:36:49 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_path	*create_path(char *path_str)
 {
 	t_path	*path;
 
-	if (!ft_calloc(1, sizeof(t_path), (void *)& path))
+	if (!ft_calloc(1, sizeof(t_path), (void *)&path))
 		exit(1);
 	path->path = ft_strdup(path_str);
 	path->next = 0;

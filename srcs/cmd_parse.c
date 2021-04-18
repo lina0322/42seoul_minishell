@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 14:42:23 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 19:36:00 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 	char	*tmp;
 	int		i;
 
-	if (!ft_calloc(ac + 1, sizeof(char *), (void **)& av))
+	if (!ft_calloc(ac + 1, sizeof(char *), (void **)&av))
 		exit(1);
 	i = ac + 1;
 	while (i > 0)
@@ -100,11 +100,11 @@ void	add_cmd_back(t_cmd **head, char **av, int type)
 
 t_cmd	*create_cmd(char **av, int ac, int type, t_cmd *prev)
 {
-	t_cmd *cmd;
+	t_cmd	*cmd;
 
 	if (av == NULL)
 		return (NULL);
-	if (!ft_calloc(1, sizeof(t_cmd), (void *)& cmd))
+	if (!ft_calloc(1, sizeof(t_cmd), (void *)&cmd))
 		exit(1);
 	cmd->av = av;
 	cmd->ac = ac;

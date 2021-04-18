@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 04:34:29 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 19:18:24 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 19:36:42 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strjoin2(char *s1, char *s2)
 			return (ft_strdup(s1));
 	}
 	len = (ft_strlen(s1)) + (ft_strlen(s2));
-	if (!ft_calloc(sizeof(char), len + 1, (void *)& res))
+	if (!ft_calloc(sizeof(char), len + 1, (void *)&res))
 		exit(1);
 	i = 0;
 	while (*s1)
@@ -93,7 +93,7 @@ int		get_next_line(int fd, char **line)
 
 	if (fd < 0 || line == 0 || BUFFER_SIZE <= 0)
 		return (GNL_ERROR);
-	if (!ft_calloc(sizeof(char), BUFFER_SIZE + 1, (void *)& buf))
+	if (!ft_calloc(sizeof(char), BUFFER_SIZE + 1, (void *)&buf))
 		exit(1);
 	while ((get_index(back[fd]) == -1)
 		&& ((gnl_read = read(fd, buf, BUFFER_SIZE)) > 0))

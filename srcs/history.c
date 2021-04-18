@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 18:33:51 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 13:02:10 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 19:36:44 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_save	*push_front_save(char *input, t_save *old_head, int flag)
 	t_save	*new;
 
 	new = 0;
-	if (!ft_calloc(1, sizeof(t_save), (void *)& new))
+	if (!ft_calloc(1, sizeof(t_save), (void *)&new))
 		exit(1);
 	new->input = ft_strdup(input);
 	new->prev = 0;

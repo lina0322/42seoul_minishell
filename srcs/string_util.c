@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 06:22:35 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 19:25:04 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 19:36:59 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ char	*ft_strcjoin(char *str, char c)
 
 	if (!str)
 	{
-		if (!ft_calloc(2, sizeof(char), (void *)& ret))
+		if (!ft_calloc(2, sizeof(char), (void *)&ret))
 			exit(1);
 		ret[0] = c;
 		ret[1] = '\0';
 	}
 	else
 	{
-		if (!ft_calloc(ft_strlen(str) + 2, sizeof(char), (void *)& ret))
+		if (!ft_calloc(ft_strlen(str) + 2, sizeof(char), (void *)&ret))
 			exit(1);
 		i = -1;
 		while (str[++i])
@@ -58,7 +58,7 @@ char	*delete_last_char(char *str)
 	if (str == 0)
 		return (0);
 	len = ft_strlen(str);
-	if (!ft_calloc(len, sizeof(char), (void *)& tmp))
+	if (!ft_calloc(len, sizeof(char), (void *)&tmp))
 		exit(1);
 	i = 0;
 	while (str[i + 1])

@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:08:53 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 19:17:46 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 19:37:30 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	if (s == 0 || f == 0)
 		return (0);
 	len = ft_strlen(s);
-	if (!ft_calloc(sizeof(char), len + 1, (void *)& res))
+	if (!ft_calloc(sizeof(char), len + 1, (void *)&res))
 		return (0);
 	i = 0;
 	while (s[i])

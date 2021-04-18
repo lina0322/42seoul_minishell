@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: llim <llim@student.42.fr>                  +#+  +:+       +#+         #
+#    By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/15 17:02:38 by llim              #+#    #+#              #
-#    Updated: 2021/04/18 14:43:15 by llim             ###   ########.fr        #
+#    Updated: 2021/04/18 19:35:27 by dhyeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	minishell
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address -arch x86_64
+CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address #-arch x86_64
 SRCS	=	srcs/main.c\
 			srcs/signal.c \
 			srcs/prompt.c \
@@ -42,7 +42,8 @@ SRCS	=	srcs/main.c\
 			srcs/cursor.c \
 			srcs/history.c \
 			srcs/press_arrow.c \
-			srcs/free.c
+			srcs/free.c \
+			srcs/builtin.c
 
 INCS	=	-I includes -I libft
 OBJS	=	$(SRCS:.c=.o)

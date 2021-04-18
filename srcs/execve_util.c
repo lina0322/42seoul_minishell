@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve_util.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 06:10:12 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 12:58:42 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 19:32:14 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**make_new_cmd(t_cmd *cmd, int cnt, char **new)
 	int	i;
 	int	j;
 
-	if (!ft_calloc(cnt + 1, sizeof(char *), (void **)& new))
+	if (!ft_calloc(cnt + 1, sizeof(char *), (void **)&new))
 		exit(1);
 	i = 0;
 	j = 0;
