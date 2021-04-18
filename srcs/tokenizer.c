@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 13:03:29 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 13:27:56 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,26 +51,34 @@ void	check_token_error(t_state *state)
 	while (token)
 	{
 		if (token->type <= ERROR_QUOTE)
-		{
-			type = token->type;
-			if (token->next)
-			{
-				if (token->next->type <= ERROR_PIPE2)
-					type = token->next->type;
-			}
-			make_cmd(state, token, 1, type);
-			free_token(state->token_head);
-			return ;
-		}
+			return return_quote_error(state, token);
 		else if (token->type >= 4 && token->type <= 6)
 		{
 			if (!token->next || token->next->type == SEMICOLON ||
 			token->next->type == PIPE)
+			{
 				make_cmd(state, token, 1, ERROR_RDIR);
+				free_token(state->token_head);
+				return ;
+			}
 		}
 		token = token->next;
 	}
 	parse_cmd(state);
+	free_token(state->token_head);
+}
+
+void	return_quote_error(t_state *state, t_token *token)
+{
+	int		type;
+
+	type = token->type;
+	if (token->next)
+	{
+		if (token->next->type <= ERROR_PIPE2)
+			type = token->next->type;
+	}
+	make_cmd(state, token, 1, type);
 	free_token(state->token_head);
 }
 
@@ -93,19 +101,11 @@ int		make_token(t_state *state, int count, int i, int type)
 void	add_token_back(t_token **head, char *str, int type)
 {
 	t_token *token;
-	int		i;
 	int		token_type;
 	int		cur_type;
 	int		has_space;
 
-	if (type == SINGLE || type == DOUBLE)
-		str[ft_strlen(str) - 1] = '\0';
-	else if (type == BACKSLASH)
-	{
-		i = 0;
-		str[i] = str[i + 1];
-		str[i + 1] = '\0';
-	}
+	str = trim_str(str, type);
 	has_space = FALSE;
 	if (*head == NULL)
 	{
@@ -121,6 +121,21 @@ void	add_token_back(t_token **head, char *str, int type)
 		token_type = check_syntax_error(cur_type, type, has_space);
 		token->next = create_token(str, token_type);
 	}
+}
+
+char	*trim_str(char *str, int type)
+{
+	int	i;
+
+	if (type == SINGLE || type == DOUBLE)
+		str[ft_strlen(str) - 1] = '\0';
+	else if (type == BACKSLASH)
+	{
+		i = 0;
+		str[i] = str[i + 1];
+		str[i + 1] = '\0';
+	}
+	return (str);
 }
 
 int		find_cur_type(t_token **head, int *has_space)
@@ -155,24 +170,33 @@ int		check_syntax_error(int cur_type, int next_type, int has_space)
 	}
 	else if ((cur_type >= PIPE || cur_type <= ERROR_PIPE) && next_type >= PIPE)
 	{
-		if (cur_type == PIPE || cur_type == ERROR_PIPE)
-		{
-			if (next_type == PIPE)
-				type = ERROR_PIPE2;
-			else if (next_type == SEMICOLON)
-				type = ERROR_COLON;
-			else if (has_space)
-				type = ERROR_PIPE;
-		}
-		else if (cur_type == SEMICOLON || cur_type == ERROR_COLON)
-		{
-			if (next_type == SEMICOLON)
-				type = ERROR_COLON2;
-			else if (next_type == PIPE)
-				type = ERROR_PIPE;
-			else if (has_space)
-				type = ERROR_COLON;
-		}
+		type = check_deep_syntax_error(cur_type, next_type, has_space);
+	}
+	return (type);
+}
+
+int		check_deep_syntax_error(int cur_type, int next_type, int has_space)
+{
+	int	type;
+	
+	type = next_type;
+	if (cur_type == PIPE || cur_type == ERROR_PIPE)
+	{
+		if (next_type == PIPE)
+			type = ERROR_PIPE2;
+		else if (next_type == SEMICOLON)
+			type = ERROR_COLON;
+		else if (has_space)
+			type = ERROR_PIPE;
+	}
+	else if (cur_type == SEMICOLON || cur_type == ERROR_COLON)
+	{
+		if (next_type == SEMICOLON)
+			type = ERROR_COLON2;
+		else if (next_type == PIPE)
+			type = ERROR_PIPE;
+		else if (has_space)
+			type = ERROR_COLON;
 	}
 	return (type);
 }
