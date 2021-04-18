@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 20:52:21 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 21:25:17 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ t_state				g_state;
 */
 void				init_state(t_state *state);
 void				prepare_token_and_cmd(t_state *state);
+void				jump_space(char *str, int *i);
 
 /*
 **	free

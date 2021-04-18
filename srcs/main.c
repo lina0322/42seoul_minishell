@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:26:45 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 19:36:47 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/18 21:26:48 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,10 @@ void	init_state(t_state *state)
 {
 	ft_memset((void *)state, 0, sizeof(t_state));
 	tcgetattr(0, &state->t.save);
+}
+
+void	jump_space(char *str, int *i)
+{
+	if (str)
+		*i = *i + 1;
 }
