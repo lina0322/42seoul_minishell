@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:51:53 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 19:36:56 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/18 19:51:01 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	handle_signal(int signo)
 			if (g_state.input)
 				free(g_state.input);
 			g_state.input = 0;
+			g_state.ret = 1;
 		}
 		else
 		{

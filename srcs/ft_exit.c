@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 01:39:54 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 13:01:55 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 19:47:20 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int		is_num_str(char *str)
 
 void	exit_not_num(t_cmd *cmd)
 {
-	printf("bash: exit: %s: numeric argument required", cmd->av[1]);
+	printf("exit\n");
+	printf("bash: exit: %s: numeric argument required\n", cmd->av[1]);
 	exit(255);
 }
 
@@ -48,7 +49,7 @@ void	ft_exit(t_state *state, t_cmd *cmd)
 		if (is_num_str(cmd->av[1]))
 		{
 			ret = ft_atoi(cmd->av[1]);
-			printf("%d\n", ret);
+			printf("exit\n");
 			exit(ret);
 		}
 		else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 13:02:21 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 19:51:25 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	handle_eof(t_state *s, char *input)
 	{
 		printf("exit\n");
 		tcsetattr(STDIN_FILENO, TCSANOW, &s->t.save);
-		exit(1);
+		exit(0);
 	}
 }
 
