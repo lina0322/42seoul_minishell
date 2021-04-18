@@ -6,35 +6,11 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 20:48:14 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 20:54:04 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-///for test
- void	print_cmd(t_state *state)
- {
- 	t_cmd	*cmd = state->cmd_head;
- 	int		i = 0;
- 	char string[2];
- 	string[1] = 0;
-
- 	while (cmd)
- 	{
- 		string[0] = '0' + cmd->type;
- 		tputs(string, 0, ft_putchar);
- 		while (i < cmd->ac)
- 		{
- 			tputs(cmd->av[i], 0, ft_putchar);
- 			tputs(",", 0, ft_putchar);
-
- 			i++;
- 		}
- 		cmd = cmd->next;
- 		tputs("\n", 0, ft_putchar);
- 	}
- }
 
 void	parse_cmd(t_state *state, int ac)
 {
@@ -62,7 +38,6 @@ void	parse_cmd(t_state *state, int ac)
 			ac--;
 		token = token->next;
 	}
-//	print_cmd(state);
 }
 
 void	make_cmd(t_token *start, int ac, int type, int i)
@@ -94,7 +69,7 @@ void	make_cmd(t_token *start, int ac, int type, int i)
 	add_cmd_back(&g_state.cmd_head, av, type);
 }
 
-char 	**make_empty_av(int ac)
+char	**make_empty_av(int ac)
 {
 	int		i;
 	char	**av;

@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 20:42:00 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 20:52:21 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -316,7 +316,7 @@ int					builtin(t_state *s, t_cmd *cmd);
 */
 void				parse_cmd(t_state *state, int ac);
 void				make_cmd(t_token *start, int ac, int type, int i);
-char 				**make_empty_av(int ac);
+char				**make_empty_av(int ac);
 void				add_cmd_back(t_cmd **head, char **av, int type);
 t_cmd				*create_cmd(char **av, int ac, int type, t_cmd *prev);
 
