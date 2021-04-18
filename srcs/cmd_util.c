@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 16:19:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 14:45:37 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 16:06:09 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ char	*removed_space(char *str)
 	i = 0;
 	result = 0;
 	temp = 0;
+	if (!str)
+		return (result);
 	while (strs[i])
 	{
 		if (i != 0)
