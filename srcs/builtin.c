@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 19:33:38 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 19:35:52 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/18 20:19:21 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@ int		builtin(t_state *s, t_cmd *cmd)
 		|| !ft_strcmp(cmd->av[0], "env"))
 	{
 		set_fork_builtin(s, cmd);
+		return (1);
+	}
+	else if (!ft_strcmp(cmd->av[0], "exit") && (cmd->type == PIPE_TYPE
+		|| (cmd->next != 0 && cmd->next->type == PIPE_TYPE)))
+	{
+		s->ret = 0;
 		return (1);
 	}
 	else if (!ft_strcmp(cmd->av[0], "cd") || !ft_strcmp(cmd->av[0], "exit")
