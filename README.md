@@ -99,8 +99,11 @@
     - dhyeon👸🏻 : execve, check_redirection
     - llim👩🏻‍💻 : 따옴표 에러일때 tokenizer, paser_cmd에서 에러 처리 | $? 그대로 넘기기
 
-### 열세번째 만남: 4/17일(토) 19:00
+### 열네번째 만남: 4/17일(토) 19:00
 - 🧾 회의 내용 : 마무리 작업
 - ⚖️ 업무 분담
     - dhyeon👸🏻 : return value
     - llim👩🏻‍💻 : 리다이렉션 syntax error 처리, $? error code, export 에서 ""안에 스페이스 1개로 처리, eaks Check, echo "  \\\" \$HOME $HOME  "
+
+### 열다섯번째 만남: 4/18일(토) 20:00
+- 다ㅏㅏㅏㅏㅏㅏㅏ했다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ
