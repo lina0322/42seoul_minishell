@@ -6,13 +6,11 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 13:27:56 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 13:28:53 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// todo: check_token_error, add_token_back, check_syntax_error, 함수 두개 이동
 
 void	tokenizer(t_state *state)
 {

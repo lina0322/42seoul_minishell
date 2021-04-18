@@ -6,25 +6,21 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 12:54:25 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 13:36:43 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// todo: parse_cmd, make_cmd 줄수
-
-void	parse_cmd(t_state *state)
+void	parse_cmd(t_state *state, int ac)
 {
 	t_token	*token;
 	t_token *start;
 	int		type;
-	int		ac;
 
 	token = state->token_head;
 	start = state->token_head;
 	type = NORMAL_TYPE;
-	ac = 0;
 	while (token)
 	{
 		ac++;
@@ -64,15 +60,23 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 		}
 		else
 		{
-			if (start->type == DOUBLE || start->type == COMMON)
-				check_backslash_and_env(state, start);
-			tmp = ft_strjoin2(av[i], start->str);
+			tmp = make_av(state, start, av[i]);
 			free(av[i]);
 			av[i] = tmp;
 		}
 		start = start->next;
 	}
 	add_cmd_back(&state->cmd_head, av, type);
+}
+
+char	*make_av(t_state *state, t_token *start, char *av)
+{
+	char	*tmp;
+	
+	if (start->type == DOUBLE || start->type == COMMON)
+		check_backslash_and_env(state, start);
+	tmp = ft_strjoin2(av[i], start->str);
+	return (tmp);
 }
 
 void	add_cmd_back(t_cmd **head, char **av, int type)
