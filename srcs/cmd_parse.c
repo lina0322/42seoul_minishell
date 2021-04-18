@@ -3,38 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 00:49:54 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 02:10:10 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-///for test
-void	print_cmd(t_state *state)
-{
-	t_cmd	*cmd = state->cmd_head;
-	int		i = 0;
-	char string[2];
-	string[1] = 0;
-
-	while (cmd)
-	{
-		string[0] = '0' + cmd->type;
-		tputs(string, 0, ft_putchar);
-		while (i < cmd->ac)
-		{
-			tputs(cmd->av[i], 0, ft_putchar);
-			tputs(",", 0, ft_putchar);
-
-			i++;
-		}
-		cmd = cmd->next;
-		tputs("\n", 0, ft_putchar);
-	}
-}
+// todo: parse_cmd, make_cmd 줄수
 
 void	parse_cmd(t_state *state)
 {
@@ -64,7 +42,6 @@ void	parse_cmd(t_state *state)
 			ac--;
 		token = token->next;
 	}
-	print_cmd(state);
 }
 
 void	make_cmd(t_state *state, t_token *start, int ac, int type)
@@ -124,7 +101,7 @@ t_cmd	*create_cmd(char **av, int ac, int type, t_cmd *prev)
 	if (av == NULL)
 		return (NULL);
 	if (!ft_calloc(1, sizeof(t_cmd), (void *)& cmd))
-		exit (1);
+		exit(1);
 	cmd->av = av;
 	cmd->ac = ac;
 	cmd->type = type;

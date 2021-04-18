@@ -6,23 +6,13 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 01:04:14 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 11:27:05 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_token(t_state *state)
-{
-	t_token *token;
-
-	token = state->token_head;
-	while (token)
-	{
-		printf("%s, %i\n", token->str, token->type);
-		token = token->next;
-	}
-}
+// todo: check_token_error, add_token_back, check_syntax_error
 
 void	tokenizer(t_state *state)
 {
@@ -70,12 +60,12 @@ void	check_token_error(t_state *state)
 			}
 			make_cmd(state, token, 1, type);
 			free_token(state->token_head);
-			// print_cmd2(state);
-			return;
+			return ;
 		}
 		else if (token->type >= 4 && token->type <= 6)
 		{
-			if (!token->next || token->next->type == SEMICOLON || token->next->type == PIPE)
+			if (!token->next || token->next->type == SEMICOLON || 
+			token->next->type == PIPE)
 				make_cmd(state, token, 1, ERROR_RDIR);
 		}
 		token = token->next;
@@ -90,7 +80,7 @@ int		make_token(t_state *state, int count, int i, int type)
 	int		j;
 
 	if (!ft_calloc(count + 1, sizeof(char), (void *)& token_str))
-		exit (1);
+		exit(1);
 	j = 0;
 	while (j < count)
 		token_str[j++] = state->input[i++];
@@ -148,7 +138,7 @@ int		find_cur_type(t_token **head, int *has_space)
 			*has_space = TRUE;
 		token = token->next;
 	}
-	return type;
+	return (type);
 }
 
 int		check_syntax_error(int cur_type, int next_type, int has_space)
@@ -192,7 +182,7 @@ t_token	*create_token(char *str, int type)
 	t_token *token;
 
 	if (!ft_calloc(1, sizeof(t_token), (void *)& token))
-		exit (1);
+		exit(1);
 	token->str = ft_strdup(str);
 	token->type = type;
 	token->next = 0;

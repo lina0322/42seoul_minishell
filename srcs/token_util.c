@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   token_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:41:40 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 00:59:46 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 11:27:30 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	is_operator(char *c, int i)
+int		is_operator(char *c, int i)
 {
 	if (c[i] == '\'')
 		return (SINGLE);
@@ -37,7 +37,7 @@ int	is_operator(char *c, int i)
 	return (COMMON);
 }
 
-int	get_len(char *input, int i)
+int		get_len(char *input, int i)
 {
 	int	len;
 
@@ -52,7 +52,7 @@ int	get_len(char *input, int i)
 	return (len);
 }
 
-int	find_end(char *input, int type, int i)
+int		find_end(char *input, int type, int i)
 {
 	int	len;
 
