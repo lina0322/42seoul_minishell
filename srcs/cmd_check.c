@@ -6,18 +6,16 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 16:19:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 13:00:13 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 14:42:26 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//todo: check_env_space, check_env, 함수 두개 이동
-
 void	check_backslash_and_env(t_state *state, t_token *start)
 {
 	check_backslash(start);
-	check_env(state, start);
+	check_dollar_sign(state, start);
 	check_env_space(state);
 }
 
@@ -44,41 +42,26 @@ void	check_backslash(t_token *token)
 	}
 }
 
-void	check_env(t_state *state, t_token *token)
+void	check_dollar_sign(t_state *state, t_token *token)
 {
 	int		i;
-	int		len;
-	char	*key;
 	char	*value;
 	char	*temp;
 
 	i = 0;
 	while (token->str[i])
 	{
-		value = NULL;
-		len = 0;
 		if (token->str[i] == '$')
 		{
-			if (i > 0 && token->str[i - 1] == '\\')
-				i--;
-			else if (token->str[i + 1])
-			{
-				len = check_key_len(&token->str[i + 1]);
-				key = ft_substr(&token->str[i + 1], 0, len);
-				if (!ft_strcmp(key, "?"))
-					value = ft_itoa(state->ret);
-				else
-					value = ft_strdup(find_env_val(state->env_head, key));
-				free(key);
-			}
-			temp = changed_str(token->str, i, i + len, value);
+			value = NULL;
+			temp = check_env(state, token, value, &i);
+			free(value);
 			free(token->str);
 			if (temp)
 			{
 				token->str = ft_strdup(temp);
 				free(temp);
 			}
-			free(value);
 		}
 		if (!token->str || !token->str[i])
 			break ;
@@ -86,18 +69,25 @@ void	check_env(t_state *state, t_token *token)
 	}
 }
 
-int		check_key_len(char *str)
+char	*check_env(t_state *state, t_token *token, char *value, int *i)
 {
-	int len;
+	int		len;
+	char	*key;
 
 	len = 0;
-	while (str[len])
+	if (*i > 0 && token->str[*i - 1] == '\\')
+		*i = *i - 1;
+	else if (token->str[*i + 1])
 	{
-		if (str[len] == '\'' || str[len] == ' ')
-			break ;
-		len++;
+		len = check_key_len(&token->str[*i + 1]);
+		key = ft_substr(&token->str[*i + 1], 0, len);
+		if (!ft_strcmp(key, "?"))
+			value = ft_itoa(state->ret);
+		else
+			value = ft_strdup(find_env_val(state->env_head, key));
+		free(key);
 	}
-	return (len);
+	return (changed_str(token->str, *i, *i + len, value));
 }
 
 char	*changed_str(char *origin, int start, int end, char *insert)
@@ -114,65 +104,5 @@ char	*changed_str(char *origin, int start, int end, char *insert)
 	free(front);
 	free(back);
 	free(front_insert);
-	return (result);
-}
-
-void	check_env_space(t_state *state)
-{
-	t_token	*token;
-	char	*temp;
-
-	token = state->token_head;
-	while (token)
-	{
-		if (!ft_strcmp(token->str, "echo"))
-		{
-			token = token->next;
-			while (token && token->type != SEMICOLON && token->type != PIPE)
-			{
-				if (token->type == COMMON)
-				{
-					temp = removed_space(token->str);
-					free(token->str);
-					if (temp)
-					{
-						token->str = ft_strdup(temp);
-						free(temp);
-					}
-					else
-						token->str = 0;
-				}
-				token = token->next;
-			}
-		}
-		if (token)
-			token = token->next;
-	}
-}
-
-char	*removed_space(char *str)
-{
-	char	**strs;
-	char	*result;
-	char	*temp;
-	char	*temp2;
-	int		i;
-
-	strs = ft_split(str, ' ');
-	i = 0;
-	result = 0;
-	temp = 0;
-	while (strs[i])
-	{
-		if (i != 0)
-			temp = ft_strjoin2(result, " ");
-		temp2 = ft_strjoin2(temp, strs[i]);
-		free(result);
-		result = ft_strdup(temp2);
-		free(temp);
-		free(temp2);
-		i++;
-	}
-	free_2d(strs);
 	return (result);
 }

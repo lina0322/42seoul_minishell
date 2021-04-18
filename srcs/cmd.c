@@ -6,29 +6,11 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 12:57:32 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 14:37:25 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	make_path(t_cmd *cmd, char *str)
-{
-	char	*tmp;
-	char	*tmp2;
-
-	(void)cmd;
-	(void)tmp;
-	tmp = cmd->av[0];
-	tmp2 = ft_strjoin(str, "/");
-	if (!tmp2)
-		exit(1);
-	cmd->av[0] = ft_strjoin(tmp2, cmd->av[0]);
-	if (!cmd->av[0])
-		exit(1);
-	free(tmp);
-	free(tmp2);
-}
 
 int		find_success_cmd(t_state *s, t_cmd *cmd, char *path, DIR *dir_ptr)
 {

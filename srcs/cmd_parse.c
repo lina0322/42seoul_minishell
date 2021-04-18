@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 13:51:35 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 14:42:23 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,20 +112,4 @@ t_cmd	*create_cmd(char **av, int ac, int type, t_cmd *prev)
 	cmd->next = 0;
 	cmd->prev = prev;
 	return (cmd);
-}
-
-void	free_cmd(t_cmd *cmd)
-{
-	t_cmd	*tmp;
-	t_cmd	*next;
-
-	tmp = cmd;
-	while (tmp)
-	{
-		if (tmp->av)
-			free_2d(tmp->av);
-		next = tmp->next;
-		free(tmp);
-		tmp = next;
-	}
 }

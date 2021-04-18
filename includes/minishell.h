@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 14:08:48 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 14:42:29 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,33 +292,42 @@ void				parse_path(t_state *state);
 void				add_path_back(t_path **head, char *path_str);
 t_path				*create_path(char *path_str);
 void				free_path(t_path *path);
+void				make_path(t_cmd *cmd, char *str);
 
 /*
 **	cmd
 */
-void				make_path(t_cmd *cmd, char *str);
-int					find_command(t_state *s, t_cmd *cmd);
-int					builtin(t_state *s, t_cmd *cmd);
+int					find_success_cmd(t_state *s, t_cmd *cmd, char *path, DIR *dir_ptr);
 int					find_simple_cmd(t_cmd *cmd, int *err);
+int					find_command(t_state *s, t_cmd *cmd);
+void				execute_builtin(t_state *s, t_cmd *cmd);
+void				set_fork_builtin(t_state *s, t_cmd *cmd);
+int					builtin(t_state *s, t_cmd *cmd);
 /*
 **	cmd_parse
 */
 void				parse_cmd(t_state *state, int ac);
 void				make_cmd(t_state *state, t_token *start, int ac, int type);
+char				*make_av(t_state *state, t_token *start, char *str);
 void				add_cmd_back(t_cmd **head, char **av, int type);
 t_cmd				*create_cmd(char **av, int ac, int type, t_cmd *prev);
-void				free_cmd(t_cmd *cmd);
-char				*make_av(t_state *state, t_token *start, char *av);
 /*
 **	cmd_check
 */
 void				check_backslash_and_env(t_state *state, t_token *start);
 void				check_backslash(t_token *token);
-void				check_env(t_state *state, t_token *token);
-int					check_key_len(char *str);
+void				check_dollar_sign(t_state *state, t_token *token);
+char				*check_env(t_state *state, t_token *token, char *value, int *i);
 char				*changed_str(char *origin, int start,
 								int end, char *insert);
+
+/*
+**	cmd_util
+*/
+void				free_cmd(t_cmd *cmd);
 void				check_env_space(t_state *state);
+void				remove_space(t_token *token);
 char				*removed_space(char *str);
+int					check_key_len(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: llim <llim@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/15 17:02:38 by llim              #+#    #+#              #
-#    Updated: 2021/04/18 13:53:08 by llim             ###   ########.fr        #
+#    Updated: 2021/04/18 14:43:15 by llim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS	=	srcs/main.c\
 			srcs/cmd.c \
 			srcs/cmd_parse.c \
 			srcs/cmd_check.c \
+			srcs/cmd_util.c \
 			srcs/path.c \
 			srcs/execve.c \
 			srcs/execve_util.c \
