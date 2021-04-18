@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 13:11:38 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 13:41:42 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,9 @@ int		make_token(t_state *state, int count, int i, int type);
 void	add_token_back(t_token **head, char *str, int type);
 t_token	*create_token(char *str, int type);
 void	check_token_error(t_state *state);
+void	return_quote_error(t_state *state, t_token *token);
+char	*trim_str(char *str, int type);
+int		check_deep_syntax_error(int cur_type, int next_type, int has_space);
 
 /*
 **	token_util
@@ -294,11 +297,12 @@ int		find_simple_cmd(t_cmd *cmd, int *err);
 /*
 **	cmd_parse
 */
-void	parse_cmd(t_state *state);
+void	parse_cmd(t_state *state, int ac);
 void	make_cmd(t_state *state, t_token *start, int ac, int type);
 void	add_cmd_back(t_cmd **head, char **av, int type);
 t_cmd	*create_cmd(char **av, int ac, int type, t_cmd *prev);
 void	free_cmd(t_cmd *cmd);
+char	*make_av(t_state *state, t_token *start, char *av);
 /*
 **	cmd_check
 */

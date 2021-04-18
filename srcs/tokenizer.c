@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 13:28:53 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 13:42:37 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,12 @@ void	tokenizer(t_state *state)
 			}
 		i = make_token(state, count, i, type);
 	}
-	print_token(state);
 	check_token_error(state);
 }
 
 void	check_token_error(t_state *state)
 {
 	t_token	*token;
-	int		type;
 
 	token = state->token_head;
 	while (token)
@@ -62,7 +60,7 @@ void	check_token_error(t_state *state)
 		}
 		token = token->next;
 	}
-	parse_cmd(state);
+	parse_cmd(state, 0);
 	free_token(state->token_head);
 }
 

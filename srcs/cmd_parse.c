@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 13:42:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 13:36:43 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 13:41:38 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ void	make_cmd(t_state *state, t_token *start, int ac, int type)
 	add_cmd_back(&state->cmd_head, av, type);
 }
 
-char	*make_av(t_state *state, t_token *start, char *av)
+char	*make_av(t_state *state, t_token *start, char *str)
 {
 	char	*tmp;
 	
 	if (start->type == DOUBLE || start->type == COMMON)
 		check_backslash_and_env(state, start);
-	tmp = ft_strjoin2(av[i], start->str);
+	tmp = ft_strjoin2(str, start->str);
 	return (tmp);
 }
 
