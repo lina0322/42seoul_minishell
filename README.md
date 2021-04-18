@@ -1,6 +1,8 @@
 # 42seoul_minishell
 ### 👯‍♀️42seoul minishell - dhyeon👸🏻 llim👩🏻‍💻  
 
+<img width="400" src="https://user-images.githubusercontent.com/49546979/115144788-8e1a8b00-a089-11eb-9f55-cea575bd3e18.png">
+
 ## 컨벤션
 ### C
 - Norm v3.를 따른다
