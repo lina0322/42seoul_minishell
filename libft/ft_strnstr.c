@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 04:23:24 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/12 23:47:07 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/18 13:12:30 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	sfind(const char *s, const char *f, size_t s_pos, size_t n)
+int		sfind(const char *s, const char *f, size_t s_pos, size_t n)
 {
 	size_t	f_pos;
 

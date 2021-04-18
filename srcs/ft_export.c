@@ -6,13 +6,13 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 13:55:05 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 13:01:26 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/18 13:06:58 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	parse_export(t_env *tmp, char *str)
+int		parse_export(t_env *tmp, char *str)
 {
 	int	klen;
 	int	vlen;
@@ -41,7 +41,7 @@ int	parse_export(t_env *tmp, char *str)
 	return (1);
 }
 
-int	check_key2(char *key)
+int		check_key2(char *key)
 {
 	int	i;
 

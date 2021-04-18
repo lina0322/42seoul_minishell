@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 09:53:35 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 00:46:08 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 13:12:52 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*ft_itoa(int n)
 	if (n == 0)
 		i = 1;
 	if (!ft_calloc(sizeof(char *), i + 1, (void *)& res))
-		exit (1);
+		exit(1);
 	res = ft_to_num(res, n, (i - 1));
 	res[i] = '\0';
 	return (res);

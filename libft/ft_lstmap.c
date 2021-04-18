@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 01:34:16 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/30 19:17:21 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/18 13:09:36 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	lstnew_protect(void *content, t_list **tmp)
+int		lstnew_protect(void *content, t_list **tmp)
 {
 	*tmp = ft_lstnew(content);
 	if (!tmp)

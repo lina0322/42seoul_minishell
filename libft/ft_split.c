@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 08:12:58 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 00:39:22 by dhyeon           ###   ########seoul.kr  */
+/*   Updated: 2021/04/18 13:10:08 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_str_cnt(char const *s, char c)
+int		ft_str_cnt(char const *s, char c)
 {
 	int	cnt;
 	int	i;
@@ -33,7 +33,7 @@ int	ft_str_cnt(char const *s, char c)
 	return (cnt);
 }
 
-int	ft_get_len(char const *s, char c, int i)
+int		ft_get_len(char const *s, char c, int i)
 {
 	int	len;
 
@@ -59,7 +59,7 @@ char	**ft_all_free(char **res)
 		i++;
 	}
 	free(res);
-	exit (1);
+	exit(1);
 }
 
 char	**ft_put_str(char **res, char const *s, char c)
@@ -100,7 +100,7 @@ char	**ft_split(char const *s, char c)
 		return (0);
 	n = ft_str_cnt(s, c);
 	if (!ft_calloc(sizeof(char **), n + 1, (void **)& res))
-		exit (1);
+		exit(1);
 	res = ft_put_str(res, s, c);
 	if (res == 0)
 		return (0);

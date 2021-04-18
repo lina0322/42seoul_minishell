@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 06:31:30 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/03/13 00:02:28 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/18 13:12:08 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isset(char c, char const *set)
+int		ft_isset(char c, char const *set)
 {
 	int	i;
 
