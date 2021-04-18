@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:29:59 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 19:36:49 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/18 21:36:04 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	free_path(t_path *path)
 		free(tmp);
 		tmp = next;
 	}
+	path = 0;
 }
 
 void	make_path(t_cmd *cmd, char *str)

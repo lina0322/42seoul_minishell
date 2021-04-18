@@ -6,7 +6,7 @@
 /*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 02:00:20 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 19:34:01 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/18 21:38:22 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		find_simple_cmd(t_cmd *cmd, int *err)
 int		find_command(t_state *s, t_cmd *cmd)
 {
 	DIR				*dir_ptr;
-	struct dirent	*file;
+	struct dirent	*f;
 	t_path			*p;
 
 	parse_path(s);
@@ -55,18 +55,18 @@ int		find_command(t_state *s, t_cmd *cmd)
 		dir_ptr = opendir(p->path);
 		while (dir_ptr)
 		{
-			file = readdir(dir_ptr);
-			if (file == 0)
+			f = readdir(dir_ptr);
+			if (f == 0)
 				break ;
-			else if (!ft_strcmp(file->d_name, ".")
-					|| !ft_strcmp(file->d_name, ".."))
+			else if (!ft_strcmp(f->d_name, ".") || !ft_strcmp(f->d_name, ".."))
 				continue ;
-			else if (!ft_strcmp(cmd->av[0], file->d_name))
+			else if (!ft_strcmp(cmd->av[0], f->d_name))
 				return (find_success_cmd(s, cmd, p->path, dir_ptr));
 		}
 		p = p->next;
 		closedir(dir_ptr);
 	}
 	free_path(s->path_head);
+	s->path_head = 0;
 	return (0);
 }
