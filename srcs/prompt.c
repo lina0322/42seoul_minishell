@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:58:57 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 19:51:25 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/19 21:46:08 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	prompt2(t_state *s)
 		if (term_loop(s) == 0)
 		{
 			reset_save(s);
+			if (g_state.input)
+				g_state.input2 = ft_strdup(g_state.input);
 			break ;
 		}
 		else

@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:26:45 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/19 20:20:04 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/19 21:39:57 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	prepare_token_and_cmd(t_state *state)
 	state->path_head = 0;
 	free(state->input);
 	state->input = 0;
+	free(state->input2);
+	state->input2 = 0;
 	reset_save(state);
 }
 

@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/19 20:20:31 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/19 21:39:42 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ typedef struct		s_state
 	t_save			*save_head;
 	int				s_flag;
 	char			*input;
+	char			*input2;
 	int				is_fork;
 	int				ret;
 	t_keypos		cur;

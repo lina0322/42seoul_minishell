@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 22:38:22 by llim              #+#    #+#             */
-/*   Updated: 2021/04/19 20:22:04 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/19 21:39:21 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	change_dollar_sign(int i)
 	char	*value;
 	char	*input;
 
-	input = g_state.input;
+	input = g_state.input2;
 	len = check_key_len(&input[i + 1]);
 	key = ft_substr(&input[i + 1], 0, len);
 	if (!ft_strcmp(key, "?"))
@@ -93,7 +93,7 @@ void	change_dollar_sign(int i)
 		value = ft_strdup(find_env_val(g_state.env_head, key));
 	free(key);
 	temp = changed_str(input, i, i + len, value);
-	free(g_state.input);
-	g_state.input = ft_strdup(temp);
+	free(g_state.input2);
+	g_state.input2 = ft_strdup(temp);
 	free(temp);
 }
