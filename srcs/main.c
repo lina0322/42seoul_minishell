@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:26:45 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 21:28:33 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/19 20:20:04 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		main(int argc, char **argv, char *envp[])
 	{
 		prompt2(&g_state);
 		tcsetattr(0, TCSANOW, &g_state.t.save);
-		tokenizer(&g_state);
+		tokenizer(0, 1);
 		execute(&g_state, g_state.cmd_head, envp);
 		prepare_token_and_cmd(&g_state);
 	}

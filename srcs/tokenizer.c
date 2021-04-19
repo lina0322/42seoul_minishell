@@ -3,40 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 19:55:03 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 19:37:10 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/19 20:21:50 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	tokenizer(t_state *state)
+void	tokenizer(int i, int count)
 {
 	int		type;
-	int		count;
-	int		i;
 
-	if (!state->input)
+	if (!g_state.input)
 		return ;
-	i = 0;
-	while (state->input[i])
+	while (g_state.input[i])
 	{
 		count = 1;
-		if (!(type = is_operator(state->input, i)))
-			count = get_len(state->input, i);
+		if (!(type = is_operator(g_state.input, i)))
+			count = get_len(g_state.input, i);
 		else if (type == DOUBLERIGHT || type == BACKSLASH)
 			count = 2;
+		else if (type == DOLLAR)
+		{
+			change_dollar_sign(i);
+			continue ;
+		}
 		else if (type == SINGLE || type == DOUBLE)
-			if (!(count = find_end(state, type, ++i)))
+			if (!(count = find_end(&g_state, type, ++i)))
 			{
-				i = make_token(state, 1, i - 1, ERROR_QUOTE);
+				i = make_token(&g_state, 1, i - 1, ERROR_QUOTE);
 				break ;
 			}
-		i = make_token(state, count, i, type);
+		i = make_token(&g_state, count, i, type);
 	}
-	check_token_error(state);
+	check_token_error(&g_state);
 }
 
 int		make_token(t_state *state, int count, int i, int type)

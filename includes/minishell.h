@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/18 21:25:17 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/19 20:20:31 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 # define BACKSLASH 7
 # define PIPE 8
 # define SEMICOLON 9
+# define DOLLAR 10
 
 # define ERROR 0
 
@@ -216,7 +217,7 @@ void				print_mini(void);
 /*
 **	tokenizer
 */
-void				tokenizer(t_state *state);
+void				tokenizer(int i, int count);
 int					make_token(t_state *state, int count, int i, int type);
 void				add_token_back(t_token **head, char *str, int type);
 char				*trim_str(char *str, int type);
@@ -249,6 +250,7 @@ void				parse_env(char **envp, t_state *state);
 void				add_env_back(t_env **head, char *key,
 								char *value, int has_equal);
 t_env				*create_env(char *key, char *value, int has_equal);
+void				change_dollar_sign(int i);
 
 /*
 **	env_util
