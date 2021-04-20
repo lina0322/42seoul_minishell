@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 16:19:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 16:06:09 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/20 12:27:38 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char	*removed_space(char *str)
 	return (result);
 }
 
-int		check_key_len(char *str)
+int		check_key_len(char *str, int isTokenizer)
 {
 	int len;
 
@@ -105,6 +105,8 @@ int		check_key_len(char *str)
 	{
 		if (str[len] == '\'' || str[len] == ' ')
 			break ;
+		if (is_operator(str, len) && isTokenizer)
+			break;
 		len++;
 	}
 	return (len);

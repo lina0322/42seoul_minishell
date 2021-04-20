@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 16:19:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/18 20:26:15 by dhyeon           ###   ########.fr       */
+/*   Updated: 2021/04/20 12:26:29 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*check_env(t_state *state, t_token *token, char *value, int *i)
 		*i = *i - 1;
 	else if (token->str[*i + 1])
 	{
-		len = check_key_len(&token->str[*i + 1]);
+		len = check_key_len(&token->str[*i + 1], FALSE);
 		key = ft_substr(&token->str[*i + 1], 0, len);
 		if (!ft_strcmp(key, "?"))
 		{

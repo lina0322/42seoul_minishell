@@ -6,7 +6,7 @@
 /*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/19 21:39:42 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/20 12:26:02 by llim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -342,6 +342,6 @@ void				free_cmd(t_cmd *cmd);
 void				check_env_space(t_state *state);
 void				remove_space(t_token *token);
 char				*removed_space(char *str);
-int					check_key_len(char *str);
+int					check_key_len(char *str, int isTokenizer);
 
 #endif
