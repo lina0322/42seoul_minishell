@@ -50,12 +50,12 @@
 # define SPACE 1
 # define SINGLE 2
 # define DOUBLE 3
-# define LEFT 4
-# define RIGHT 5
-# define DOUBLERIGHT 6
+# define LEFT 4 //
+# define RIGHT 5 //
+# define DOUBLERIGHT 6 //
 # define BACKSLASH 7
-# define PIPE 8
-# define SEMICOLON 9
+# define PIPE 8 // 
+# define SEMICOLON 9 // 
 # define DOLLAR 10
 
 # define ERROR 0
@@ -343,5 +343,8 @@ void				check_env_space(t_state *state);
 void				remove_space(t_token *token);
 char				*removed_space(char *str);
 int					check_key_len(char *str, int isTokenizer);
+
+int		is_operator_error(int type);
+
 
 #endif

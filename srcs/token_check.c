@@ -60,26 +60,33 @@ int		check_deep_syntax_error(int cur_type, int next_type, int has_space)
 void	check_token_error(t_state *state)
 {
 	t_token	*token;
+	char	**av;
 
 	token = state->token_head;
 	while (token)
 	{
 		if (token->type <= ERROR_QUOTE)
 			return (return_quote_error(state, token));
-		else if (token->type >= 4 && token->type <= 6)
+		else if (token->type >= LEFT && token->type <= DOUBLERIGHT)
 		{
-			if (!token->next || token->next->type == SEMICOLON ||
-			token->next->type == PIPE)
+			if (!token->next || is_operator_error(token->next->type))
 			{
-				make_cmd(token, 1, ERROR_RDIR, 0);
-				free_token(state->token_head);
+				av = make_empty_av(1);
+				add_cmd_back(&g_state.cmd_head, av, ERROR_RDIR);
 				return ;
 			}
 		}
 		token = token->next;
 	}
 	parse_cmd(state, 0);
-	free_token(state->token_head);
+}
+
+
+int		is_operator_error(int type)
+{
+	if ((type >= 4 && type <= 6) || (type >= 8 && type <= 9))
+		return TRUE;
+	return FALSE;
 }
 
 void	return_quote_error(t_state *state, t_token *token)

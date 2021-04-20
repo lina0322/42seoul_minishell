@@ -44,18 +44,15 @@ void	make_cmd(t_token *start, int ac, int type, int i)
 {
 	char	**av;
 	char	*tmp;
-	int		prev_type;
 
 	av = make_empty_av(ac);
-	prev_type = start->type;
 	while (start && i < ac && start->type != PIPE && start->type != SEMICOLON)
 	{
 		if (start->type == SPACE)
 			jump_space(av[i], &i);
 		else
 		{
-			if ((start->type >= 4 && start->type <= 6 && av[i])
-			|| (prev_type >= 4 && prev_type <= 6))
+			if ((start->type >= 4 && start->type <= 6 && av[i]))
 				i++;
 			else if (start->type == DOUBLE || start->type == COMMON)
 				check_backslash_and_env(&g_state, start);
@@ -63,7 +60,6 @@ void	make_cmd(t_token *start, int ac, int type, int i)
 			free(av[i]);
 			av[i] = tmp;
 		}
-		prev_type = start->type;
 		start = start->next;
 	}
 	add_cmd_back(&g_state.cmd_head, av, type);
