@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_util.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 16:19:16 by llim              #+#    #+#             */
-/*   Updated: 2021/04/20 12:27:38 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/20 16:11:13 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char	*removed_space(char *str)
 	return (result);
 }
 
-int		check_key_len(char *str, int isTokenizer)
+int		check_key_len(char *str, int is_tokenizer)
 {
 	int len;
 
@@ -105,8 +105,8 @@ int		check_key_len(char *str, int isTokenizer)
 	{
 		if (str[len] == '\'' || str[len] == ' ')
 			break ;
-		if (is_operator(str, len) && isTokenizer)
-			break;
+		if (is_operator(str, len) && is_tokenizer)
+			break ;
 		len++;
 	}
 	return (len);

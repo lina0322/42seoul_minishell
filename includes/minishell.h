@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llim <llim@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:29:42 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/04/20 12:26:02 by llim             ###   ########.fr       */
+/*   Updated: 2021/04/20 16:13:22 by dhyeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@
 # define SPACE 1
 # define SINGLE 2
 # define DOUBLE 3
-# define LEFT 4 //
-# define RIGHT 5 //
-# define DOUBLERIGHT 6 //
+# define LEFT 4
+# define RIGHT 5
+# define DOUBLERIGHT 6
 # define BACKSLASH 7
-# define PIPE 8 // 
-# define SEMICOLON 9 // 
+# define PIPE 8
+# define SEMICOLON 9
 # define DOLLAR 10
 
 # define ERROR 0
@@ -342,9 +342,7 @@ void				free_cmd(t_cmd *cmd);
 void				check_env_space(t_state *state);
 void				remove_space(t_token *token);
 char				*removed_space(char *str);
-int					check_key_len(char *str, int isTokenizer);
-
-int		is_operator_error(int type);
-
+int					check_key_len(char *str, int is_tokenizer);
+int					is_operator_error(int type);
 
 #endif
